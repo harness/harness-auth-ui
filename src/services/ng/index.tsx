@@ -861,29 +861,6 @@ export interface Throwable {
   suppressed?: Throwable[];
 }
 
-export interface ResponseMapServiceDefinitionTypeListExecutionStrategyType {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: {
-    [key: string]: ("Basic" | "Canary" | "BlueGreen" | "Rolling" | "Default")[];
-  };
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface ResponseString {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: string;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface ResponseListServiceDefinitionType {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: ("Ssh" | "Kubernetes" | "Ecs" | "NativeHelm" | "Pcf")[];
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
 export interface ResponseStepCategory {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
   data?: StepCategory;
@@ -925,6 +902,29 @@ export interface StepData {
   name?: string;
 }
 
+export interface ResponseMapServiceDefinitionTypeListExecutionStrategyType {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: {
+    [key: string]: ("Basic" | "Canary" | "BlueGreen" | "Rolling" | "Default")[];
+  };
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface ResponseString {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: string;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface ResponseListServiceDefinitionType {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: ("Ssh" | "Kubernetes" | "Ecs" | "NativeHelm" | "Pcf")[];
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
 export interface NGPipelineValidationInfo {
   pipelineYaml?: string;
   uuidToErrorResponseMap?: {
@@ -963,13 +963,13 @@ export interface Commit {
   defaultInstanceForType?: Commit;
   messageBytes?: ByteString;
   link?: string;
-  committer?: Signature;
-  committerOrBuilder?: SignatureOrBuilder;
-  sha?: string;
-  shaBytes?: ByteString;
-  linkBytes?: ByteString;
   author?: Signature;
   authorOrBuilder?: SignatureOrBuilder;
+  shaBytes?: ByteString;
+  linkBytes?: ByteString;
+  sha?: string;
+  committer?: Signature;
+  committerOrBuilder?: SignatureOrBuilder;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -981,13 +981,13 @@ export interface CommitOrBuilder {
   message?: string;
   messageBytes?: ByteString;
   link?: string;
-  committer?: Signature;
-  committerOrBuilder?: SignatureOrBuilder;
-  sha?: string;
-  shaBytes?: ByteString;
-  linkBytes?: ByteString;
   author?: Signature;
   authorOrBuilder?: SignatureOrBuilder;
+  shaBytes?: ByteString;
+  linkBytes?: ByteString;
+  sha?: string;
+  committer?: Signature;
+  committerOrBuilder?: SignatureOrBuilder;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -1025,14 +1025,14 @@ export interface EnumDescriptor {
 
 export interface EnumOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserEnumOptions;
   defaultInstanceForType?: EnumOptions;
+  deprecated?: boolean;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
+  uninterpretedOptionCount?: number;
   allowAlias?: boolean;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
@@ -1056,14 +1056,14 @@ export interface EnumValueDescriptor {
 
 export interface EnumValueOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserEnumValueOptions;
   defaultInstanceForType?: EnumValueOptions;
+  deprecated?: boolean;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
+  uninterpretedOptionCount?: number;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1076,6 +1076,10 @@ export interface EnumValueOptions {
 
 export interface ExecutionMetadata {
   unknownFields?: UnknownFieldSet;
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserExecutionMetadata;
+  defaultInstanceForType?: ExecutionMetadata;
   yaml?: string;
   runSequence?: number;
   triggerInfo?: ExecutionTriggerInfo;
@@ -1093,10 +1097,6 @@ export interface ExecutionMetadata {
   processedYaml?: string;
   processedYamlBytes?: ByteString;
   principalInfo?: ExecutionPrincipalInfo;
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserExecutionMetadata;
-  defaultInstanceForType?: ExecutionMetadata;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1150,6 +1150,10 @@ export interface ExecutionPrincipalInfoOrBuilder {
 
 export interface ExecutionTriggerInfo {
   unknownFields?: UnknownFieldSet;
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserExecutionTriggerInfo;
+  defaultInstanceForType?: ExecutionTriggerInfo;
   triggerTypeValue?: number;
   triggerType?:
     | "NOOP"
@@ -1160,10 +1164,6 @@ export interface ExecutionTriggerInfo {
     | "UNRECOGNIZED";
   triggeredBy?: TriggeredBy;
   triggeredByOrBuilder?: TriggeredByOrBuilder;
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserExecutionTriggerInfo;
-  defaultInstanceForType?: ExecutionTriggerInfo;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1222,13 +1222,25 @@ export interface FieldDescriptor {
   containingOneof?: OneofDescriptor;
   enumType?: EnumDescriptor;
   defaultValue?: { [key: string]: any };
-  required?: boolean;
-  optional?: boolean;
+  packed?: boolean;
   name?: string;
   number?: number;
+  required?: boolean;
+  optional?: boolean;
+  repeated?: boolean;
+  javaType?:
+    | "INT"
+    | "LONG"
+    | "FLOAT"
+    | "DOUBLE"
+    | "BOOLEAN"
+    | "STRING"
+    | "BYTE_STRING"
+    | "ENUM"
+    | "MESSAGE";
+  mapField?: boolean;
   options?: FieldOptions;
   extension?: boolean;
-  packed?: boolean;
   liteJavaType?:
     | "INT"
     | "LONG"
@@ -1259,35 +1271,23 @@ export interface FieldDescriptor {
     | "SINT32"
     | "SINT64";
   packable?: boolean;
-  repeated?: boolean;
-  javaType?:
-    | "INT"
-    | "LONG"
-    | "FLOAT"
-    | "DOUBLE"
-    | "BOOLEAN"
-    | "STRING"
-    | "BYTE_STRING"
-    | "ENUM"
-    | "MESSAGE";
-  mapField?: boolean;
 }
 
 export interface FieldOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
-  packed?: boolean;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserFieldOptions;
   defaultInstanceForType?: FieldOptions;
+  lazy?: boolean;
   ctype?: "STRING" | "CORD" | "STRING_PIECE";
   jstype?: "JS_NORMAL" | "JS_STRING" | "JS_NUMBER";
-  lazy?: boolean;
   weak?: boolean;
+  deprecated?: boolean;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
+  uninterpretedOptionCount?: number;
+  packed?: boolean;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1305,28 +1305,23 @@ export interface FileDescriptor {
   extensions?: FieldDescriptor[];
   dependencies?: FileDescriptor[];
   publicDependencies?: FileDescriptor[];
-  fullName?: string;
   name?: string;
   package?: string;
   file?: FileDescriptor;
-  options?: FileOptions;
+  fullName?: string;
   syntax?: "UNKNOWN" | "PROTO2" | "PROTO3";
+  options?: FileOptions;
 }
 
 export interface FileOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
-  javaStringCheckUtf8?: boolean;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserFileOptions;
   defaultInstanceForType?: FileOptions;
-  uninterpretedOptionList?: UninterpretedOption[];
-  uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
-  javaPackage?: string;
   javaPackageBytes?: ByteString;
   javaOuterClassname?: string;
+  javaPackage?: string;
   javaOuterClassnameBytes?: ByteString;
   javaMultipleFiles?: boolean;
   javaGenerateEqualsAndHash?: boolean;
@@ -1352,6 +1347,11 @@ export interface FileOptions {
   phpMetadataNamespaceBytes?: ByteString;
   rubyPackage?: string;
   rubyPackageBytes?: ByteString;
+  deprecated?: boolean;
+  uninterpretedOptionList?: UninterpretedOption[];
+  uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
+  uninterpretedOptionCount?: number;
+  javaStringCheckUtf8?: boolean;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1365,12 +1365,12 @@ export interface FileOptions {
 export interface Label {
   unknownFields?: UnknownFieldSet;
   name?: string;
-  color?: string;
-  colorBytes?: ByteString;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserLabel;
   defaultInstanceForType?: Label;
+  color?: string;
+  colorBytes?: ByteString;
   nameBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
@@ -1416,17 +1416,17 @@ export interface MessageLite {
 
 export interface MessageOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
-  mapEntry?: boolean;
-  messageSetWireFormat?: boolean;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserMessageOptions;
   defaultInstanceForType?: MessageOptions;
   noStandardDescriptorAccessor?: boolean;
+  deprecated?: boolean;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
+  uninterpretedOptionCount?: number;
+  mapEntry?: boolean;
+  messageSetWireFormat?: boolean;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1452,15 +1452,15 @@ export interface MethodDescriptor {
 
 export interface MethodOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserMethodOptions;
   defaultInstanceForType?: MethodOptions;
   idempotencyLevel?: "IDEMPOTENCY_UNKNOWN" | "NO_SIDE_EFFECTS" | "IDEMPOTENT";
+  deprecated?: boolean;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
+  uninterpretedOptionCount?: number;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1537,13 +1537,13 @@ export interface OneofDescriptor {
 
 export interface OneofOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserOneofOptions;
   defaultInstanceForType?: OneofOptions;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
+  uninterpretedOptionCount?: number;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1560,10 +1560,10 @@ export interface ParsedPayload {
   serializedSize?: number;
   parserForType?: ParserParsedPayload;
   defaultInstanceForType?: ParsedPayload;
-  prOrBuilder?: PullRequestHookOrBuilder;
-  pr?: PullRequestHook;
   push?: PushHook;
+  pr?: PullRequestHook;
   pushOrBuilder?: PushHookOrBuilder;
+  prOrBuilder?: PullRequestHookOrBuilder;
   payloadCase?: "PR" | "PUSH" | "PAYLOAD_NOT_SET";
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
@@ -1573,10 +1573,10 @@ export interface ParsedPayload {
 }
 
 export interface ParsedPayloadOrBuilder {
-  prOrBuilder?: PullRequestHookOrBuilder;
-  pr?: PullRequestHook;
   push?: PushHook;
+  pr?: PullRequestHook;
   pushOrBuilder?: PushHookOrBuilder;
+  prOrBuilder?: PullRequestHookOrBuilder;
   payloadCase?: "PR" | "PUSH" | "PAYLOAD_NOT_SET";
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
@@ -1710,13 +1710,13 @@ export interface ParserUser {
 
 export interface Perm {
   unknownFields?: UnknownFieldSet;
-  admin?: boolean;
-  pull?: boolean;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserPerm;
   defaultInstanceForType?: Perm;
   push?: boolean;
+  pull?: boolean;
+  admin?: boolean;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1725,9 +1725,9 @@ export interface Perm {
 }
 
 export interface PermOrBuilder {
-  admin?: boolean;
-  pull?: boolean;
   push?: boolean;
+  pull?: boolean;
+  admin?: boolean;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -1766,6 +1766,7 @@ export interface PlanExecution {
     | "IGNORE_FAILED"
     | "APPROVAL_WAITING"
     | "RESOURCE_WAITING"
+    | "APPROVAL_REJECTED"
     | "UNRECOGNIZED";
   startTs?: number;
   endTs?: number;
@@ -1781,38 +1782,38 @@ export interface PullRequest {
   ref?: string;
   number?: number;
   title?: string;
-  source?: string;
-  head?: Reference;
-  base?: Reference;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserPullRequest;
   defaultInstanceForType?: PullRequest;
-  link?: string;
-  refBytes?: ByteString;
-  bodyBytes?: ByteString;
-  sha?: string;
   titleBytes?: ByteString;
-  shaBytes?: ByteString;
+  bodyBytes?: ByteString;
+  fork?: string;
   sourceBytes?: ByteString;
   targetBytes?: ByteString;
-  fork?: string;
   forkBytes?: ByteString;
-  linkBytes?: ByteString;
   closed?: boolean;
   merged?: boolean;
   baseOrBuilder?: ReferenceOrBuilder;
   headOrBuilder?: ReferenceOrBuilder;
-  author?: User;
-  authorOrBuilder?: UserOrBuilder;
-  createdOrBuilder?: TimestampOrBuilder;
-  updated?: Timestamp;
-  updatedOrBuilder?: TimestampOrBuilder;
   labelsList?: Label[];
   labelsCount?: number;
   labelsOrBuilderList?: LabelOrBuilder[];
-  created?: Timestamp;
+  base?: Reference;
+  head?: Reference;
+  source?: string;
   body?: string;
+  refBytes?: ByteString;
+  link?: string;
+  created?: Timestamp;
+  author?: User;
+  authorOrBuilder?: UserOrBuilder;
+  shaBytes?: ByteString;
+  linkBytes?: ByteString;
+  createdOrBuilder?: TimestampOrBuilder;
+  updated?: Timestamp;
+  updatedOrBuilder?: TimestampOrBuilder;
+  sha?: string;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1822,10 +1823,6 @@ export interface PullRequest {
 
 export interface PullRequestHook {
   unknownFields?: UnknownFieldSet;
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserPullRequestHook;
-  defaultInstanceForType?: PullRequestHook;
   action?:
     | "UNKNOWN"
     | "CREATE"
@@ -1839,10 +1836,14 @@ export interface PullRequestHook {
     | "SYNC"
     | "MERGE"
     | "UNRECOGNIZED";
-  prOrBuilder?: PullRequestOrBuilder;
-  pr?: PullRequest;
-  actionValue?: number;
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserPullRequestHook;
+  defaultInstanceForType?: PullRequestHook;
   repo?: Repository;
+  pr?: PullRequest;
+  prOrBuilder?: PullRequestOrBuilder;
+  actionValue?: number;
   repoOrBuilder?: RepositoryOrBuilder;
   sender?: User;
   senderOrBuilder?: UserOrBuilder;
@@ -1867,10 +1868,10 @@ export interface PullRequestHookOrBuilder {
     | "SYNC"
     | "MERGE"
     | "UNRECOGNIZED";
-  prOrBuilder?: PullRequestOrBuilder;
-  pr?: PullRequest;
-  actionValue?: number;
   repo?: Repository;
+  pr?: PullRequest;
+  prOrBuilder?: PullRequestOrBuilder;
+  actionValue?: number;
   repoOrBuilder?: RepositoryOrBuilder;
   sender?: User;
   senderOrBuilder?: UserOrBuilder;
@@ -1889,34 +1890,34 @@ export interface PullRequestOrBuilder {
   ref?: string;
   number?: number;
   title?: string;
-  source?: string;
-  head?: Reference;
-  base?: Reference;
-  link?: string;
-  refBytes?: ByteString;
-  bodyBytes?: ByteString;
-  sha?: string;
   titleBytes?: ByteString;
-  shaBytes?: ByteString;
+  bodyBytes?: ByteString;
+  fork?: string;
   sourceBytes?: ByteString;
   targetBytes?: ByteString;
-  fork?: string;
   forkBytes?: ByteString;
-  linkBytes?: ByteString;
   closed?: boolean;
   merged?: boolean;
   baseOrBuilder?: ReferenceOrBuilder;
   headOrBuilder?: ReferenceOrBuilder;
-  author?: User;
-  authorOrBuilder?: UserOrBuilder;
-  createdOrBuilder?: TimestampOrBuilder;
-  updated?: Timestamp;
-  updatedOrBuilder?: TimestampOrBuilder;
   labelsList?: Label[];
   labelsCount?: number;
   labelsOrBuilderList?: LabelOrBuilder[];
-  created?: Timestamp;
+  base?: Reference;
+  head?: Reference;
+  source?: string;
   body?: string;
+  refBytes?: ByteString;
+  link?: string;
+  created?: Timestamp;
+  author?: User;
+  authorOrBuilder?: UserOrBuilder;
+  shaBytes?: ByteString;
+  linkBytes?: ByteString;
+  createdOrBuilder?: TimestampOrBuilder;
+  updated?: Timestamp;
+  updatedOrBuilder?: TimestampOrBuilder;
+  sha?: string;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -1935,21 +1936,21 @@ export interface PushHook {
   parserForType?: ParserPushHook;
   defaultInstanceForType?: PushHook;
   after?: string;
-  repo?: Repository;
-  baseRefBytes?: ByteString;
-  before?: string;
   baseRef?: string;
+  baseRefBytes?: ByteString;
+  repo?: Repository;
+  refBytes?: ByteString;
   repoOrBuilder?: RepositoryOrBuilder;
-  sender?: User;
-  senderOrBuilder?: UserOrBuilder;
+  before?: string;
   beforeBytes?: ByteString;
   afterBytes?: ByteString;
   commit?: Commit;
   commitOrBuilder?: CommitOrBuilder;
+  sender?: User;
+  senderOrBuilder?: UserOrBuilder;
   commitsList?: Commit[];
   commitsCount?: number;
   commitsOrBuilderList?: CommitOrBuilder[];
-  refBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -1960,21 +1961,21 @@ export interface PushHook {
 export interface PushHookOrBuilder {
   ref?: string;
   after?: string;
-  repo?: Repository;
-  baseRefBytes?: ByteString;
-  before?: string;
   baseRef?: string;
+  baseRefBytes?: ByteString;
+  repo?: Repository;
+  refBytes?: ByteString;
   repoOrBuilder?: RepositoryOrBuilder;
-  sender?: User;
-  senderOrBuilder?: UserOrBuilder;
+  before?: string;
   beforeBytes?: ByteString;
   afterBytes?: ByteString;
   commit?: Commit;
   commitOrBuilder?: CommitOrBuilder;
+  sender?: User;
+  senderOrBuilder?: UserOrBuilder;
   commitsList?: Commit[];
   commitsCount?: number;
   commitsOrBuilderList?: CommitOrBuilder[];
-  refBytes?: ByteString;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -1989,14 +1990,14 @@ export interface Reference {
   unknownFields?: UnknownFieldSet;
   name?: string;
   path?: string;
-  pathBytes?: ByteString;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserReference;
   defaultInstanceForType?: Reference;
-  sha?: string;
-  shaBytes?: ByteString;
   nameBytes?: ByteString;
+  shaBytes?: ByteString;
+  sha?: string;
+  pathBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2007,10 +2008,10 @@ export interface Reference {
 export interface ReferenceOrBuilder {
   name?: string;
   path?: string;
-  pathBytes?: ByteString;
-  sha?: string;
-  shaBytes?: ByteString;
   nameBytes?: ByteString;
+  shaBytes?: ByteString;
+  sha?: string;
+  pathBytes?: ByteString;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -2025,19 +2026,22 @@ export interface Repository {
   unknownFields?: UnknownFieldSet;
   name?: string;
   id?: string;
-  branchBytes?: ByteString;
-  clone?: string;
-  perm?: Perm;
-  idBytes?: ByteString;
-  namespaceBytes?: ByteString;
-  permOrBuilder?: PermOrBuilder;
   namespace?: string;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserRepository;
   defaultInstanceForType?: Repository;
+  branch?: string;
   link?: string;
+  created?: Timestamp;
+  nameBytes?: ByteString;
+  namespaceBytes?: ByteString;
+  idBytes?: ByteString;
+  perm?: Perm;
+  permOrBuilder?: PermOrBuilder;
+  branchBytes?: ByteString;
   private?: boolean;
+  clone?: string;
   cloneBytes?: ByteString;
   cloneSsh?: string;
   cloneSshBytes?: ByteString;
@@ -2045,9 +2049,6 @@ export interface Repository {
   createdOrBuilder?: TimestampOrBuilder;
   updated?: Timestamp;
   updatedOrBuilder?: TimestampOrBuilder;
-  branch?: string;
-  created?: Timestamp;
-  nameBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2058,15 +2059,18 @@ export interface Repository {
 export interface RepositoryOrBuilder {
   name?: string;
   id?: string;
-  branchBytes?: ByteString;
-  clone?: string;
-  perm?: Perm;
-  idBytes?: ByteString;
-  namespaceBytes?: ByteString;
-  permOrBuilder?: PermOrBuilder;
   namespace?: string;
+  branch?: string;
   link?: string;
+  created?: Timestamp;
+  nameBytes?: ByteString;
+  namespaceBytes?: ByteString;
+  idBytes?: ByteString;
+  perm?: Perm;
+  permOrBuilder?: PermOrBuilder;
+  branchBytes?: ByteString;
   private?: boolean;
+  clone?: string;
   cloneBytes?: ByteString;
   cloneSsh?: string;
   cloneSshBytes?: ByteString;
@@ -2074,9 +2078,6 @@ export interface RepositoryOrBuilder {
   createdOrBuilder?: TimestampOrBuilder;
   updated?: Timestamp;
   updatedOrBuilder?: TimestampOrBuilder;
-  branch?: string;
-  created?: Timestamp;
-  nameBytes?: ByteString;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -2105,14 +2106,14 @@ export interface ServiceDescriptor {
 
 export interface ServiceOptions {
   unknownFields?: UnknownFieldSet;
-  uninterpretedOptionCount?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserServiceOptions;
   defaultInstanceForType?: ServiceOptions;
+  deprecated?: boolean;
   uninterpretedOptionList?: UninterpretedOption[];
   uninterpretedOptionOrBuilderList?: UninterpretedOptionOrBuilder[];
-  deprecated?: boolean;
+  uninterpretedOptionCount?: number;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2126,19 +2127,19 @@ export interface ServiceOptions {
 export interface Signature {
   unknownFields?: UnknownFieldSet;
   name?: string;
-  email?: string;
-  date?: Timestamp;
+  login?: string;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserSignature;
   defaultInstanceForType?: Signature;
-  loginBytes?: ByteString;
+  date?: Timestamp;
+  dateOrBuilder?: TimestampOrBuilder;
+  email?: string;
+  nameBytes?: ByteString;
   emailBytes?: ByteString;
   avatar?: string;
   avatarBytes?: ByteString;
-  dateOrBuilder?: TimestampOrBuilder;
-  login?: string;
-  nameBytes?: ByteString;
+  loginBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2148,15 +2149,15 @@ export interface Signature {
 
 export interface SignatureOrBuilder {
   name?: string;
-  email?: string;
+  login?: string;
   date?: Timestamp;
-  loginBytes?: ByteString;
+  dateOrBuilder?: TimestampOrBuilder;
+  email?: string;
+  nameBytes?: ByteString;
   emailBytes?: ByteString;
   avatar?: string;
   avatarBytes?: ByteString;
-  dateOrBuilder?: TimestampOrBuilder;
-  login?: string;
-  nameBytes?: ByteString;
+  loginBytes?: ByteString;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -2170,11 +2171,11 @@ export interface SignatureOrBuilder {
 export interface Timestamp {
   unknownFields?: UnknownFieldSet;
   seconds?: number;
-  nanos?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserTimestamp;
   defaultInstanceForType?: Timestamp;
+  nanos?: number;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2198,15 +2199,15 @@ export interface TimestampOrBuilder {
 export interface TriggerPayload {
   unknownFields?: UnknownFieldSet;
   type?: "CUSTOM" | "GIT" | "SCHEDULED" | "UNRECOGNIZED";
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserTriggerPayload;
+  defaultInstanceForType?: TriggerPayload;
   jsonPayloadBytes?: ByteString;
   jsonPayload?: string;
   parsedPayload?: ParsedPayload;
   parsedPayloadOrBuilder?: ParsedPayloadOrBuilder;
   typeValue?: number;
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserTriggerPayload;
-  defaultInstanceForType?: TriggerPayload;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2234,6 +2235,10 @@ export interface TriggerPayloadOrBuilder {
 export interface TriggeredBy {
   unknownFields?: UnknownFieldSet;
   identifier?: string;
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserTriggeredBy;
+  defaultInstanceForType?: TriggeredBy;
   uuid?: string;
   uuidBytes?: ByteString;
   identifierBytes?: ByteString;
@@ -2244,10 +2249,6 @@ export interface TriggeredBy {
   extraInfoMap?: {
     [key: string]: string;
   };
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserTriggeredBy;
-  defaultInstanceForType?: TriggeredBy;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -2279,13 +2280,13 @@ export interface TriggeredByOrBuilder {
 
 export interface UninterpretedOption {
   unknownFields?: UnknownFieldSet;
-  doubleValue?: number;
   nameCount?: number;
   stringValue?: ByteString;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: ParserUninterpretedOption;
   defaultInstanceForType?: UninterpretedOption;
+  doubleValue?: number;
   nameList?: NamePart[];
   nameOrBuilderList?: NamePartOrBuilder[];
   identifierValue?: string;
@@ -2302,9 +2303,9 @@ export interface UninterpretedOption {
 }
 
 export interface UninterpretedOptionOrBuilder {
-  doubleValue?: number;
   nameCount?: number;
   stringValue?: ByteString;
+  doubleValue?: number;
   nameList?: NamePart[];
   nameOrBuilderList?: NamePartOrBuilder[];
   identifierValue?: string;
@@ -2324,11 +2325,11 @@ export interface UninterpretedOptionOrBuilder {
 }
 
 export interface UnknownFieldSet {
-  serializedSizeAsMessageSet?: number;
   initialized?: boolean;
   serializedSize?: number;
   parserForType?: Parser;
   defaultInstanceForType?: UnknownFieldSet;
+  serializedSizeAsMessageSet?: number;
 }
 
 export interface User {
@@ -2373,17 +2374,17 @@ export interface User {
 
 export interface UserOrBuilder {
   name?: string;
+  login?: string;
   email?: string;
-  loginBytes?: ByteString;
+  created?: Timestamp;
+  nameBytes?: ByteString;
   emailBytes?: ByteString;
   avatar?: string;
   avatarBytes?: ByteString;
   createdOrBuilder?: TimestampOrBuilder;
   updated?: Timestamp;
   updatedOrBuilder?: TimestampOrBuilder;
-  login?: string;
-  created?: Timestamp;
-  nameBytes?: ByteString;
+  loginBytes?: ByteString;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -2912,9 +2913,9 @@ export type MarkAsSuccessFailureActionConfig = FailureStrategyActionConfig & {
 };
 
 export interface NGVariable {
-  required?: boolean;
   name?: string;
   type?: "String" | "Number" | "Secret";
+  required?: boolean;
   description?: string;
   metadata?: string;
 }
@@ -3140,8 +3141,8 @@ export interface ServiceOverrides {
 export interface ServiceSpec {
   variables?: NGVariable[];
   artifacts?: ArtifactListConfig;
-  manifests?: ManifestConfigWrapper[];
   manifestOverrideSets?: ManifestOverrideSetWrapper[];
+  manifests?: ManifestConfigWrapper[];
   artifactOverrideSets?: ArtifactOverrideSetWrapper[];
   variableOverrideSets?: NGVariableOverrideSetWrapper[];
 }
@@ -3350,8 +3351,8 @@ export interface TerraformPlanExecutionData {
   workspace?: string;
   targets?: string[];
   environmentVariables?: NGVariable[];
-  command?: "APPLY" | "DESTROY";
-  secretManagerId?: string;
+  command?: "Apply" | "Destroy";
+  secretManagerRef?: string;
   configFiles?: TerraformConfigFilesWrapper;
   varFiles?: TerraformVarFileWrapper[];
   backendConfig?: TerraformBackendConfig;
@@ -3478,6 +3479,38 @@ export interface AwsCurAttributes {
   s3BucketName: string;
 }
 
+export interface AwsKmsConnectorCredential {
+  type: "AssumeIAMRole" | "AssumeSTSRole" | "ManualConfig";
+  spec?: AwsKmsCredentialSpec;
+}
+
+export type AwsKmsConnectorDTO = ConnectorConfigDTO & {
+  credential?: AwsKmsConnectorCredential;
+  kmsArn?: string;
+  region?: string;
+  default?: boolean;
+};
+
+export interface AwsKmsCredentialSpec {
+  [key: string]: any;
+}
+
+export type AwsKmsCredentialSpecAssumeIAM = AwsKmsCredentialSpec & {
+  delegateSelectors: string[];
+};
+
+export type AwsKmsCredentialSpecAssumeSTS = AwsKmsCredentialSpec & {
+  delegateSelectors: string[];
+  roleArn: string;
+  externalName?: string;
+  assumeStsRoleDuration?: number;
+};
+
+export type AwsKmsCredentialSpecManualConfig = AwsKmsCredentialSpec & {
+  accessKey: string;
+  secretKey: string;
+};
+
 export type AwsManualConfigSpec = AwsCredentialSpec & {
   accessKey?: string;
   accessKeyRef?: string;
@@ -3592,6 +3625,7 @@ export interface ConnectorInfoDTO {
     | "Vault"
     | "DockerRegistry"
     | "Local"
+    | "AwsKms"
     | "GcpKms"
     | "Gcp"
     | "Aws"
@@ -4024,14 +4058,14 @@ export interface ResponseBoolean {
 export interface Page {
   totalElements?: number;
   totalPages?: number;
-  numberOfElements?: number;
-  pageable?: Pageable;
   size?: number;
   content?: { [key: string]: any }[];
   number?: number;
-  last?: boolean;
   first?: boolean;
   sort?: Sort;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: Pageable;
   empty?: boolean;
 }
 
@@ -4064,6 +4098,7 @@ export type ConnectorFilterProperties = FilterProperties & {
     | "Vault"
     | "DockerRegistry"
     | "Local"
+    | "AwsKms"
     | "GcpKms"
     | "Gcp"
     | "Aws"
@@ -4094,6 +4129,21 @@ export type ConnectorFilterProperties = FilterProperties & {
   inheritingCredentialsFromDelegate?: boolean;
 };
 
+export interface ConnectorValidationResult {
+  status?: "SUCCESS" | "FAILURE" | "PARTIAL";
+  errors?: ErrorDetail[];
+  errorSummary?: string;
+  testedAt?: number;
+  delegateId?: string;
+}
+
+export interface ResponseConnectorValidationResult {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: ConnectorValidationResult;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
 export interface ConnectorStatistics {
   typeStats?: ConnectorTypeStatistics[];
   statusStats?: ConnectorStatusStatistics[];
@@ -4113,6 +4163,7 @@ export interface ConnectorTypeStatistics {
     | "Vault"
     | "DockerRegistry"
     | "Local"
+    | "AwsKms"
     | "GcpKms"
     | "Gcp"
     | "Aws"
@@ -4146,21 +4197,6 @@ export interface ResponseListConnectorResponse {
   correlationId?: string;
 }
 
-export interface ConnectorValidationResult {
-  status?: "SUCCESS" | "FAILURE" | "PARTIAL";
-  errors?: ErrorDetail[];
-  errorSummary?: string;
-  testedAt?: number;
-  delegateId?: string;
-}
-
-export interface ResponseConnectorValidationResult {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: ConnectorValidationResult;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
 export interface ConnectorCatalogueItem {
   category?:
     | "CLOUD_PROVIDER"
@@ -4178,6 +4214,7 @@ export interface ConnectorCatalogueItem {
     | "Vault"
     | "DockerRegistry"
     | "Local"
+    | "AwsKms"
     | "GcpKms"
     | "Gcp"
     | "Aws"
@@ -4220,6 +4257,8 @@ export type AuditFilterProperties = FilterProperties & {
     | "INVITE"
     | "RESEND_INVITE"
     | "REVOKE_INVITE"
+    | "ADD_COLLABORATOR"
+    | "REMOVE_COLLABORATOR"
     | "ADD_MEMBERSHIP"
     | "REMOVE_MEMBERSHIP"
   )[];
@@ -4658,200 +4697,6 @@ export interface BatchRoleAssignmentCreateRequest {
   roleAssignments?: RoleAssignment[];
 }
 
-export interface ResponseUserAggregate {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: UserAggregate;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface RoleBinding {
-  identifier?: string;
-  roleIdentifier: string;
-  roleName: string;
-  resourceGroupIdentifier?: string;
-  resourceGroupName?: string;
-  managedRole: boolean;
-}
-
-export interface UserAggregate {
-  user: UserSearchDTO;
-  roleBindings?: RoleBinding[];
-}
-
-export interface UserSearchDTO {
-  name: string;
-  email: string;
-  uuid: string;
-}
-
-export interface PageUserAggregate {
-  totalPages?: number;
-  totalItems?: number;
-  pageItemCount?: number;
-  pageSize?: number;
-  content?: UserAggregate[];
-  pageIndex?: number;
-  empty?: boolean;
-}
-
-export interface ResponsePageUserAggregate {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: PageUserAggregate;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface ACLAggregateFilter {
-  resourceGroupIdentifiers?: string[];
-  roleIdentifiers?: string[];
-}
-
-export interface RestResponseBoolean {
-  metaData?: {
-    [key: string]: { [key: string]: any };
-  };
-  resource?: boolean;
-  responseMessages?: ResponseMessage[];
-}
-
-export interface EmbeddedUser {
-  uuid?: string;
-  name?: string;
-  email?: string;
-}
-
-export interface LdapConnectionSettings {
-  host: string;
-  port?: number;
-  sslEnabled?: boolean;
-  referralsEnabled?: boolean;
-  maxReferralHops?: number;
-  bindDN?: string;
-  bindPassword?: string;
-  connectTimeout?: number;
-  responseTimeout?: number;
-}
-
-export interface LdapGroupSettings {
-  baseDN?: string;
-  searchFilter?: string;
-  nameAttr?: string;
-  descriptionAttr?: string;
-  userMembershipAttr?: string;
-  referencedUserAttr?: string;
-}
-
-export type LdapSettings = SSOSettings & {
-  connectionSettings: LdapConnectionSettings;
-  userSettings?: LdapUserSettings;
-  groupSettings?: LdapGroupSettings;
-  userSettingsList?: LdapUserSettings[];
-  groupSettingsList?: LdapGroupSettings[];
-};
-
-export interface LdapUserSettings {
-  baseDN?: string;
-  searchFilter?: string;
-  emailAttr?: string;
-  displayNameAttr?: string;
-  groupMembershipAttr?: string;
-}
-
-export type OauthSettings = SSOSettings & {
-  filter?: string;
-  allowedProviders?: (
-    | "AZURE"
-    | "BITBUCKET"
-    | "GITHUB"
-    | "GITLAB"
-    | "GOOGLE"
-    | "LINKEDIN"
-  )[];
-};
-
-export interface RestResponseSSOConfig {
-  metaData?: {
-    [key: string]: { [key: string]: any };
-  };
-  resource?: SSOConfig;
-  responseMessages?: ResponseMessage[];
-}
-
-export interface SSOConfig {
-  accountId?: string;
-  ssoSettings?: SSOSettings[];
-  authenticationMechanism?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
-}
-
-export interface SSOSettings {
-  uuid: string;
-  appId: string;
-  createdBy?: EmbeddedUser;
-  createdAt?: number;
-  lastUpdatedBy?: EmbeddedUser;
-  lastUpdatedAt: number;
-  type: "SAML" | "LDAP" | "OAUTH";
-  displayName?: string;
-  url?: string;
-  accountId?: string;
-}
-
-export type SamlSettings = SSOSettings & {
-  accountId: string;
-  origin: string;
-  logoutUrl?: string;
-  groupMembershipAttr?: string;
-  authorizationEnabled?: boolean;
-};
-
-export interface LoginTypeResponse {
-  authenticationMechanism?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
-  showCaptcha?: boolean;
-  defaultExperience?: "NG" | "CG";
-  ssorequest?: SSORequest;
-  oauthEnabled?: boolean;
-}
-
-export interface RestResponseLoginTypeResponse {
-  metaData?: {
-    [key: string]: { [key: string]: any };
-  };
-  resource?: LoginTypeResponse;
-  responseMessages?: ResponseMessage[];
-}
-
-export interface SSORequest {
-  oauthProviderType?:
-    | "AZURE"
-    | "BITBUCKET"
-    | "GITHUB"
-    | "GITLAB"
-    | "GOOGLE"
-    | "LINKEDIN";
-  idpRedirectUrl?: string;
-  oauthProviderTypes?: (
-    | "AZURE"
-    | "BITBUCKET"
-    | "GITHUB"
-    | "GITLAB"
-    | "GOOGLE"
-    | "LINKEDIN"
-  )[];
-}
-
-export type OAuthSettings = NGAuthSettings & {
-  filter?: string;
-  allowedProviders?: (
-    | "AZURE"
-    | "BITBUCKET"
-    | "GITHUB"
-    | "GITLAB"
-    | "GOOGLE"
-    | "LINKEDIN"
-  )[];
-};
-
 export interface AccountEvent {
   accountEventType?:
     | "APP_CREATED"
@@ -4988,6 +4833,13 @@ export interface AppPermission {
   )[];
 }
 
+export interface AuthenticationSettingsResponse {
+  ngAuthSettings?: NGAuthSettings[];
+  whitelistedDomains?: string[];
+  authenticationMechanism?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
+  twoFactorEnabled?: boolean;
+}
+
 export interface CeLicenseInfo {
   licenseType?: "FULL_TRIAL" | "LIMITED_TRIAL" | "PAID";
   expiryTime?: number;
@@ -4995,6 +4847,12 @@ export interface CeLicenseInfo {
 
 export interface DelegateConfiguration {
   delegateVersions?: string[];
+}
+
+export interface EmbeddedUser {
+  uuid?: string;
+  name?: string;
+  email?: string;
 }
 
 export type EnvFilter = Filter & {
@@ -5008,6 +4866,41 @@ export interface Filter {
 export type GenericEntityFilter = Filter & {
   filterType?: string;
 };
+
+export type LDAPSettings = NGAuthSettings & {
+  connectionSettings: LdapConnectionSettings;
+  userSettingsList?: LdapUserSettings[];
+  groupSettingsList?: LdapGroupSettings[];
+};
+
+export interface LdapConnectionSettings {
+  host: string;
+  port?: number;
+  sslEnabled?: boolean;
+  referralsEnabled?: boolean;
+  maxReferralHops?: number;
+  bindDN?: string;
+  bindPassword?: string;
+  connectTimeout?: number;
+  responseTimeout?: number;
+}
+
+export interface LdapGroupSettings {
+  baseDN?: string;
+  searchFilter?: string;
+  nameAttr?: string;
+  descriptionAttr?: string;
+  userMembershipAttr?: string;
+  referencedUserAttr?: string;
+}
+
+export interface LdapUserSettings {
+  baseDN?: string;
+  searchFilter?: string;
+  emailAttr?: string;
+  displayNameAttr?: string;
+  groupMembershipAttr?: string;
+}
 
 export interface LicenseInfo {
   accountType?: string;
@@ -5026,6 +4919,10 @@ export interface LoginSettings {
   passwordStrengthPolicy: PasswordStrengthPolicy;
 }
 
+export interface NGAuthSettings {
+  settingsType?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
+}
+
 export interface NotificationSettings {
   useIndividualEmails?: boolean;
   sendMailToNewMembers?: boolean;
@@ -5033,6 +4930,19 @@ export interface NotificationSettings {
   slackConfig: SlackNotificationSetting;
   pagerDutyIntegrationKey?: string;
   microsoftTeamsWebhookUrl?: string;
+}
+
+export interface OAuthSettings {
+  filter?: string;
+  allowedProviders?: (
+    | "AZURE"
+    | "BITBUCKET"
+    | "GITHUB"
+    | "GITLAB"
+    | "GOOGLE"
+    | "LINKEDIN"
+  )[];
+  settingsType?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
 }
 
 export interface PasswordExpirationPolicy {
@@ -5050,13 +4960,21 @@ export interface PasswordStrengthPolicy {
   minNumberOfDigits?: number;
 }
 
-export interface RestResponseLoginSettings {
+export interface RestResponseAuthenticationSettingsResponse {
   metaData?: {
     [key: string]: { [key: string]: any };
   };
-  resource?: LoginSettings;
+  resource?: AuthenticationSettingsResponse;
   responseMessages?: ResponseMessage[];
 }
+
+export type SAMLSettings = NGAuthSettings & {
+  origin: string;
+  logoutUrl?: string;
+  groupMembershipAttr?: string;
+  displayName?: string;
+  authorizationEnabled?: boolean;
+};
 
 export interface SlackNotificationSetting {
   name?: string;
@@ -5111,6 +5029,10 @@ export interface UserLockoutPolicy {
   userGroupsToNotify?: UserGroup[];
 }
 
+export type UsernamePasswordSettings = NGAuthSettings & {
+  loginSettings: LoginSettings;
+};
+
 export interface UtmInfo {
   utmSource?: string;
   utmContent?: string;
@@ -5123,42 +5045,21 @@ export type WorkflowFilter = Filter & {
   filterTypes?: string[];
 };
 
-export interface AuthenticationSettingsResponse {
-  ngAuthSettings?: NGAuthSettings[];
-  whitelistedDomains?: string[];
-  authenticationMechanism?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
-  twoFactorEnabled?: boolean;
-}
-
-export type LDAPSettings = NGAuthSettings & {
-  connectionSettings: LdapConnectionSettings;
-  userSettingsList?: LdapUserSettings[];
-  groupSettingsList?: LdapGroupSettings[];
-};
-
-export interface NGAuthSettings {
-  settingsType?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
-}
-
-export interface RestResponseAuthenticationSettingsResponse {
+export interface RestResponseBoolean {
   metaData?: {
     [key: string]: { [key: string]: any };
   };
-  resource?: AuthenticationSettingsResponse;
+  resource?: boolean;
   responseMessages?: ResponseMessage[];
 }
 
-export type SAMLSettings = NGAuthSettings & {
-  origin: string;
-  logoutUrl?: string;
-  groupMembershipAttr?: string;
-  displayName?: string;
-  authorizationEnabled?: boolean;
-};
-
-export type UsernamePasswordSettings = NGAuthSettings & {
-  loginSettings: LoginSettings;
-};
+export interface RestResponseLoginSettings {
+  metaData?: {
+    [key: string]: { [key: string]: any };
+  };
+  resource?: LoginSettings;
+  responseMessages?: ResponseMessage[];
+}
 
 export interface TwoFactorAdminOverrideSettings {
   adminOverrideTwoFactorEnabled?: boolean;
@@ -5170,6 +5071,135 @@ export interface RestResponsePasswordStrengthPolicy {
   };
   resource?: PasswordStrengthPolicy;
   responseMessages?: ResponseMessage[];
+}
+
+export type LdapSettings = SSOSettings & {
+  connectionSettings: LdapConnectionSettings;
+  userSettings?: LdapUserSettings;
+  groupSettings?: LdapGroupSettings;
+  userSettingsList?: LdapUserSettings[];
+  groupSettingsList?: LdapGroupSettings[];
+};
+
+export type OauthSettings = SSOSettings & {
+  filter?: string;
+  allowedProviders?: (
+    | "AZURE"
+    | "BITBUCKET"
+    | "GITHUB"
+    | "GITLAB"
+    | "GOOGLE"
+    | "LINKEDIN"
+  )[];
+};
+
+export interface RestResponseSSOConfig {
+  metaData?: {
+    [key: string]: { [key: string]: any };
+  };
+  resource?: SSOConfig;
+  responseMessages?: ResponseMessage[];
+}
+
+export interface SSOConfig {
+  accountId?: string;
+  ssoSettings?: SSOSettings[];
+  authenticationMechanism?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
+}
+
+export interface SSOSettings {
+  uuid: string;
+  appId: string;
+  createdBy?: EmbeddedUser;
+  createdAt?: number;
+  lastUpdatedBy?: EmbeddedUser;
+  lastUpdatedAt: number;
+  type: "SAML" | "LDAP" | "OAUTH";
+  displayName?: string;
+  url?: string;
+  accountId?: string;
+}
+
+export type SamlSettings = SSOSettings & {
+  accountId: string;
+  origin: string;
+  logoutUrl?: string;
+  groupMembershipAttr?: string;
+  authorizationEnabled?: boolean;
+};
+
+export interface LoginTypeResponse {
+  authenticationMechanism?: "USER_PASSWORD" | "SAML" | "LDAP" | "OAUTH";
+  showCaptcha?: boolean;
+  defaultExperience?: "NG" | "CG";
+  oauthEnabled?: boolean;
+  ssorequest?: SSORequest;
+}
+
+export interface RestResponseLoginTypeResponse {
+  metaData?: {
+    [key: string]: { [key: string]: any };
+  };
+  resource?: LoginTypeResponse;
+  responseMessages?: ResponseMessage[];
+}
+
+export interface SSORequest {
+  oauthProviderType?:
+    | "AZURE"
+    | "BITBUCKET"
+    | "GITHUB"
+    | "GITLAB"
+    | "GOOGLE"
+    | "LINKEDIN";
+  idpRedirectUrl?: string;
+  oauthProviderTypes?: (
+    | "AZURE"
+    | "BITBUCKET"
+    | "GITHUB"
+    | "GITLAB"
+    | "GOOGLE"
+    | "LINKEDIN"
+  )[];
+}
+
+export interface Deployment {
+  count?: number;
+}
+
+export interface DeploymentDateAndCount {
+  time?: string;
+  deployments?: Deployment;
+}
+
+export interface DeploymentInfo {
+  count?: number;
+  rate?: number;
+  countList?: DeploymentDateAndCount[];
+}
+
+export interface HealthDeploymentDashboard {
+  healthDeploymentInfo?: HealthDeploymentInfo;
+}
+
+export interface HealthDeploymentInfo {
+  total?: TotalDeploymentInfo;
+  success?: DeploymentInfo;
+  failure?: DeploymentInfo;
+}
+
+export interface ResponseHealthDeploymentDashboard {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: HealthDeploymentDashboard;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface TotalDeploymentInfo {
+  count?: number;
+  production?: number;
+  nonProduction?: number;
+  countList?: DeploymentDateAndCount[];
 }
 
 export interface Activity {
@@ -5236,24 +5266,24 @@ export type InputSetReference = EntityReference & {
 export interface PageActivity {
   totalElements?: number;
   totalPages?: number;
-  numberOfElements?: number;
-  pageable?: Pageable;
   size?: number;
   content?: Activity[];
   number?: number;
-  last?: boolean;
   first?: boolean;
   sort?: Sort;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: Pageable;
   empty?: boolean;
 }
 
 export interface Pageable {
+  pageSize?: number;
+  offset?: number;
+  sort?: Sort;
   paged?: boolean;
   pageNumber?: number;
   unpaged?: boolean;
-  offset?: number;
-  sort?: Sort;
-  pageSize?: number;
 }
 
 export interface ResponsePageActivity {
@@ -5302,14 +5332,14 @@ export interface ActivitySummary {
 export interface PageActivitySummary {
   totalElements?: number;
   totalPages?: number;
-  numberOfElements?: number;
-  pageable?: Pageable;
   size?: number;
   content?: ActivitySummary[];
   number?: number;
-  last?: boolean;
   first?: boolean;
   sort?: Sort;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: Pageable;
   empty?: boolean;
 }
 
@@ -5332,9 +5362,13 @@ export interface DockerBuildDetailsDTO {
   imagePath?: string;
 }
 
-export interface ResponseDockerBuildDetailsDTO {
+export interface DockerResponseDTO {
+  buildDetailsList?: DockerBuildDetailsDTO[];
+}
+
+export interface ResponseDockerResponseDTO {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: DockerBuildDetailsDTO;
+  data?: DockerResponseDTO;
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
@@ -5345,13 +5379,9 @@ export interface DockerRequestDTO {
   tagsList?: string[];
 }
 
-export interface DockerResponseDTO {
-  buildDetailsList?: DockerBuildDetailsDTO[];
-}
-
-export interface ResponseDockerResponseDTO {
+export interface ResponseDockerBuildDetailsDTO {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: DockerResponseDTO;
+  data?: DockerBuildDetailsDTO;
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
@@ -5368,6 +5398,17 @@ export interface EcrBuildDetailsDTO {
   imagePath?: string;
 }
 
+export interface EcrResponseDTO {
+  buildDetailsList?: EcrBuildDetailsDTO[];
+}
+
+export interface ResponseEcrResponseDTO {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: EcrResponseDTO;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
 export interface ResponseEcrBuildDetailsDTO {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
   data?: EcrBuildDetailsDTO;
@@ -5382,17 +5423,6 @@ export interface EcrRequestDTO {
   region?: string;
 }
 
-export interface EcrResponseDTO {
-  buildDetailsList?: EcrBuildDetailsDTO[];
-}
-
-export interface ResponseEcrResponseDTO {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: EcrResponseDTO;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
 export interface GcrBuildDetailsDTO {
   tag?: string;
   buildUrl?: string;
@@ -5403,6 +5433,17 @@ export interface GcrBuildDetailsDTO {
     [key: string]: string;
   };
   imagePath?: string;
+}
+
+export interface GcrResponseDTO {
+  buildDetailsList?: GcrBuildDetailsDTO[];
+}
+
+export interface ResponseGcrResponseDTO {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: GcrResponseDTO;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
 }
 
 export interface ResponseGcrBuildDetailsDTO {
@@ -5417,17 +5458,6 @@ export interface GcrRequestDTO {
   tagRegex?: string;
   tagsList?: string[];
   registryHostname?: string;
-}
-
-export interface GcrResponseDTO {
-  buildDetailsList?: GcrBuildDetailsDTO[];
-}
-
-export interface ResponseGcrResponseDTO {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: GcrResponseDTO;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
 }
 
 export interface DelegateProfileDetailsNg {
@@ -5554,7 +5584,6 @@ export interface DelegateResponseData {
 }
 
 export interface Document {
-  implementation?: DOMImplementation;
   doctype?: DocumentType;
   documentElement?: Element;
   inputEncoding?: string;
@@ -5564,9 +5593,10 @@ export interface Document {
   strictErrorChecking?: boolean;
   documentURI?: string;
   domConfig?: DOMConfiguration;
-  nodeType?: number;
+  implementation?: DOMImplementation;
   attributes?: NamedNodeMap;
   prefix?: string;
+  nodeType?: number;
   namespaceURI?: string;
   localName?: string;
   nodeName?: string;
@@ -5589,9 +5619,9 @@ export interface DocumentType {
   entities?: NamedNodeMap;
   notations?: NamedNodeMap;
   internalSubset?: string;
-  nodeType?: number;
   attributes?: NamedNodeMap;
   prefix?: string;
+  nodeType?: number;
   namespaceURI?: string;
   localName?: string;
   nodeName?: string;
@@ -5610,9 +5640,9 @@ export interface DocumentType {
 export interface Element {
   tagName?: string;
   schemaTypeInfo?: TypeInfo;
-  nodeType?: number;
   attributes?: NamedNodeMap;
   prefix?: string;
+  nodeType?: number;
   namespaceURI?: string;
   localName?: string;
   nodeName?: string;
@@ -5698,9 +5728,9 @@ export interface NamedNodeMap {
 }
 
 export interface Node {
-  nodeType?: number;
   attributes?: NamedNodeMap;
   prefix?: string;
+  nodeType?: number;
   namespaceURI?: string;
   localName?: string;
   nodeName?: string;
@@ -5786,14 +5816,14 @@ export interface EntitySetupUsageDTO {
 export interface PageEntitySetupUsageDTO {
   totalElements?: number;
   totalPages?: number;
-  numberOfElements?: number;
-  pageable?: Pageable;
   size?: number;
   content?: EntitySetupUsageDTO[];
   number?: number;
-  last?: boolean;
   first?: boolean;
   sort?: Sort;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: Pageable;
   empty?: boolean;
 }
 
@@ -5912,6 +5942,37 @@ export interface ResponseOptionalInvite {
   correlationId?: string;
 }
 
+export interface RoleBinding {
+  identifier?: string;
+  roleIdentifier: string;
+  roleName: string;
+  resourceGroupIdentifier?: string;
+  resourceGroupName?: string;
+  managedRole: boolean;
+}
+
+export interface PageInvite {
+  totalPages?: number;
+  totalItems?: number;
+  pageItemCount?: number;
+  pageSize?: number;
+  content?: Invite[];
+  pageIndex?: number;
+  empty?: boolean;
+}
+
+export interface ResponsePageInvite {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: PageInvite;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface ACLAggregateFilter {
+  resourceGroupIdentifiers?: string[];
+  roleIdentifiers?: string[];
+}
+
 export interface ResponseListInviteOperationResponse {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
   data?: (
@@ -5930,23 +5991,6 @@ export interface CreateInvite {
   users: string[];
   roleBindings: RoleBinding[];
   inviteType: "USER_INITIATED_INVITE" | "ADMIN_INITIATED_INVITE";
-}
-
-export interface PageInvite {
-  totalPages?: number;
-  totalItems?: number;
-  pageItemCount?: number;
-  pageSize?: number;
-  content?: Invite[];
-  pageIndex?: number;
-  empty?: boolean;
-}
-
-export interface ResponsePageInvite {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: PageInvite;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
 }
 
 export interface GcpResponseDTO {
@@ -5988,6 +6032,12 @@ export interface ResponseOrganizationAggregateDTO {
   data?: OrganizationAggregateDTO;
   metaData?: { [key: string]: any };
   correlationId?: string;
+}
+
+export interface UserSearchDTO {
+  name: string;
+  email: string;
+  uuid: string;
 }
 
 export interface Project {
@@ -6073,6 +6123,7 @@ export interface UserGroupAggregateDTO {
   userGroupDTO: UserGroupDTO;
   users?: UserSearchDTO[];
   roleAssignmentsMetadataDTO?: RoleAssignmentMetadataDTO[];
+  lastModifiedAt?: number;
 }
 
 export interface UserGroupDTO {
@@ -6087,8 +6138,6 @@ export interface UserGroupDTO {
   tags?: {
     [key: string]: string;
   };
-  lastModifiedAt?: number;
-  version?: number;
 }
 
 export interface ResponseListUserGroupAggregateDTO {
@@ -6301,6 +6350,26 @@ export interface SecretTextDTO {
   value?: string;
 }
 
+export interface ResponseSecretValidationResultDTO {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: SecretValidationResultDTO;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface SecretValidationResultDTO {
+  success?: boolean;
+  message?: string;
+}
+
+export type SSHKeyValidationMetadata = SecretValidationMetaData & {
+  host: string;
+};
+
+export interface SecretValidationMetaData {
+  type: "SecretFile" | "SecretText" | "SSHKey";
+}
+
 export interface BaseSSHSpecDTO {
   [key: string]: any;
 }
@@ -6422,26 +6491,6 @@ export interface ResponsePageSecretResponseWrapper {
   correlationId?: string;
 }
 
-export interface ResponseSecretValidationResultDTO {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: SecretValidationResultDTO;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface SecretValidationResultDTO {
-  success?: boolean;
-  message?: string;
-}
-
-export type SSHKeyValidationMetadata = SecretValidationMetaData & {
-  host: string;
-};
-
-export interface SecretValidationMetaData {
-  type: "SecretFile" | "SecretText" | "SSHKey";
-}
-
 export interface ResponseOrganizationResponse {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
   data?: OrganizationResponse;
@@ -6538,6 +6587,33 @@ export interface ResponsePageUserGroupDTO {
   correlationId?: string;
 }
 
+export interface PageUserInfo {
+  totalPages?: number;
+  totalItems?: number;
+  pageItemCount?: number;
+  pageSize?: number;
+  content?: UserInfo[];
+  pageIndex?: number;
+  empty?: boolean;
+}
+
+export interface ResponsePageUserInfo {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: PageUserInfo;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface UserInfo {
+  uuid?: string;
+  name?: string;
+  email?: string;
+  token?: string;
+  defaultAccountId?: string;
+  admin?: boolean;
+  twoFactorAuthenticationEnabled?: boolean;
+}
+
 export interface ResponseServiceResponseDTO {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
   data?: ServiceResponseDTO;
@@ -6618,6 +6694,29 @@ export interface ResponsePageServiceResponse {
   correlationId?: string;
 }
 
+export interface ResponseTwoFactorAuthSettingsInfo {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: TwoFactorAuthSettingsInfo;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface TwoFactorAuthSettingsInfo {
+  userId?: string;
+  email?: string;
+  twoFactorAuthenticationEnabled?: boolean;
+  mechanism?: "TOTP";
+  totpSecretKey?: string;
+  totpqrurl?: string;
+}
+
+export interface ResponseUserInfo {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: UserInfo;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
 export interface PageUserSearchDTO {
   totalPages?: number;
   totalItems?: number;
@@ -6652,179 +6751,31 @@ export interface ResponsePageProject {
   correlationId?: string;
 }
 
-export interface ResponsePipelineExecutionInterrupt {
+export interface ResponseUserAggregate {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: PipelineExecutionInterrupt;
+  data?: UserAggregate;
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
 
-export interface PipelineExecutionInterrupt {
-  id?: string;
-  type?: "Abort" | "Pause" | "Resume";
-  planExecutionId?: string;
+export interface UserAggregate {
+  user: UserSearchDTO;
+  roleBindings?: RoleBinding[];
 }
 
-export interface ArtifactSummary {
-  type?: string;
-  displayName?: string;
-}
-
-export interface ArtifactsSummary {
-  primary?: ArtifactSummary;
-  sidecars?: ArtifactSummary[];
-}
-
-export type CDStageExecutionSummaryDTO = StageExecutionSummaryDTO & {
-  planExecutionId?: string;
-  stageIdentifier?: string;
-  serviceInfo?: ServiceExecutionSummary;
-  stageName?: string;
-  serviceDefinitionType?: string;
-  executionStatus?:
-    | "Running"
-    | "Failed"
-    | "NotStarted"
-    | "Expired"
-    | "Aborted"
-    | "Queued"
-    | "Paused"
-    | "Waiting"
-    | "Success"
-    | "Suspended"
-    | "Skipped"
-    | "Pausing";
-  startedAt?: number;
-  endedAt?: number;
-  serviceIdentifier?: string;
-  envIdentifier?: string;
-  errorInfo?: ExecutionErrorInfo;
-};
-
-export interface ExecutionErrorInfo {
-  unknownFields?: UnknownFieldSet;
-  message?: string;
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserExecutionErrorInfo;
-  defaultInstanceForType?: ExecutionErrorInfo;
-  messageBytes?: ByteString;
-  initializationErrorString?: string;
-  descriptorForType?: Descriptor;
-  allFields?: {
-    [key: string]: { [key: string]: any };
-  };
-}
-
-export interface NGStageType {
-  type?: string;
-}
-
-export interface PagePipelineExecutionSummaryDTO {
+export interface PageUserAggregate {
   totalPages?: number;
   totalItems?: number;
   pageItemCount?: number;
   pageSize?: number;
-  content?: PipelineExecutionSummaryDTO[];
+  content?: UserAggregate[];
   pageIndex?: number;
   empty?: boolean;
 }
 
-export type ParallelStageExecutionSummaryDTO = StageExecutionSummaryDTO & {
-  stageExecutions?: StageExecutionSummaryDTO[];
-};
-
-export interface ParserExecutionErrorInfo {
-  [key: string]: any;
-}
-
-export interface PipelineExecutionSummaryDTO {
-  pipelineIdentifier?: string;
-  pipelineName?: string;
-  deploymentId?: string;
-  planExecutionId?: string;
-  executionStatus?:
-    | "Running"
-    | "Failed"
-    | "NotStarted"
-    | "Expired"
-    | "Aborted"
-    | "Queued"
-    | "Paused"
-    | "Waiting"
-    | "Success"
-    | "Suspended"
-    | "Skipped"
-    | "Pausing";
-  inputSetYaml?: string;
-  startedAt?: number;
-  endedAt?: number;
-  tags?: {
-    [key: string]: string;
-  };
-  stageExecutionSummaryElements?: StageExecutionSummaryDTO[];
-  errorMsg?: string;
-  stageIdentifiers?: string[];
-  serviceIdentifiers?: string[];
-  envIdentifiers?: string[];
-  serviceDefinitionTypes?: string[];
-  stageTypes?: NGStageType[];
-  errorInfo?: ExecutionErrorInfo;
-  triggerInfo?: ExecutionTriggerInfo;
-  successfulStagesCount?: number;
-  runningStagesCount?: number;
-  failedStagesCount?: number;
-  totalStagesCount?: number;
-}
-
-export interface ResponsePagePipelineExecutionSummaryDTO {
+export interface ResponsePageUserAggregate {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: PagePipelineExecutionSummaryDTO;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface ServiceExecutionSummary {
-  identifier?: string;
-  displayName?: string;
-  deploymentType?: string;
-  artifacts?: ArtifactsSummary;
-}
-
-export interface StageExecutionSummaryDTO {
-  [key: string]: any;
-}
-
-export interface CDStageModuleInfo {
-  serviceInfo?: ServiceExecutionSummary;
-  infraExecutionSummary?: InfraExecutionSummary;
-  nodeExecutionId?: string;
-}
-
-export interface InfraExecutionSummary {
-  identifier?: string;
-  name?: string;
-  type?: string;
-}
-
-export interface ResponseCDStageModuleInfo {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: CDStageModuleInfo;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface CDPipelineModuleInfo {
-  serviceIdentifiers?: string[];
-  envIdentifiers?: string[];
-  serviceDefinitionTypes?: string[];
-  environmentTypes?: ("PreProduction" | "Production")[];
-  infrastructureTypes?: string[];
-}
-
-export interface ResponseCDPipelineModuleInfo {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: CDPipelineModuleInfo;
+  data?: PageUserAggregate;
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
@@ -6871,17 +6822,27 @@ export interface AdviserIssuerOrBuilder {
   initialized?: boolean;
 }
 
+export interface ArtifactSummary {
+  type?: string;
+  displayName?: string;
+}
+
+export interface ArtifactsSummary {
+  primary?: ArtifactSummary;
+  sidecars?: ArtifactSummary[];
+}
+
 export interface AsyncExecutableResponse {
   unknownFields?: UnknownFieldSet;
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserAsyncExecutableResponse;
+  defaultInstanceForType?: AsyncExecutableResponse;
   mode?:
     | "RUNNING_MODE"
     | "APPROVAL_WAITING_MODE"
     | "RESOURCE_WAITING_MODE"
     | "UNRECOGNIZED";
-  initialized?: boolean;
-  serializedSize?: number;
-  parserForType?: ParserAsyncExecutableResponse;
-  defaultInstanceForType?: AsyncExecutableResponse;
   callbackIdsList?: string[];
   callbackIdsCount?: number;
   logKeysList?: string[];
@@ -6918,6 +6879,35 @@ export interface AsyncExecutableResponseOrBuilder {
   };
   initialized?: boolean;
 }
+
+export type CDStageExecutionSummaryDTO = StageExecutionSummaryDTO & {
+  planExecutionId?: string;
+  stageIdentifier?: string;
+  serviceInfo?: ServiceExecutionSummary;
+  stageName?: string;
+  serviceDefinitionType?: string;
+  executionStatus?:
+    | "Running"
+    | "Failed"
+    | "NotStarted"
+    | "Expired"
+    | "Aborted"
+    | "Queued"
+    | "Paused"
+    | "Waiting"
+    | "InterventionWaiting"
+    | "ApprovalWaiting"
+    | "Success"
+    | "Suspended"
+    | "Skipped"
+    | "Pausing"
+    | "ApprovalRejected";
+  startedAt?: number;
+  endedAt?: number;
+  serviceIdentifier?: string;
+  envIdentifier?: string;
+  errorInfo?: ExecutionErrorInfo;
+};
 
 export interface Child {
   unknownFields?: UnknownFieldSet;
@@ -7052,6 +7042,10 @@ export interface DelegateInfo {
 
 export interface ExecutableResponse {
   unknownFields?: UnknownFieldSet;
+  initialized?: boolean;
+  serializedSize?: number;
+  parserForType?: ParserExecutableResponse;
+  defaultInstanceForType?: ExecutableResponse;
   async?: AsyncExecutableResponse;
   responseCase?:
     | "ASYNC"
@@ -7078,10 +7072,21 @@ export interface ExecutableResponse {
   skipTask?: SkipTaskExecutableResponse;
   skipTaskOrBuilder?: SkipTaskExecutableResponseOrBuilder;
   task?: TaskExecutableResponse;
+  initializationErrorString?: string;
+  descriptorForType?: Descriptor;
+  allFields?: {
+    [key: string]: { [key: string]: any };
+  };
+}
+
+export interface ExecutionErrorInfo {
+  unknownFields?: UnknownFieldSet;
+  message?: string;
   initialized?: boolean;
   serializedSize?: number;
-  parserForType?: ParserExecutableResponse;
-  defaultInstanceForType?: ExecutableResponse;
+  parserForType?: ParserExecutionErrorInfo;
+  defaultInstanceForType?: ExecutionErrorInfo;
+  messageBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -7124,10 +7129,13 @@ export interface ExecutionNode {
     | "Queued"
     | "Paused"
     | "Waiting"
+    | "InterventionWaiting"
+    | "ApprovalWaiting"
     | "Success"
     | "Suspended"
     | "Skipped"
-    | "Pausing";
+    | "Pausing"
+    | "ApprovalRejected";
   failureInfo?: FailureInfoDTO;
   skipInfo?: SkipInfo;
   nodeRunInfo?: NodeRunInfo;
@@ -7254,9 +7262,9 @@ export interface ManualIssuer {
   serializedSize?: number;
   parserForType?: ParserManualIssuer;
   defaultInstanceForType?: ManualIssuer;
+  userId?: string;
   emailId?: string;
   emailIdBytes?: ByteString;
-  userId?: string;
   userIdBytes?: ByteString;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
@@ -7266,9 +7274,9 @@ export interface ManualIssuer {
 }
 
 export interface ManualIssuerOrBuilder {
+  userId?: string;
   emailId?: string;
   emailIdBytes?: ByteString;
-  userId?: string;
   userIdBytes?: ByteString;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
@@ -7278,6 +7286,10 @@ export interface ManualIssuerOrBuilder {
     [key: string]: { [key: string]: any };
   };
   initialized?: boolean;
+}
+
+export interface NGStageType {
+  type?: string;
 }
 
 export interface NodeRunInfo {
@@ -7295,6 +7307,10 @@ export interface NodeRunInfo {
     [key: string]: { [key: string]: any };
   };
 }
+
+export type ParallelStageExecutionSummaryDTO = StageExecutionSummaryDTO & {
+  stageExecutions?: StageExecutionSummaryDTO[];
+};
 
 export interface ParserAdviserIssuer {
   [key: string]: any;
@@ -7321,6 +7337,10 @@ export interface ParserChildrenExecutableResponse {
 }
 
 export interface ParserExecutableResponse {
+  [key: string]: any;
+}
+
+export interface ParserExecutionErrorInfo {
   [key: string]: any;
 }
 
@@ -7378,6 +7398,48 @@ export interface PipelineExecutionDetail {
   stageRollbackGraph?: ExecutionGraph;
 }
 
+export interface PipelineExecutionSummaryDTO {
+  pipelineIdentifier?: string;
+  pipelineName?: string;
+  deploymentId?: string;
+  planExecutionId?: string;
+  executionStatus?:
+    | "Running"
+    | "Failed"
+    | "NotStarted"
+    | "Expired"
+    | "Aborted"
+    | "Queued"
+    | "Paused"
+    | "Waiting"
+    | "InterventionWaiting"
+    | "ApprovalWaiting"
+    | "Success"
+    | "Suspended"
+    | "Skipped"
+    | "Pausing"
+    | "ApprovalRejected";
+  inputSetYaml?: string;
+  startedAt?: number;
+  endedAt?: number;
+  tags?: {
+    [key: string]: string;
+  };
+  stageExecutionSummaryElements?: StageExecutionSummaryDTO[];
+  errorMsg?: string;
+  stageIdentifiers?: string[];
+  serviceIdentifiers?: string[];
+  envIdentifiers?: string[];
+  serviceDefinitionTypes?: string[];
+  stageTypes?: NGStageType[];
+  errorInfo?: ExecutionErrorInfo;
+  triggerInfo?: ExecutionTriggerInfo;
+  successfulStagesCount?: number;
+  runningStagesCount?: number;
+  failedStagesCount?: number;
+  totalStagesCount?: number;
+}
+
 export interface ProgressData {
   [key: string]: any;
 }
@@ -7415,6 +7477,13 @@ export interface RetryInterruptConfigOrBuilder {
     [key: string]: { [key: string]: any };
   };
   initialized?: boolean;
+}
+
+export interface ServiceExecutionSummary {
+  identifier?: string;
+  displayName?: string;
+  deploymentType?: string;
+  artifacts?: ArtifactsSummary;
 }
 
 export interface SkipInfo {
@@ -7461,6 +7530,10 @@ export interface SkipTaskExecutableResponseOrBuilder {
   initialized?: boolean;
 }
 
+export interface StageExecutionSummaryDTO {
+  [key: string]: any;
+}
+
 export interface SyncExecutableResponse {
   unknownFields?: UnknownFieldSet;
   initialized?: boolean;
@@ -7499,6 +7572,7 @@ export interface TaskChainExecutableResponse {
   serializedSize?: number;
   parserForType?: ParserTaskChainExecutableResponse;
   defaultInstanceForType?: TaskChainExecutableResponse;
+  taskId?: string;
   taskName?: string;
   logKeysList?: string[];
   logKeysCount?: number;
@@ -7514,7 +7588,6 @@ export interface TaskChainExecutableResponse {
   chainEnd?: boolean;
   passThroughData?: ByteString;
   taskIdBytes?: ByteString;
-  taskId?: string;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -7523,6 +7596,7 @@ export interface TaskChainExecutableResponse {
 }
 
 export interface TaskChainExecutableResponseOrBuilder {
+  taskId?: string;
   taskName?: string;
   logKeysList?: string[];
   logKeysCount?: number;
@@ -7538,7 +7612,6 @@ export interface TaskChainExecutableResponseOrBuilder {
   chainEnd?: boolean;
   passThroughData?: ByteString;
   taskIdBytes?: ByteString;
-  taskId?: string;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -7555,6 +7628,7 @@ export interface TaskExecutableResponse {
   serializedSize?: number;
   parserForType?: ParserTaskExecutableResponse;
   defaultInstanceForType?: TaskExecutableResponse;
+  taskId?: string;
   taskName?: string;
   logKeysList?: string[];
   logKeysCount?: number;
@@ -7568,7 +7642,6 @@ export interface TaskExecutableResponse {
     | "UNRECOGNIZED";
   taskNameBytes?: ByteString;
   taskIdBytes?: ByteString;
-  taskId?: string;
   initializationErrorString?: string;
   descriptorForType?: Descriptor;
   allFields?: {
@@ -7577,6 +7650,7 @@ export interface TaskExecutableResponse {
 }
 
 export interface TaskExecutableResponseOrBuilder {
+  taskId?: string;
   taskName?: string;
   logKeysList?: string[];
   logKeysCount?: number;
@@ -7590,7 +7664,6 @@ export interface TaskExecutableResponseOrBuilder {
     | "UNRECOGNIZED";
   taskNameBytes?: ByteString;
   taskIdBytes?: ByteString;
-  taskId?: string;
   unknownFields?: UnknownFieldSet;
   defaultInstanceForType?: Message;
   initializationErrorString?: string;
@@ -7663,24 +7736,78 @@ export interface ResponseListExecutionStatus {
     | "Queued"
     | "Paused"
     | "Waiting"
+    | "InterventionWaiting"
+    | "ApprovalWaiting"
     | "Success"
     | "Suspended"
     | "Skipped"
     | "Pausing"
+    | "ApprovalRejected"
   )[];
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
 
-export interface JiraProjectBasicNG {
-  id: string;
-  key: string;
-  name: string;
+export interface ResponsePipelineExecutionInterrupt {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: PipelineExecutionInterrupt;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
 }
 
-export interface ResponseListJiraProjectBasicNG {
+export interface PipelineExecutionInterrupt {
+  id?: string;
+  type?: "Abort" | "Pause" | "Resume";
+  planExecutionId?: string;
+}
+
+export interface PagePipelineExecutionSummaryDTO {
+  totalPages?: number;
+  totalItems?: number;
+  pageItemCount?: number;
+  pageSize?: number;
+  content?: PipelineExecutionSummaryDTO[];
+  pageIndex?: number;
+  empty?: boolean;
+}
+
+export interface ResponsePagePipelineExecutionSummaryDTO {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: JiraProjectBasicNG[];
+  data?: PagePipelineExecutionSummaryDTO;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface CDStageModuleInfo {
+  serviceInfo?: ServiceExecutionSummary;
+  infraExecutionSummary?: InfraExecutionSummary;
+  nodeExecutionId?: string;
+}
+
+export interface InfraExecutionSummary {
+  identifier?: string;
+  name?: string;
+  type?: string;
+}
+
+export interface ResponseCDStageModuleInfo {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: CDStageModuleInfo;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface CDPipelineModuleInfo {
+  serviceIdentifiers?: string[];
+  envIdentifiers?: string[];
+  serviceDefinitionTypes?: string[];
+  environmentTypes?: ("PreProduction" | "Production")[];
+  infrastructureTypes?: string[];
+}
+
+export interface ResponseCDPipelineModuleInfo {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: CDPipelineModuleInfo;
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
@@ -7772,6 +7899,19 @@ export interface ResponseJiraIssueUpdateMetadataNG {
   correlationId?: string;
 }
 
+export interface JiraProjectBasicNG {
+  id: string;
+  key: string;
+  name: string;
+}
+
+export interface ResponseListJiraProjectBasicNG {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: JiraProjectBasicNG[];
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
 export type AwsCodeCommitSCMDTO = SourceCodeManagerDTO & {
   authentication: AwsCodeCommitAuthenticationDTO;
 };
@@ -7823,39 +7963,6 @@ export interface ResponseSourceCodeManagerDTO {
   data?: SourceCodeManagerDTO;
   metaData?: { [key: string]: any };
   correlationId?: string;
-}
-
-export interface ResponseUserInfo {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: UserInfo;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface UserInfo {
-  uuid?: string;
-  name?: string;
-  email?: string;
-  token?: string;
-  defaultAccountId?: string;
-  admin?: boolean;
-  twoFactorAuthenticationEnabled?: boolean;
-}
-
-export interface ResponseTwoFactorAuthSettingsInfo {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: TwoFactorAuthSettingsInfo;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
-export interface TwoFactorAuthSettingsInfo {
-  userId?: string;
-  email?: string;
-  twoFactorAuthenticationEnabled?: boolean;
-  mechanism?: "TOTP";
-  totpSecretKey?: string;
-  totpqrurl?: string;
 }
 
 export interface InputSetError {
@@ -7999,20 +8106,6 @@ export interface ResponseMergeInputSetResponse {
   correlationId?: string;
 }
 
-export interface NGPipelineResponse {
-  ngPipeline?: NgPipeline;
-  executionsPlaceHolder?: string[];
-  yamlPipeline?: string;
-  version?: number;
-}
-
-export interface ResponseNGPipelineResponse {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: NGPipelineResponse;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
 export interface NGPipelineSummaryResponse {
   name?: string;
   identifier?: string;
@@ -8026,30 +8119,30 @@ export interface NGPipelineSummaryResponse {
   version?: number;
 }
 
-export interface ResponseNGPipelineSummaryResponse {
-  status?: "SUCCESS" | "FAILURE" | "ERROR";
-  data?: NGPipelineSummaryResponse;
-  metaData?: { [key: string]: any };
-  correlationId?: string;
-}
-
 export interface PageNGPipelineSummaryResponse {
   totalElements?: number;
   totalPages?: number;
-  numberOfElements?: number;
-  pageable?: Pageable;
   size?: number;
   content?: NGPipelineSummaryResponse[];
   number?: number;
-  last?: boolean;
   first?: boolean;
   sort?: Sort;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: Pageable;
   empty?: boolean;
 }
 
 export interface ResponsePageNGPipelineSummaryResponse {
   status?: "SUCCESS" | "FAILURE" | "ERROR";
   data?: PageNGPipelineSummaryResponse;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
+export interface ResponseNGPipelineSummaryResponse {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: NGPipelineSummaryResponse;
   metaData?: { [key: string]: any };
   correlationId?: string;
 }
@@ -8185,6 +8278,20 @@ export interface StageInfoConfig {
   execution?: ExecutionElementConfig;
 }
 
+export interface NGPipelineResponse {
+  ngPipeline?: NgPipeline;
+  executionsPlaceHolder?: string[];
+  yamlPipeline?: string;
+  version?: number;
+}
+
+export interface ResponseNGPipelineResponse {
+  status?: "SUCCESS" | "FAILURE" | "ERROR";
+  data?: NGPipelineResponse;
+  metaData?: { [key: string]: any };
+  correlationId?: string;
+}
+
 export interface RestResponseUserInfo {
   metaData?: {
     [key: string]: { [key: string]: any };
@@ -8193,19 +8300,23 @@ export interface RestResponseUserInfo {
   responseMessages?: ResponseMessage[];
 }
 
+export interface OAuthSignupDTO {
+  email?: string;
+  name?: string;
+  login?: string;
+  utmInfo?: UtmInfo;
+  module?: "CD" | "CI" | "CORE" | "CV" | "CF" | "CE";
+}
+
 export interface SignupDTO {
   email?: string;
   password?: string;
   utmInfo?: UtmInfo;
 }
 
-export interface OAuthSignupDTO {
-  email?: string;
-  name?: string;
-  utmInfo?: UtmInfo;
-}
-
 export interface JsonNode {
+  array?: boolean;
+  null?: boolean;
   object?: boolean;
   valueNode?: boolean;
   containerNode?: boolean;
@@ -8234,8 +8345,6 @@ export interface JsonNode {
   textual?: boolean;
   boolean?: boolean;
   binary?: boolean;
-  array?: boolean;
-  null?: boolean;
 }
 
 export interface PartialSchemaDTO {
@@ -8331,13 +8440,29 @@ export type SourceCodeManagerDTORequestBody = SourceCodeManagerDTO;
 
 export type InputSetConfigRequestBody = InputSetConfig;
 
+export interface SignupQueryParams {
+  captchaToken?: string;
+}
+
 export type SignupProps = Omit<
-  MutateProps<RestResponseUserInfo, Failure | Error, void, SignupDTO, void>,
+  MutateProps<
+    RestResponseUserInfo,
+    Failure | Error,
+    SignupQueryParams,
+    SignupDTO,
+    void
+  >,
   "path" | "verb"
 >;
 
 export const Signup = (props: SignupProps) => (
-  <Mutate<RestResponseUserInfo, Failure | Error, void, SignupDTO, void>
+  <Mutate<
+    RestResponseUserInfo,
+    Failure | Error,
+    SignupQueryParams,
+    SignupDTO,
+    void
+  >
     verb="POST"
     path={`/signup`}
     base={"/gateway/ng/api"}
@@ -8346,13 +8471,21 @@ export const Signup = (props: SignupProps) => (
 );
 
 export type UseSignupProps = Omit<
-  UseMutateProps<RestResponseUserInfo, Failure | Error, void, SignupDTO, void>,
+  UseMutateProps<
+    RestResponseUserInfo,
+    Failure | Error,
+    SignupQueryParams,
+    SignupDTO,
+    void
+  >,
   "path" | "verb"
 >;
 
 export const useSignup = (props: UseSignupProps) =>
-  useMutate<RestResponseUserInfo, Failure | Error, void, SignupDTO, void>(
-    "POST",
-    `/signup`,
-    { base: "/gateway/ng/api", ...props }
-  );
+  useMutate<
+    RestResponseUserInfo,
+    Failure | Error,
+    SignupQueryParams,
+    SignupDTO,
+    void
+  >("POST", `/signup`, { base: "/gateway/ng/api", ...props });
