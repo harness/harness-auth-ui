@@ -21,4 +21,17 @@
   & .footer {
     margin-top: var(--spacing-huge);
   }
+
+  & .validation-outline {
+    border-color: var(--red-500);
+  }
+
+  & .validation-outline:focus-visible {
+    outline: 0;
+    border-color: var(--red-500);
+  }
+
+  & .validation-message {
+    color: var(--red-500);
+  }
 }
