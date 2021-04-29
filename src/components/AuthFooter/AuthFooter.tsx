@@ -24,11 +24,13 @@ interface AuthFooterProps {
 const AuthFooter: React.FC<AuthFooterProps> = ({ page }) => {
   const history = useHistory();
 
+  const isSignup = page === AuthPage.SignUp;
+
   return (
     <>
       <h2 className={css.lineMessage}>
         <span className={css.message}>
-          {page === AuthPage.SignUp ? "or sign up with" : "or login with"}
+          {isSignup ? "or sign up with" : "or login with"}
         </span>
       </h2>
 
@@ -37,7 +39,10 @@ const AuthFooter: React.FC<AuthFooterProps> = ({ page }) => {
           {OAuthProviders.map((oAuthProvider: OAuthProviderType) => {
             const { iconName, type, url } = oAuthProvider;
 
-            const link = `${URLS.OAUTH}api/users/${url}`;
+            const signupQueryParams = "&action=signup&isNG=true";
+            const link = `${URLS.OAUTH}api/users/${url}${
+              isSignup ? signupQueryParams : ""
+            }`;
 
             return (
               <a
@@ -52,7 +57,7 @@ const AuthFooter: React.FC<AuthFooterProps> = ({ page }) => {
             );
           })}
         </div>
-        {page === AuthPage.SignUp ? (
+        {isSignup ? (
           <div className={css.disclaimer}>
             By signing up you agree to our&nbsp;
             <a
