@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, FocusEvent } from "react";
 import cx from "classnames";
 import { Form } from "react-final-form";
 import Recaptcha from "react-recaptcha";
@@ -13,6 +13,8 @@ import Field from "components/Field/Field";
 import { handleError } from "utils/ErrorUtils";
 import { handleSignUpSuccess } from "utils/SignUpUtils";
 import { validateEmail, validatePassword } from "utils/FormValidationUtils";
+import telemetry from "telemetry/Telemetry";
+import { useQueryParams } from "hooks/useQueryParams";
 
 interface SignUpFormData {
   email: string;
@@ -24,6 +26,7 @@ const SignUp: React.FC = () => {
   const [signupData, setSignupData] = useState({ email: "", password: "" });
   const { mutate: signup, loading } = useSignup({});
   const captchaRef = useRef<Recaptcha>(null);
+  const { module } = useQueryParams<{ module?: string }>();
 
   useEffect(() => {
     const { email, password } = signupData;
@@ -52,6 +55,14 @@ const SignUp: React.FC = () => {
   const onSubmit = (data: SignUpFormData) => {
     captchaRef.current?.execute();
     setSignupData(data);
+    telemetry.track({
+      event: "Singup submit",
+      properties: {
+        category: "SIGNUP",
+        userId: data.email,
+        groupId: ""
+      }
+    });
   };
 
   const emailField = (
@@ -61,6 +72,16 @@ const SignUp: React.FC = () => {
       placeholder="email@work.com"
       disabled={loading}
       validate={validateEmail}
+      onBlur={(e: FocusEvent<HTMLInputElement>) => {
+        telemetry.track({
+          event: "Email input",
+          properties: {
+            category: "SIGNUP",
+            userId: e.target.value,
+            groupId: ""
+          }
+        });
+      }}
     />
   );
 
@@ -74,6 +95,16 @@ const SignUp: React.FC = () => {
       validate={validatePassword}
     />
   );
+
+  telemetry.page({
+    name: "Signup Page",
+    category: "SIGNUP",
+    properties: {
+      userId: "",
+      groupId: "",
+      module: module || ""
+    }
+  });
 
   return (
     <BasicLayout>

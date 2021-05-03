@@ -4,6 +4,7 @@ import { compile } from "path-to-regexp";
 import { Router, Route, Switch } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { RestfulProvider } from "restful-react";
+import { queryByAttribute } from "@testing-library/react";
 
 export interface TestWrapperProps {
   path?: string;
@@ -34,3 +35,8 @@ export const TestWrapper: React.FC<TestWrapperProps> = (props) => {
     </Router>
   );
 };
+
+export const queryByNameAttribute = (
+  name: string,
+  container: HTMLElement
+): HTMLElement | null => queryByAttribute("name", container, name);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FocusEvent } from "react";
 import cx from "classnames";
 
 import { Field as FormikField } from "react-final-form";
@@ -16,10 +16,11 @@ interface FieldProps {
   placeholder: string;
   type?: string;
   disabled?: boolean;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 const Field: React.FC<FieldProps> = (props) => {
-  const { name, label, validate, disabled, placeholder, type } = props;
+  const { name, label, validate, disabled, placeholder, type, onBlur } = props;
 
   return (
     <FormikField name={name} validate={validate} className>
@@ -36,6 +37,7 @@ const Field: React.FC<FieldProps> = (props) => {
               placeholder={placeholder}
               disabled={disabled}
               className={cx(showError && css["validation-outline"])}
+              onBlur={onBlur}
             />
             {showError && (
               <span className={cx(css["validation-message"])}>

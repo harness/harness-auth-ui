@@ -205,3 +205,209 @@ exports[`SignUp render 1`] = `
   </div>
 </div>
 `;
+
+exports[`SignUp telemetry 1`] = `
+<div>
+  <div
+    class="layout"
+  >
+    <div
+      class="cardColumn"
+    >
+      <div
+        class="card"
+      >
+        <div
+          class="signup"
+        >
+          <div
+            class="header"
+          >
+            <img
+              class="logo"
+              src="test-file-stub"
+              width="120"
+            />
+          </div>
+          <div
+            class="title"
+          >
+            Sign Up
+          </div>
+          <div
+            class="subtitle"
+          >
+            and get ship done.
+          </div>
+          <form
+            class="layout-vertical spacing-medium"
+          >
+            <div
+              class="layout-vertical spacing-small field"
+            >
+              <label>
+                Email
+              </label>
+              <input
+                class=""
+                id="email"
+                name="email"
+                placeholder="email@work.com"
+                value="random@hotmail.com"
+              />
+            </div>
+            <div
+              class="layout-vertical spacing-small field"
+            >
+              <label>
+                Password
+              </label>
+              <input
+                class=""
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                value="12345678"
+              />
+            </div>
+            <div
+              class="g-recaptcha"
+              data-badge="bottomright"
+              data-size="invisible"
+              data-tabindex="0"
+              data-theme="light"
+              data-type="image"
+              id="g-recaptcha"
+            />
+            <input
+              class="button primary"
+              type="submit"
+              value="Sign Up"
+            />
+          </form>
+          <h2
+            class="lineMessage"
+          >
+            <span
+              class="message"
+            >
+              or sign up with
+            </span>
+          </h2>
+          <div>
+            <div
+              class="layout-horizontal spacing-auto oAuthIcons"
+            >
+              <a
+                class="iconContainer"
+                href="http://localhost/gateway/api/users/oauth2Redirect?provider=github"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  height="24"
+                  src="test-file-stub"
+                  width="24"
+                />
+              </a>
+              <a
+                class="iconContainer"
+                href="http://localhost/gateway/api/users/oauth2Redirect?provider=bitbucket"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  height="24"
+                  src="test-file-stub"
+                  width="24"
+                />
+              </a>
+              <a
+                class="iconContainer"
+                href="http://localhost/gateway/api/users/oauth2Redirect?provider=gitlab"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  height="24"
+                  src="test-file-stub"
+                  width="24"
+                />
+              </a>
+              <a
+                class="iconContainer"
+                href="http://localhost/gateway/api/users/oauth2Redirect?provider=linkedin"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  height="24"
+                  src="test-file-stub"
+                  width="24"
+                />
+              </a>
+              <a
+                class="iconContainer"
+                href="http://localhost/gateway/api/users/oauth2Redirect?provider=google"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  height="24"
+                  src="test-file-stub"
+                  width="24"
+                />
+              </a>
+              <a
+                class="iconContainer"
+                href="http://localhost/gateway/api/users/oauth2Redirect?provider=azure"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  height="24"
+                  src="test-file-stub"
+                  width="24"
+                />
+              </a>
+            </div>
+            <div
+              class="disclaimer"
+            >
+              By signing up you agree to our 
+              <a
+                class="externalLink"
+                href="https://harness.io/privacy/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Privacy Policy 
+              </a>
+              and our 
+              <a
+                class="externalLink"
+                href="https://harness.io/subscriptionterms/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Terms of Use
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="imageColumn"
+    >
+      <img
+        alt=""
+        aria-hidden="true"
+        class="image"
+        src="test-file-stub"
+      />
+    </div>
+  </div>
+</div>
+`;
