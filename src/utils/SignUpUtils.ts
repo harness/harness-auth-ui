@@ -14,9 +14,9 @@ export function handleSignUpSuccess(resource?: UserInfo): void {
     AppStorage.set("lastTokenSetTime", +new Date());
 
     if (module) {
-      window.location.href = `${baseUrl}ng/#/account/${resource.defaultAccountId}/${module}/home/trial`;
+      window.location.href = `${baseUrl}ng/#/account/${resource.defaultAccountId}/${module}/home/trial?source=signup`;
     } else {
-      window.location.href = `${baseUrl}ng/#/account/${resource.defaultAccountId}/purpose`;
+      window.location.href = `${baseUrl}ng/#/account/${resource.defaultAccountId}/purpose?source=signup`;
     }
   }
 }

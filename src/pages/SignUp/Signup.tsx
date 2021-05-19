@@ -130,6 +130,7 @@ const SignUp: React.FC = () => {
                 verifyCallback={(captchaToken: string) => {
                   setCaptchaToken(captchaToken);
                 }}
+                onloadCallback={() => void 0}
               />
               <input
                 type="submit"
