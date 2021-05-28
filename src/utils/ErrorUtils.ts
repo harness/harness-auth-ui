@@ -11,7 +11,9 @@ export function handleError(error: any): void {
       response.responseMessages[response.responseMessages.length - 1].message ||
         ""
     );
-  } else {
+  } else if (error.message) {
     toast(error.message);
+  } else if (typeof error === "string") {
+    toast(error);
   }
 }

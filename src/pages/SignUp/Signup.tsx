@@ -125,6 +125,12 @@ const SignUp: React.FC = () => {
     }
   });
 
+  function handleRecaptchaError() {
+    // Block the user until they refresh
+    setCaptchaExecuting(true);
+    handleError("Captcha has failed, please refresh the page.");
+  }
+
   return (
     <BasicLayout>
       <div className={cx(css.signup)}>
@@ -154,6 +160,7 @@ const SignUp: React.FC = () => {
                 }
                 size="invisible"
                 onChange={setCaptchaToken}
+                onErrored={handleRecaptchaError}
               />
               <input
                 type="submit"
