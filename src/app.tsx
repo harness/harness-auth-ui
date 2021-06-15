@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, HashRouter, Redirect } from "react-router-dom";
+import { Route, HashRouter, Redirect, Switch } from "react-router-dom";
 import { RestfulProvider } from "restful-react";
 import { Toaster } from "react-hot-toast";
 
@@ -18,17 +18,19 @@ export function App() {
     <RestfulProvider base="/">
       <Toaster />
       <HashRouter>
-        <Route path={routes.toSignIn()} component={SignIn} />
-        <Route path={routes.toLocalLogin()} component={LocalLogin} />
-        <Route path={routes.toSignUp()} component={SignUp} />
-        <Route path={routes.toForgotPassword()} component={ForgotPassword} />
-        <Route path={routes.toResetPassword()} component={ResetPassword} />
-        <Route path={routes.toSSOSignIn()} component={SSOSignIn} />
-        <Route path={routes.toTwoFactorAuth()} component={TwoFactorAuth} />
-        <Route path={routes.toAcceptInvite()} component={AcceptInvite} />
-        <Route path="/" exact>
-          <Redirect to={routes.toSignIn()} />
-        </Route>
+        <Switch>
+          <Route path={routes.toSignIn()} component={SignIn} />
+          <Route path={routes.toLocalLogin()} component={LocalLogin} />
+          <Route path={routes.toSignUp()} component={SignUp} />
+          <Route path={routes.toForgotPassword()} component={ForgotPassword} />
+          <Route path={routes.toResetPassword()} component={ResetPassword} />
+          <Route path={routes.toSSOSignIn()} component={SSOSignIn} />
+          <Route path={routes.toTwoFactorAuth()} component={TwoFactorAuth} />
+          <Route path={routes.toAcceptInvite()} component={AcceptInvite} />
+          <Route path="/" exact>
+            <Redirect to={routes.toSignIn()} />
+          </Route>
+        </Switch>
       </HashRouter>
     </RestfulProvider>
   );

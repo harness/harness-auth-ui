@@ -27,7 +27,7 @@ export default function ForgotPassword() {
       } as any); // FIXME: isNG is not supported by backend yet
       if (response.resource) {
         toast.success(
-          "An email has been sent to you with a link to reset your password"
+          "If your email address exists in our database, you will receive a password recovery link soon."
         );
       } else {
         // TODO: handle failure
