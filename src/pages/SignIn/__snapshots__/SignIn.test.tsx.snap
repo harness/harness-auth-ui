@@ -183,16 +183,6 @@ exports[`SignIn render 1`] = `
               Harness Local Login
             </span>
           </button>
-          <div
-            class="footer"
-          >
-            No account? 
-            <a
-              href="/signup"
-            >
-              Sign Up
-            </a>
-          </div>
         </div>
       </div>
     </div>

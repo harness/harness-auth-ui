@@ -145,9 +145,11 @@ const SignIn: React.FC = () => {
           }}
         />
         <AuthFooter page={AuthPage.SignIn} />
-        <div className={css.footer}>
-          No account? <Link to={RouteDefinitions.toSignUp()}>Sign Up</Link>
-        </div>
+        {window.signupExposed && (
+          <div className={css.footer}>
+            No account? <Link to={RouteDefinitions.toSignUp()}>Sign Up</Link>
+          </div>
+        )}
       </div>
     </BasicLayout>
   );
