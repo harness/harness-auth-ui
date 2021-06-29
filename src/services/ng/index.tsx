@@ -6362,7 +6362,7 @@ export type UpdateAccountDefaultExperienceNGProps = Omit<
   MutateProps<
     ResponseAccountDTO,
     Failure | Error,
-    void,
+    any,
     AccountDTORequestBody,
     UpdateAccountDefaultExperienceNGPathParams
   >,
@@ -6380,7 +6380,7 @@ export const UpdateAccountDefaultExperienceNG = ({
   <Mutate<
     ResponseAccountDTO,
     Failure | Error,
-    void,
+    any,
     AccountDTORequestBody,
     UpdateAccountDefaultExperienceNGPathParams
   >
@@ -6395,7 +6395,7 @@ export type UseUpdateAccountDefaultExperienceNGProps = Omit<
   UseMutateProps<
     ResponseAccountDTO,
     Failure | Error,
-    void,
+    any,
     AccountDTORequestBody,
     UpdateAccountDefaultExperienceNGPathParams
   >,
@@ -6413,7 +6413,7 @@ export const useUpdateAccountDefaultExperienceNG = ({
   useMutate<
     ResponseAccountDTO,
     Failure | Error,
-    void,
+    any,
     AccountDTORequestBody,
     UpdateAccountDefaultExperienceNGPathParams
   >(
