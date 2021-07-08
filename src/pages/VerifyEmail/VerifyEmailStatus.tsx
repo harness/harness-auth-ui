@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "static/images/harness-logo.svg";
+import Spinner from "static/icons/spinner/Spinner";
 import cx from "classnames";
 import { EMAIL_VERIFY_STATUS } from "utils/StringUtils";
 import Text from "components/Text/Text";
@@ -11,10 +12,10 @@ interface VerifyEmailStatusProps {
 }
 
 export enum VERIFY_EMAIL_STATUS {
-  IN_PROGRESS,
-  EMAIL_SENT,
-  SIGNED_UP,
-  VERIFY_FAILED
+  IN_PROGRESS = "IN_PROGRESS",
+  EMAIL_SENT = "EMAIL_SENT",
+  SIGNED_UP = "SIGNED_UP",
+  VERIFY_FAILED = "VERIFY_FAILED"
 }
 
 const harnessLogo = (
@@ -26,10 +27,19 @@ const harnessLogo = (
   />
 );
 
+const resendBtn = (
+  <input
+    type="button"
+    value="Resend Verification Email"
+    className="button primary"
+  />
+);
+
 const VerifyInProgress = (): React.ReactElement => {
   return (
     <div>
       {harnessLogo}
+      <Spinner className={cx(css.spinner, css.marginBottomLarge)} />
       <Text className={css.title}>{EMAIL_VERIFY_STATUS.IN_PROGRESS}</Text>
     </div>
   );
@@ -55,11 +65,7 @@ const VerifyEmailSent = ({ email }: { email?: string }): React.ReactElement => {
       <Text className={cx(css.marginBottomXSmall, css.fontSmall)}>
         Didn’t receive it?
       </Text>
-      <input
-        type="button"
-        value="Resend Verification Email"
-        className="button primary"
-      />
+      {resendBtn}
     </div>
   );
 };
@@ -84,11 +90,7 @@ const EmailSignedUp = ({ email }: { email?: string }): React.ReactElement => {
       <Text className={cx(css.marginBottomXSmall, css.fontSmall)}>
         Didn’t receive it?
       </Text>
-      <input
-        type="button"
-        value="Resend Verification Email"
-        className="button primary"
-      />
+      {resendBtn}
     </div>
   );
 };
@@ -110,11 +112,7 @@ const VerifyFailed = (): React.ReactElement => {
         Your Email verification wasn’t successful. Please verify the Email
         again.
       </Text>
-      <input
-        type="button"
-        value="Resend Verification Email"
-        className="button primary"
-      />
+      {resendBtn}
     </div>
   );
 };

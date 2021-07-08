@@ -1,20 +1,16 @@
 import React from "react";
 import BasicLayout from "components/BasicLayout/BasicLayout";
+import { useQueryParams } from "hooks/useQueryParams";
 import VerifyEmailStatus, { VERIFY_EMAIL_STATUS } from "./VerifyEmailStatus";
 
-interface VerifyEmailStatusProps {
-  email?: string;
-  status: VERIFY_EMAIL_STATUS;
-}
-
-const VerifyEmailPage = ({
-  props
-}: {
-  props: VerifyEmailStatusProps;
-}): React.ReactElement => {
+const VerifyEmailPage = (): React.ReactElement => {
+  const { status, email } = useQueryParams<{
+    status: VERIFY_EMAIL_STATUS;
+    email?: string;
+  }>();
   return (
     <BasicLayout>
-      <VerifyEmailStatus {...props} />
+      <VerifyEmailStatus status={status} email={email} />
     </BasicLayout>
   );
 };
