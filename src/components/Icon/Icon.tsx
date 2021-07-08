@@ -8,6 +8,7 @@ import google from "static/icons/google.svg";
 import linkedin from "static/icons/linkedin.svg";
 import sso from "static/icons/sso.svg";
 import leftArrow from "static/icons/left-arrow.svg";
+import warningSign from "static/icons/warning.svg";
 
 export type IconName =
   | "azure"
@@ -17,7 +18,8 @@ export type IconName =
   | "google"
   | "linkedin"
   | "sso"
-  | "leftArrow";
+  | "leftArrow"
+  | "warningSign";
 
 const iconMap: Record<IconName, string> = {
   azure,
@@ -27,7 +29,8 @@ const iconMap: Record<IconName, string> = {
   google,
   linkedin,
   sso,
-  leftArrow
+  leftArrow,
+  warningSign
 };
 
 export interface IconProps {
