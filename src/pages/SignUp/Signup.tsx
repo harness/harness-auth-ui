@@ -5,11 +5,7 @@ import { Form } from "react-final-form";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import BasicLayout from "components/BasicLayout/BasicLayout";
-import {
-  UserInfo,
-  useSignup,
-  useUpdateAccountDefaultExperienceNG
-} from "services/ng";
+import { useCreateSignupInvite } from "services/ng";
 
 import logo from "static/images/harness-logo.svg";
 import css from "./SignUp.module.css";
@@ -17,15 +13,9 @@ import RouteDefinitions from "RouteDefinitions";
 import AuthFooter, { AuthPage } from "components/AuthFooter/AuthFooter";
 import Field from "components/Field/Field";
 import { handleError } from "utils/ErrorUtils";
-import {
-  handleSignUpSuccess,
-  getSignupHeaders,
-  getSignupUrlParams
-} from "utils/SignUpUtils";
 import { validateEmail, validatePassword } from "utils/FormValidationUtils";
 import telemetry from "telemetry/Telemetry";
 import { useQueryParams } from "hooks/useQueryParams";
-import { DefaultExperience } from "utils/DefaultExperienceTypes";
 
 interface SignUpFormData {
   email: string;
@@ -35,48 +25,11 @@ interface SignUpFormData {
 const SignUp: React.FC = () => {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [signupData, setSignupData] = useState({ email: "", password: "" });
-  const [completedSignupData, setCompletedSignupData] = useState<UserInfo>();
-  const { mutate: signup, loading } = useSignup({});
-  const {
-    mutate: updateDefaultExperience
-  } = useUpdateAccountDefaultExperienceNG({
-    accountIdentifier: completedSignupData?.defaultAccountId || "",
-    requestOptions: { headers: getSignupHeaders() },
-    queryParams: {
-      routingId: completedSignupData?.defaultAccountId || ""
-
-      // use 'any' here because routingId is not part of the swagger file generated in NG
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any
-  });
+  const { mutate: signup, loading } = useCreateSignupInvite({});
   const captchaRef = useRef<ReCAPTCHA>(null);
   const { module } = useQueryParams<{ module?: string }>();
 
   const [captchaExecuting, setCaptchaExecuting] = useState(false);
-
-  async function handleSignupComplete() {
-    const { module } = getSignupUrlParams();
-
-    if (module?.toUpperCase() === "CE" || module?.toUpperCase() === "CD") {
-      try {
-        await updateDefaultExperience({
-          defaultExperience: DefaultExperience.CG
-        });
-      } catch (error) {
-        setCompletedSignupData(undefined);
-        handleError(error);
-      }
-    }
-
-    handleSignUpSuccess(completedSignupData);
-  }
-
-  useEffect(() => {
-    if (completedSignupData) {
-      handleSignupComplete();
-    }
-  }, [completedSignupData]);
-
   useEffect(() => {
     const { email, password } = signupData;
 
@@ -91,12 +44,25 @@ const SignUp: React.FC = () => {
     captchaToken: string
   ): Promise<void> => {
     try {
-      const userInfo = await signup(data, {
-        queryParams: { captchaToken: captchaToken }
-      });
-      setCompletedSignupData(userInfo.resource);
+      await signup(
+        {
+          ...data,
+          intent: module
+        },
+        {
+          queryParams: { captchaToken: captchaToken }
+        }
+      );
+
+      // TODO: reroute to UI screens when complete
     } catch (error) {
       captchaRef.current?.reset();
+
+      if (
+        error?.data?.responseMessages[0]?.code === "USER_ALREADY_REGISTERED"
+      ) {
+        // TODO: route the user to the "already signed up" page
+      }
 
       handleError(error);
     }
