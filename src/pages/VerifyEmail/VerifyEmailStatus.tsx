@@ -1,14 +1,16 @@
 import React from "react";
 import logo from "static/images/harness-logo.svg";
-import Spinner from "static/icons/spinner/Spinner";
 import cx from "classnames";
 import { EMAIL_VERIFY_STATUS } from "utils/StringUtils";
 import Text from "components/Text/Text";
 import css from "./VerifyEmailStatus.module.css";
+import { handleError } from "utils/ErrorUtils";
+import { useResendVerifyEmail } from "services/ng";
+import toast from "react-hot-toast";
 
 interface VerifyEmailStatusProps {
   email?: string;
-  status: VERIFY_EMAIL_STATUS;
+  status?: VERIFY_EMAIL_STATUS;
 }
 
 export enum VERIFY_EMAIL_STATUS {
@@ -27,25 +29,41 @@ const harnessLogo = (
   />
 );
 
-const resendBtn = (
-  <input
-    type="button"
-    value="Resend Verification Email"
-    className="button primary"
-  />
-);
+interface ResendButtonProps {
+  email: string;
+}
 
-const VerifyInProgress = (): React.ReactElement => {
+const ResendButton = (props: ResendButtonProps): React.ReactElement => {
+  const { email } = props;
+
+  const { mutate: resendVerifyEmail, loading, error } = useResendVerifyEmail({
+    queryParams: { email }
+  });
+
+  async function handleResendVerifyEmail() {
+    await resendVerifyEmail();
+
+    toast("Successfully resent the verification email");
+  }
+
+  if (error) {
+    handleError(error);
+  }
+
   return (
-    <div>
-      {harnessLogo}
-      <Spinner className={cx(css.spinner, css.marginBottomLarge)} />
-      <Text className={css.title}>{EMAIL_VERIFY_STATUS.IN_PROGRESS}</Text>
-    </div>
+    <button
+      disabled={loading}
+      className={cx("button", "primary", css.resendButton)}
+      onClick={handleResendVerifyEmail}
+    >
+      <Text>Resend Verification Email</Text>
+    </button>
   );
 };
 
 const VerifyEmailSent = ({ email }: { email?: string }): React.ReactElement => {
+  const resendButton = email && <ResendButton email={email} />;
+
   return (
     <div>
       {harnessLogo}
@@ -59,18 +77,19 @@ const VerifyEmailSent = ({ email }: { email?: string }): React.ReactElement => {
           css.lineHeight1dot5
         )}
       >
-        Verification Email sent to <b>{email}</b>. Please follow the link to
+        Verification email sent to <b>{email}</b>. Please follow the link to
         verify your email.
       </Text>
       <Text className={cx(css.marginBottomXSmall, css.fontSmall)}>
         Didn’t receive it?
       </Text>
-      {resendBtn}
+      {resendButton}
     </div>
   );
 };
 
 const EmailSignedUp = ({ email }: { email?: string }): React.ReactElement => {
+  const resendButton = email && <ResendButton email={email} />;
   return (
     <div>
       {harnessLogo}
@@ -84,35 +103,13 @@ const EmailSignedUp = ({ email }: { email?: string }): React.ReactElement => {
           css.lineHeight1dot5
         )}
       >
-        Verification Email sent to <b>{email}</b>. Verify your email to start
+        Verification email sent to <b>{email}</b>. Verify your email to start
         enjoying Harness.
       </Text>
       <Text className={cx(css.marginBottomXSmall, css.fontSmall)}>
         Didn’t receive it?
       </Text>
-      {resendBtn}
-    </div>
-  );
-};
-
-const VerifyFailed = (): React.ReactElement => {
-  return (
-    <div>
-      {harnessLogo}
-
-      <Text
-        icon="warningSign"
-        iconProps={{ size: 28 }}
-        className={cx(css.title, css.marginBottomLarge)}
-      >
-        {EMAIL_VERIFY_STATUS.FAILED}
-      </Text>
-
-      <Text className={cx(css.marginBottomLarge, css.lineHeight1dot5)}>
-        Your Email verification wasn’t successful. Please verify the Email
-        again.
-      </Text>
-      {resendBtn}
+      {resendButton}
     </div>
   );
 };
@@ -122,14 +119,12 @@ const VerifyEmailStatus = ({
   status
 }: VerifyEmailStatusProps): React.ReactElement => {
   switch (status) {
-    case VERIFY_EMAIL_STATUS.IN_PROGRESS:
-      return <VerifyInProgress />;
     case VERIFY_EMAIL_STATUS.EMAIL_SENT:
       return <VerifyEmailSent email={email} />;
     case VERIFY_EMAIL_STATUS.SIGNED_UP:
       return <EmailSignedUp email={email} />;
-    case VERIFY_EMAIL_STATUS.VERIFY_FAILED:
-      return <VerifyFailed />;
+    default:
+      return <VerifyEmailSent email={email} />;
   }
 };
 

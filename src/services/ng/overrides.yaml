@@ -1,3 +1,4 @@
 allowpaths:
   - "/signup/invite"
   - "/signup/invite/{token}"
+  - "/signup/verify-notification"

@@ -7,5 +7,6 @@ export default {
   toTwoFactorAuth: () => `/two-factor-auth`,
   toSignUp: () => `/signup`,
   toAcceptInvite: () => `/accept-invite`,
-  toVerifyEmail: () => `/register/verify/:token`
+  toEmailVerification: () => `/email-verification`,
+  toCompleteInvite: () => `/register/verify/:token`
 };

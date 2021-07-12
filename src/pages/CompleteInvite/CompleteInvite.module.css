@@ -6,20 +6,8 @@
   margin-bottom: var(--spacing-large);
 }
 
-.marginBottomXSmall {
-  margin-bottom: var(--spacing-xsmall);
-}
-
-.inlineBlock {
-  display: inline-block;
-}
-
 .lineHeight1dot5 {
   line-height: 1.5;
-}
-
-.fontSmall {
-  font-size: small;
 }
 
 .title {

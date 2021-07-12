@@ -5,7 +5,7 @@ import VerifyEmailStatus, { VERIFY_EMAIL_STATUS } from "./VerifyEmailStatus";
 
 const VerifyEmailPage = (): React.ReactElement => {
   const { status, email } = useQueryParams<{
-    status: VERIFY_EMAIL_STATUS;
+    status?: VERIFY_EMAIL_STATUS;
     email?: string;
   }>();
   return (
