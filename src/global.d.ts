@@ -6,6 +6,7 @@ declare interface Window {
   invisibleCaptchaToken: string;
   segmentToken: string;
   signupExposed: string;
+  gtmCDEnabled: string;
 }
 
 declare const Bugsnag: any;
