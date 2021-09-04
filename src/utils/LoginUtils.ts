@@ -42,7 +42,7 @@ export function handleLoginSuccess({
 }: HandleLoginSuccess): void {
   const queryString = window.location.hash?.split("?")?.[1];
   const urlParams = new URLSearchParams(queryString);
-  const returnUrl = urlParams?.get("returnUrl");
+  let returnUrl = urlParams?.get("returnUrl");
   const baseUrl = window.location.pathname.replace("auth/", "");
 
   if (resource) {
@@ -55,8 +55,11 @@ export function handleLoginSuccess({
       resource.twoFactorAuthenticationEnabled === true &&
       resource.twoFactorJwtToken
     ) {
+      // returnUrl can be used from sessionStorage for SSO + 2FA combination
+      returnUrl =
+        urlParams?.get("returnUrl") || sessionStorage?.getItem("returnUrl");
+      sessionStorage?.removeItem("returnUrl");
       SecureStorage.setItem("twoFactorJwtToken", resource.twoFactorJwtToken);
-      // TODO: history.push instead of window.location
       window.location.href = returnUrl
         ? `${baseUrl}auth/#/two-factor-auth?returnUrl=${returnUrl}`
         : `${baseUrl}auth/#/two-factor-auth`;
@@ -66,6 +69,7 @@ export function handleLoginSuccess({
     if (resource.accounts) createDefaultExperienceMap(resource.accounts);
 
     if (returnUrl) {
+      sessionStorage?.removeItem("returnUrl");
       try {
         const returnUrlObject = new URL(returnUrl);
         // only redirect to same hostname
