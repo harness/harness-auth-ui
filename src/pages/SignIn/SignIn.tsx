@@ -14,11 +14,12 @@ import logo from "static/images/harness-logo.svg";
 import css from "./SignIn.module.css";
 import AuthFooter, { AuthPage } from "components/AuthFooter/AuthFooter";
 import { handleError } from "utils/ErrorUtils";
-import { handleLoginSuccess } from "utils/LoginUtils";
+import { getAccountIdFromUrl, handleLoginSuccess } from "utils/LoginUtils";
 import {
   validateEmail,
   validatePasswordRequiredOnly
 } from "utils/FormValidationUtils";
+import { useQueryParams } from "hooks/useQueryParams";
 
 const createAuthToken = (email: string, password: string): string => {
   const encodedToken = btoa(email + ":" + password);
@@ -30,19 +31,22 @@ interface LoginFormData {
   password: string;
 }
 
+interface SignInQueryParams {
+  returnUrl?: string;
+  errorCode?: string;
+}
+
 const SignIn: React.FC = () => {
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaReponse, setCaptchaResponse] = useState<string | undefined>();
-  const { mutate: login, loading } = useLogin({
-    queryParams: { captcha: captchaReponse }
-  });
+  const { mutate: login, loading } = useLogin({});
   const captchaRef = useRef<ReCAPTCHA>(null);
-  const queryString = window.location.hash?.split("?")?.[1];
-  const queryParams = new URLSearchParams(queryString);
+  const { returnUrl, errorCode } = useQueryParams<SignInQueryParams>();
   const history = useHistory();
+  const accountId = returnUrl ? getAccountIdFromUrl(returnUrl) : undefined;
 
+  // this runs once on first mount
   useEffect(() => {
-    const returnUrl = queryParams.get("returnUrl");
     if (returnUrl) {
       // save returnUrl for SAML flow
       sessionStorage.setItem("returnUrl", returnUrl);
@@ -51,7 +55,6 @@ const SignIn: React.FC = () => {
       sessionStorage.removeItem("returnUrl");
     }
 
-    const errorCode = queryParams.get("errorCode");
     switch (errorCode) {
       case "GATEWAY_SSO_REDIRECT_ERROR":
         toast.error(
@@ -84,10 +87,22 @@ const SignIn: React.FC = () => {
 
   const handleLogin = async (formData: LoginFormData) => {
     try {
-      const response = await login({
-        authorization: createAuthToken(formData.email, formData.password)
+      const response = await login(
+        {
+          authorization: createAuthToken(formData.email, formData.password)
+        },
+        {
+          queryParams: {
+            captcha: captchaReponse,
+            accountId: accountId
+          }
+        }
+      );
+      handleLoginSuccess({
+        resource: response?.resource,
+        history,
+        selectedAccount: accountId
       });
-      handleLoginSuccess({ resource: response?.resource, history });
     } catch (error) {
       captchaRef.current?.reset();
       setCaptchaResponse(undefined);
@@ -163,7 +178,7 @@ const SignIn: React.FC = () => {
             );
           }}
         />
-        <AuthFooter page={AuthPage.SignIn} />
+        <AuthFooter page={AuthPage.SignIn} accountId={accountId} />
         {window.signupExposed === "true" && (
           <div className={css.footer}>
             No account? <Link to={RouteDefinitions.toSignUp()}>Sign up</Link>

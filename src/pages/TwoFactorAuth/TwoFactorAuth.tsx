@@ -22,18 +22,23 @@ interface TwoFactorAuthFormData {
 }
 
 const TwoFactorAuth: React.FC = () => {
-  const accountId = SecureStorage.getItem("acctId");
+  const accountId = SecureStorage.getItem("acctId") as string;
   const history = useHistory();
   const { mutate: login, loading } = useTwoFactorLogin({
     queryParams: {
-      routingId: accountId // FIXME: swagger doesn't have this query param yet
+      accountId,
+      routingId: accountId // FIXME: swagger doesn't have this query param yet,
     } as any
   });
 
   const handleLogin = async (formData: TwoFactorAuthFormData) => {
     try {
       const response = await login(formatJWTHeader(formData.authCode));
-      handleLoginSuccess({ resource: response?.resource, history });
+      handleLoginSuccess({
+        resource: response?.resource,
+        history,
+        selectedAccount: accountId
+      });
     } catch (err) {
       if (err.status === 401) {
         toast("Invalid Authentication Code");

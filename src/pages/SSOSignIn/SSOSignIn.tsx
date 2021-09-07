@@ -13,13 +13,19 @@ import Text from "components/Text/Text";
 import logo from "static/images/harness-logo.svg";
 import css from "../SignIn/SignIn.module.css";
 import { validateEmail } from "utils/FormValidationUtils";
+import { getAccountIdFromUrl } from "utils/LoginUtils";
 
 interface SSOFormData {
   email: string;
 }
 
 const SSOSignIn: React.FC = () => {
-  const { mutate: getLoginType, loading } = useGetLoginType({});
+  const returnUrl = sessionStorage.getItem("returnUrl");
+  const accountId = returnUrl ? getAccountIdFromUrl(returnUrl) : undefined;
+
+  const { mutate: getLoginType, loading } = useGetLoginType({
+    queryParams: { accountId }
+  });
 
   const handleSSOInit = async (data: SSOFormData): Promise<void> => {
     try {

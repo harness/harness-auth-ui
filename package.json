@@ -1,6 +1,6 @@
 {
   "name": "ng-login-ui",
-  "version": "0.19.0",
+  "version": "0.22.0",
   "description": "NextGen SignIn/SignUp UI Micro-frontend",
   "main": "index.js",
   "scripts": {

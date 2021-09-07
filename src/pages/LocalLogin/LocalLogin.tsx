@@ -8,12 +8,13 @@ import BasicLayout from "components/BasicLayout/BasicLayout";
 import { useForceLoginUsingHarnessPassword } from "services/portal";
 import { handleError } from "utils/ErrorUtils";
 import Text from "components/Text/Text";
-import { handleLoginSuccess } from "utils/LoginUtils";
+import { getAccountIdFromUrl, handleLoginSuccess } from "utils/LoginUtils";
 import Field from "components/Field/Field";
 import {
   validateEmail,
   validatePasswordRequiredOnly
 } from "utils/FormValidationUtils";
+import { useQueryParams } from "hooks/useQueryParams";
 
 import logo from "static/images/harness-logo.svg";
 import css from "../SignIn/SignIn.module.css";
@@ -28,16 +29,33 @@ interface LoginFormData {
   password: string;
 }
 
+interface LocalLoginQueryParams {
+  returnUrl?: string;
+}
+
 const LocalLogin: React.FC = () => {
   const history = useHistory();
-  const { mutate: login, loading } = useForceLoginUsingHarnessPassword({});
+  const { returnUrl } = useQueryParams<LocalLoginQueryParams>();
+  const accountId = returnUrl ? getAccountIdFromUrl(returnUrl) : undefined;
+
+  const { mutate: login, loading } = useForceLoginUsingHarnessPassword({
+    queryParams: accountId
+      ? ({
+          accountId
+        } as any)
+      : void 0
+  });
 
   const handleLogin = async (formData: LoginFormData) => {
     try {
       const response = await login({
         authorization: createAuthToken(formData.email, formData.password)
       });
-      handleLoginSuccess({ resource: response?.resource, history });
+      handleLoginSuccess({
+        resource: response?.resource,
+        history,
+        selectedAccount: accountId
+      });
     } catch (error) {
       handleError(error);
     }

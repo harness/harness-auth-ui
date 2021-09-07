@@ -45,6 +45,7 @@ const SignUp: React.FC = () => {
     data: SignUpFormData,
     captchaToken: string
   ): Promise<void> => {
+    const encodedEmail = encodeURIComponent(data.email);
     try {
       await signup(
         {
@@ -58,7 +59,7 @@ const SignUp: React.FC = () => {
 
       history.push({
         pathname: RouteDefinitions.toEmailVerification(),
-        search: `?status=${VERIFY_EMAIL_STATUS.EMAIL_SENT}&email=${data.email}`
+        search: `?status=${VERIFY_EMAIL_STATUS.EMAIL_SENT}&email=${encodedEmail}`
       });
     } catch (error) {
       captchaRef.current?.reset();
@@ -69,7 +70,7 @@ const SignUp: React.FC = () => {
       ) {
         history.push({
           pathname: RouteDefinitions.toEmailVerification(),
-          search: `?status=${VERIFY_EMAIL_STATUS.SIGNED_UP}&email=${data.email}`
+          search: `?status=${VERIFY_EMAIL_STATUS.SIGNED_UP}&email=${encodedEmail}`
         });
       } else {
         handleError(error);

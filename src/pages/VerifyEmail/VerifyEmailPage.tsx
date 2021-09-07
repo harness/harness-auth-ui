@@ -10,7 +10,10 @@ const VerifyEmailPage = (): React.ReactElement => {
   }>();
   return (
     <BasicLayout>
-      <VerifyEmailStatus status={status} email={email} />
+      <VerifyEmailStatus
+        status={status}
+        email={decodeURIComponent(email || "")}
+      />
     </BasicLayout>
   );
 };
