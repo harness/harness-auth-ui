@@ -27,7 +27,7 @@ exports[`SignIn render 1`] = `
           <div
             class="title"
           >
-            Sign In
+            Sign in
           </div>
           <div
             class="subtitle"
@@ -83,7 +83,7 @@ exports[`SignIn render 1`] = `
             <input
               class="button primary"
               type="submit"
-              value="Sign In"
+              value="Sign in"
             />
           </form>
           <h2

@@ -37,7 +37,7 @@ exports[`TwoFactorAuth render 1`] = `
                   src="test-file-stub"
                   width="16"
                 />
-                Sign In
+                Sign in
               </span>
             </a>
           </div>

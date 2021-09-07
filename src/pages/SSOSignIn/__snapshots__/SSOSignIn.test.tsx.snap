@@ -38,14 +38,14 @@ exports[`SSOSignIn render 1`] = `
                   src="test-file-stub"
                   width="16"
                 />
-                Main Sign In
+                Main Sign in
               </span>
             </a>
           </div>
           <div
             class="title"
           >
-            Sign In with an 
+            Sign in with an 
             <br />
             SSO Identity Provider
           </div>
@@ -75,7 +75,7 @@ exports[`SSOSignIn render 1`] = `
             <input
               class="button primary"
               type="submit"
-              value="Sign In"
+              value="Sign in"
             />
           </form>
         </div>
