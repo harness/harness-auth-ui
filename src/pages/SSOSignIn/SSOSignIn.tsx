@@ -49,7 +49,7 @@ const SSOSignIn: React.FC = () => {
           <img src={logo} width={120} className={css.logo} alt={"Harness"} />
           <div style={{ flex: 1 }} />
           <Link to={RouteDefinitions.toSignIn()}>
-            <Text icon="leftArrow">Main Sign in</Text>
+            <Text icon="leftArrow">Main sign in</Text>
           </Link>
         </div>
         <div className={css.title}>

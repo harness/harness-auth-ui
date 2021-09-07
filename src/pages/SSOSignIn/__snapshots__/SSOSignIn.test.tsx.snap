@@ -38,7 +38,7 @@ exports[`SSOSignIn render 1`] = `
                   src="test-file-stub"
                   width="16"
                 />
-                Main Sign in
+                Main sign in
               </span>
             </a>
           </div>
