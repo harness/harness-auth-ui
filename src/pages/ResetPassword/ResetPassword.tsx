@@ -64,7 +64,7 @@ export default function ResetPassword() {
           <img src={logo} width={120} className={css.logo} alt={"Harness"} />
           <div style={{ flex: 1 }} />
           <Link to={RouteDefinitions.toSignIn()}>
-            <Text icon="leftArrow">Sign In</Text>
+            <Text icon="leftArrow">Sign in</Text>
           </Link>
         </div>
         <div className={css.title}>Reset Password</div>

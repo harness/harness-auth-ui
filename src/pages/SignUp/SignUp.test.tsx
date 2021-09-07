@@ -58,7 +58,7 @@ describe("SignUp", () => {
       target: { value: "12345678" },
       bubbles: true
     });
-    fireEvent.click(getByRole("button", { name: "Sign Up" }));
+    fireEvent.click(getByRole("button", { name: "Sign up" }));
 
     await waitFor(() =>
       expect(trackMock).toBeCalledWith({

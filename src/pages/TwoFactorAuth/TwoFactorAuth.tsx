@@ -50,7 +50,7 @@ const TwoFactorAuth: React.FC = () => {
           <img src={logo} width={120} className={css.logo} />
           <div style={{ flex: 1 }}></div>
           <Link to={RouteDefinitions.toSignIn()}>
-            <Text icon="leftArrow">Sign In</Text>
+            <Text icon="leftArrow">Sign in</Text>
           </Link>
         </div>
         <div className={css.title}>Enter Authorization Code</div>
