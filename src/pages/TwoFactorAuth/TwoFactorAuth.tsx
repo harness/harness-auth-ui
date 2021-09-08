@@ -102,7 +102,7 @@ const TwoFactorAuth: React.FC = () => {
           account administrator to provide one.
         </div>
         <div className={css.footer}>
-          No account? <Link to={RouteDefinitions.toSignUp()}>Get Started</Link>
+          No account? <Link to={RouteDefinitions.toSignUp()}>Get started</Link>
         </div>
       </div>
     </BasicLayout>

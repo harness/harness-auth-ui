@@ -93,7 +93,7 @@ exports[`TwoFactorAuth render 1`] = `
             <a
               href="/signup"
             >
-              Get Started
+              Get started
             </a>
           </div>
         </div>
