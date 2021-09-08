@@ -76,7 +76,7 @@ const SignUp: React.FC = () => {
         <div className={css.header}>
           <img src={logo} width={120} className={css.logo} />
         </div>
-        <div className={css.title}>Accept Invite</div>
+        <div className={css.title}>Accept invite</div>
         <div className={css.subtitle}>and get ship done.</div>
         <Form
           onSubmit={onSubmit}
@@ -88,7 +88,7 @@ const SignUp: React.FC = () => {
               <Field
                 name="name"
                 label="Name"
-                placeholder="Your Name"
+                placeholder="Your name"
                 disabled={loading}
                 validate={validateName}
               />
@@ -110,7 +110,7 @@ const SignUp: React.FC = () => {
               />
               <input
                 type="submit"
-                value="Accept Invite"
+                value="Accept invite"
                 className="button primary"
                 disabled={loading}
               />

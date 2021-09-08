@@ -148,7 +148,7 @@ const SignIn: React.FC = () => {
                     className={css.forgotLink}
                     tabIndex={-1}
                   >
-                    Forgot Password?
+                    Forgot password?
                   </Link>
                   <Field
                     name="password"

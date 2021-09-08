@@ -108,7 +108,7 @@ const AuthFooter: React.FC<AuthFooterProps> = ({
             }}
           >
             <Text icon="sso" iconProps={{ size: 24 }}>
-              Single Sign-On
+              Single sign-on
             </Text>
           </button>
           <button
@@ -122,7 +122,7 @@ const AuthFooter: React.FC<AuthFooterProps> = ({
               });
             }}
           >
-            <Text>Harness Local Login</Text>
+            <Text>Harness local login</Text>
           </button>
         </>
       )}

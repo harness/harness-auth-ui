@@ -35,7 +35,7 @@ const SSOSignIn: React.FC = () => {
           window.location.href = res.resource.ssorequest?.idpRedirectUrl;
         }
       } else {
-        toast("Single Sign-on is not enabled for your account");
+        toast("Single sign-on is not enabled for your account");
       }
     } catch (err) {
       toast("There was an error");

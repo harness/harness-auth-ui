@@ -66,7 +66,7 @@ exports[`SignIn render 1`] = `
                 href="/forgot-password"
                 tabindex="-1"
               >
-                Forgot Password?
+                Forgot password?
               </a>
               <div
                 class="layout-vertical spacing-small field"
@@ -171,7 +171,7 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-              Single Sign-On
+              Single sign-on
             </span>
           </button>
           <button
@@ -180,7 +180,7 @@ exports[`SignIn render 1`] = `
             <span
               class="text"
             >
-              Harness Local Login
+              Harness local login
             </span>
           </button>
         </div>

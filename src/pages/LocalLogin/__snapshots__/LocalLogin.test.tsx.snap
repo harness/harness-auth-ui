@@ -45,7 +45,7 @@ exports[`LocalLogin render 1`] = `
           <div
             class="title"
           >
-            Local Login
+            Local login
           </div>
           <div
             class="subtitle"

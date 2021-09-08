@@ -54,7 +54,7 @@ const ResendButton = (props: ResendButtonProps): React.ReactElement => {
       className={cx("button", "primary", css.resendButton)}
       onClick={handleResendVerifyEmail}
     >
-      <Text>Resend Verification Email</Text>
+      <Text>Resend verification email</Text>
     </button>
   );
 };

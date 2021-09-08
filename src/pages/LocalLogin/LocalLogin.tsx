@@ -71,7 +71,7 @@ const LocalLogin: React.FC = () => {
             <Text icon="leftArrow">Main sign in</Text>
           </Link>
         </div>
-        <div className={css.title}>Local Login</div>
+        <div className={css.title}>Local login</div>
         <div className={css.subtitle} />
         <Form
           onSubmit={handleLogin}

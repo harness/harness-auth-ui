@@ -50,7 +50,7 @@ export default function ForgotPassword() {
             <Text icon="leftArrow">Sign in</Text>
           </Link>
         </div>
-        <div className={css.title}>Forgot Password</div>
+        <div className={css.title}>Forgot password</div>
         <div className={css.subtitle} />
         <Form
           onSubmit={handleReset}
@@ -70,7 +70,7 @@ export default function ForgotPassword() {
                 />
                 <input
                   type="submit"
-                  value="Reset Password"
+                  value="Reset password"
                   className="button primary"
                   disabled={loading}
                 />
