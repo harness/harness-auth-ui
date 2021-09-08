@@ -58,7 +58,7 @@ const TwoFactorAuth: React.FC = () => {
             <Text icon="leftArrow">Sign in</Text>
           </Link>
         </div>
-        <div className={css.title}>Enter Authorization Code</div>
+        <div className={css.title}>Enter authorization code</div>
         <div className={css.subtitle}>and get ship done.</div>
         <form
           className="layout-vertical spacing-medium"

@@ -44,7 +44,7 @@ exports[`TwoFactorAuth render 1`] = `
           <div
             class="title"
           >
-            Enter Authorization Code
+            Enter authorization code
           </div>
           <div
             class="subtitle"
