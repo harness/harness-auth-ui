@@ -47,7 +47,7 @@ exports[`SSOSignIn render 1`] = `
           >
             Sign in with an 
             <br />
-            SSO Identity Provider
+            SSO identity provider
           </div>
           <div
             class="subtitle"

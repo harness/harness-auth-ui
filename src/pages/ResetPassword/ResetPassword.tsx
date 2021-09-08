@@ -67,7 +67,7 @@ export default function ResetPassword() {
             <Text icon="leftArrow">Sign in</Text>
           </Link>
         </div>
-        <div className={css.title}>Reset Password</div>
+        <div className={css.title}>Reset password</div>
         <div className={css.subtitle} />
         <Form
           onSubmit={handleReset}
@@ -87,7 +87,7 @@ export default function ResetPassword() {
                 <Field
                   name="confirmPassword"
                   type="password"
-                  label="Confirm Password"
+                  label="Confirm password"
                   disabled={loading}
                   validate={(confirmPassword: string) =>
                     validateConfirmPassword(confirmPassword, values.password)
@@ -95,7 +95,7 @@ export default function ResetPassword() {
                 />
                 <input
                   type="submit"
-                  value="Reset Password"
+                  value="Reset password"
                   className="button primary"
                   disabled={loading}
                 />

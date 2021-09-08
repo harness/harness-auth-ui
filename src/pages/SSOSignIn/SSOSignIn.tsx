@@ -54,7 +54,7 @@ const SSOSignIn: React.FC = () => {
         </div>
         <div className={css.title}>
           Sign in with an <br />
-          SSO Identity Provider
+          SSO identity provider
         </div>
         <div className={css.subtitle}>and get ship done.</div>
         <Form
