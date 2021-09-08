@@ -3,7 +3,7 @@ export const regexEmail = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)
 export enum EMAIL_VERIFY_STATUS {
   SUCCESS = "Email verified successfully!",
   IN_PROGRESS = "Verifying email address",
-  FAILED = "Cannot verify Email",
+  FAILED = "Cannot verify email",
   EMAIL_SENT = "Verify email address",
   ALREADY_SIGNED_UP = "Already signed up"
 }
