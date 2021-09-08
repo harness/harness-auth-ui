@@ -4,6 +4,6 @@ export enum EMAIL_VERIFY_STATUS {
   SUCCESS = "Email verified successfully!",
   IN_PROGRESS = "Verifying email address",
   FAILED = "Cannot verify Email",
-  EMAIL_SENT = "Verify Email Address",
-  ALREADY_SIGNED_UP = "Already Signed Up"
+  EMAIL_SENT = "Verify email address",
+  ALREADY_SIGNED_UP = "Already signed up"
 }
