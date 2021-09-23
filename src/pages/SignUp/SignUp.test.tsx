@@ -35,7 +35,12 @@ describe("SignUp", () => {
         properties: {
           userId: "",
           groupId: "",
-          module: "ci"
+          module: "ci",
+          utm_campaign: "",
+          utm_content: "",
+          utm_medium: "",
+          utm_source: "",
+          utm_term: ""
         }
       })
     );
@@ -50,7 +55,12 @@ describe("SignUp", () => {
         properties: {
           category: "SIGNUP",
           userId: "random@hotmail.com",
-          groupId: ""
+          groupId: "",
+          utm_campaign: "",
+          utm_content: "",
+          utm_medium: "",
+          utm_source: "",
+          utm_term: ""
         }
       })
     );
@@ -66,7 +76,12 @@ describe("SignUp", () => {
         properties: {
           category: "SIGNUP",
           userId: "random@hotmail.com",
-          groupId: ""
+          groupId: "",
+          utm_campaign: "",
+          utm_content: "",
+          utm_medium: "",
+          utm_source: "",
+          utm_term: ""
         }
       })
     );
