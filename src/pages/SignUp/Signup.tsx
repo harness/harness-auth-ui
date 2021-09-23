@@ -144,7 +144,12 @@ const SignUp: React.FC = () => {
         properties: {
           category: "SIGNUP",
           userId: data.email,
-          groupId: ""
+          groupId: "",
+          utm_source: utm_source || "",
+          utm_medium: utm_medium || "",
+          utm_campaign: utm_campaign || "",
+          utm_term: utm_term || "",
+          utm_content: utm_content || ""
         }
       });
     }
@@ -163,7 +168,12 @@ const SignUp: React.FC = () => {
           properties: {
             category: "SIGNUP",
             userId: e.target.value,
-            groupId: ""
+            groupId: "",
+            utm_source: utm_source || "",
+            utm_medium: utm_medium || "",
+            utm_campaign: utm_campaign || "",
+            utm_term: utm_term || "",
+            utm_content: utm_content || ""
           }
         });
       }}
@@ -187,7 +197,12 @@ const SignUp: React.FC = () => {
     properties: {
       userId: "",
       groupId: "",
-      module: module || ""
+      module: module || "",
+      utm_source: utm_source || "",
+      utm_medium: utm_medium || "",
+      utm_campaign: utm_campaign || "",
+      utm_term: utm_term || "",
+      utm_content: utm_content || ""
     }
   });
 
