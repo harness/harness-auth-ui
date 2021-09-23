@@ -39,21 +39,21 @@ const SignUp: React.FC = () => {
     signupAction,
     edition,
     billingFrequency,
-    utmSource,
-    utmContent,
-    utmMedium,
-    utmTerm,
-    utmCampaign
+    utm_source,
+    utm_content,
+    utm_medium,
+    utm_term,
+    utm_campaign
   } = useQueryParams<{
     module?: string;
     signupAction?: string;
     edition?: string;
     billingFrequency?: string;
-    utmSource?: string;
-    utmContent?: string;
-    utmMedium?: string;
-    utmTerm?: string;
-    utmCampaign?: string;
+    utm_source?: string;
+    utm_content?: string;
+    utm_medium?: string;
+    utm_term?: string;
+    utm_campaign?: string;
   }>();
 
   const [captchaExecuting, setCaptchaExecuting] = useState(false);
@@ -76,11 +76,11 @@ const SignUp: React.FC = () => {
         ...data,
         intent: module,
         utmInfo: {
-          utmSource,
-          utmContent,
-          utmMedium,
-          utmTerm,
-          utmCampaign
+          utmSource: utm_source,
+          utmContent: utm_content,
+          utmMedium: utm_medium,
+          utmTerm: utm_term,
+          utmCampaign: utm_campaign
         }
       };
 
