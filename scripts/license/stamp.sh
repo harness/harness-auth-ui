@@ -6,4 +6,8 @@
 
 SCRIPT_DIR=$(dirname "$0")
 
-"$SCRIPT_DIR"/add_license_header.sh -l "$SCRIPT_DIR/.license-header-polyform-shield.txt" -f "$@"
+STAGED_FILES=$(tr ' ' '\n' <<< "$@")
+
+while read -r filepath; do
+  "$SCRIPT_DIR"/add_license_header.sh -l "$SCRIPT_DIR/.license-header-polyform-shield.txt" -f "$filepath"
+done <<< "$STAGED_FILES"
