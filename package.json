@@ -15,6 +15,7 @@
     "services-portal": "restful-react import --config restful-react.config.js portal",
     "services-ng": "restful-react import --config restful-react.config.js ng",
     "services-gateway": "restful-react import --config restful-react.config.js gateway",
+    "prepare": "husky install",
     "postservices-portal": "prettier --write src/services/portal/index.tsx",
     "postservices-ng": "prettier --write src/services/ng/index.tsx",
     "postservices-gateway": "prettier --write src/services/gateway/index.tsx",
@@ -74,7 +75,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "final-form": "^4.20.2",
     "history": "4.10.1",
-    "husky": "4",
+    "husky": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.7",
     "jest-junit": "^13.0.0",
@@ -96,12 +97,10 @@
       "postcss-nesting": {}
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
+    "*": [
+      "sh scripts/license/stamp.sh"
+    ],
     "*.{js,ts,tsx}": [
       "eslint",
       "prettier --check",
