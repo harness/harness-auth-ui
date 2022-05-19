@@ -1,0 +1,124 @@
+/*
+ * Copyright 2022 Harness Inc. All rights reserved.
+ * Use of this source code is governed by the PolyForm Shield 1.0.0 license
+ * that can be found in the licenses directory at the root of this repository, also available at
+ * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
+ */
+
+@media (max-width: 1270px) {
+  .layout {
+    display: flex;
+    justify-content: center;
+  }
+
+  .imageColumn {
+    display: none;
+    background-size: cover;
+  }
+}
+
+/* Firefox has a bug where padding-bottom is ignored when overflow occurs
+ https://bugzilla.mozilla.org/show_bug.cgi?id=748518 */
+@-moz-document url-prefix() {
+  .disclaimer {
+    margin-bottom: 85px !important;
+  }
+}
+
+.layoutExperimental {
+  width: 100vw;
+  height: 100vh;
+
+  /* Signup card widths */
+  --min-width: 540px;
+  --max-width: 55%;
+
+  display: grid;
+  grid-template-columns: minmax(var(--min-width), var(--max-width)) auto;
+  grid-template-rows: 100vh;
+
+  & .cardColumn {
+    overflow-y: auto;
+  }
+
+  & .card {
+    padding: 85px 0px;
+    overflow-x: hidden;
+    width: var(--min-width);
+    margin: 0 auto;
+  }
+  & .container {
+    padding: 70px 100px;
+    color: #fff;
+    font-size: var(--font-size-large);
+
+    & .branding {
+      display: flex;
+      flex-direction: row;
+      & img {
+        height: 35px;
+        width: 30px;
+      }
+
+      & .brandingText {
+        margin: 0;
+        padding: 0 var(--spacing-small);
+      }
+    }
+    & .title {
+      margin-top: var(--spacing-huge);
+    }
+    & .tagline {
+      margin-top: var(--spacing-xxxlarge);
+      font-size: var(--spacing-huge);
+      font-family: "Reenie Beanie";
+      font-style: normal;
+      font-weight: 500;
+      width: 550px;
+    }
+    & .valueProp {
+      margin-top: var(--spacing-xxxlarge);
+      font-size: var(--spacing-large);
+    }
+
+    & .hrmodule {
+      height: 10px;
+      width: 70px;
+      margin-top: var(--spacing-medium);
+      opacity: 0.3;
+    }
+
+    & .callout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 200px;
+      & .cotext {
+        opacity: 0.6;
+        font-size: var(--spacing-medium);
+
+        text-align: center;
+        text-transform: uppercase;
+      }
+      & img {
+        opacity: 1;
+        width: 75%;
+      }
+    }
+  }
+  & .imageColumn {
+    overflow-y: hidden;
+    background-color: #07182b;
+    padding-left: 0px;
+    background-size: cover !important;
+
+    & .foreground {
+      position: fixed;
+      top: 25px;
+      left: 40%;
+      height: 240px;
+      width: 240px;
+      opacity: 0.3;
+    }
+  }
+}

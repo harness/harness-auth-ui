@@ -3,3 +3,4 @@ allowpaths:
   - "/signup/complete/{token}"
   - "/signup/verify-notification"
   - "/signup/community"
+  - "/users/feature-flags/{accountId}.get"
