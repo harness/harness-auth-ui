@@ -17,7 +17,8 @@ const trackMock = jest.fn();
 
 jest.mock("telemetry/Telemetry", () => ({
   page: jest.fn().mockImplementation((values) => pageMock(values)),
-  track: jest.fn().mockImplementation((values) => trackMock(values))
+  track: jest.fn().mockImplementation((values) => trackMock(values)),
+  initialized: true
 }));
 
 describe("SignUp", () => {
