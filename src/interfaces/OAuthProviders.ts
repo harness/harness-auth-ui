@@ -16,45 +16,49 @@ export interface OAuthProviderType {
   url: string;
   iconName: IconName;
 }
-
-export const OAuthProviders: OAuthProviderType[] = [
-  {
+export const OAUTH_PROVIDERS_BY_NAME_MAP: {
+  [key: string]: OAuthProviderType;
+} = {
+  GITHUB: {
     type: "GITHUB",
     name: "Github",
     url: "oauth2Redirect?provider=github",
     iconName: "github"
   },
-  {
+  BITBUCKET: {
     type: "BITBUCKET",
     name: "Bitbucket",
     url: "oauth2Redirect?provider=bitbucket",
     iconName: "bitbucket"
   },
-  {
+  GITLAB: {
     type: "GITLAB",
     name: "GitLab",
     url: "oauth2Redirect?provider=gitlab",
     iconName: "gitlab"
   },
-  {
+  LINKEDIN: {
     type: "LINKEDIN",
     name: "LinkedIn",
     url: "oauth2Redirect?provider=linkedin",
     iconName: "linkedin"
   },
-  {
+  GOOGLE: {
     type: "GOOGLE",
     name: "Google",
     url: "oauth2Redirect?provider=google",
     iconName: "google"
   },
-  {
+  AZURE: {
     type: "AZURE",
     name: "Azure",
     url: "oauth2Redirect?provider=azure",
     iconName: "azure"
   }
-];
+};
+export const OAuthProviders: OAuthProviderType[] = Object.values(
+  OAUTH_PROVIDERS_BY_NAME_MAP
+);
 
 export const URLS = {
   OAUTH: `${location.protocol}//${location.host}/gateway/`,
