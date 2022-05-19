@@ -203,19 +203,21 @@ const SignUp: React.FC = () => {
   );
 
   useEffect(() => {
-    telemetry.page({
-      name: PAGE.SIGNUP_PAGE,
-      category: CATEGORY.SIGNUP,
-      properties: {
-        intent: module || "",
-        utmSource,
-        utmContent,
-        utmMedium,
-        utmTerm,
-        utmCampaign
-      }
-    });
-  }, []);
+    if (telemetry.initialized) {
+      telemetry.page({
+        name: PAGE.SIGNUP_PAGE,
+        category: CATEGORY.SIGNUP,
+        properties: {
+          intent: module || "",
+          utmSource,
+          utmContent,
+          utmMedium,
+          utmTerm,
+          utmCampaign
+        }
+      });
+    }
+  }, [telemetry.initialized]);
 
   function handleRecaptchaError() {
     // Block the user until they refresh
