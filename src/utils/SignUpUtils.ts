@@ -23,7 +23,7 @@ export async function handleSignUpSuccess(resource?: UserInfo): Promise<void> {
 
     // send identify user event to telemetry to update the identity
     if (resource.email) {
-      telemetry.identify(resource.email);
+      telemetry.identify({ userId: resource.email });
     }
 
     // Disabling this to avoid overloading LS with Harness Support usergroup accounts

@@ -157,12 +157,11 @@ const SignUp: React.FC = () => {
           intent: module || "",
           category: CATEGORY.SIGNUP,
           userId: data.email,
-          groupId: data.email,
-          utmSource,
-          utmContent,
-          utmMedium,
-          utmTerm,
-          utmCampaign
+          utm_source: utmSource,
+          utm_content: utmContent,
+          utm_medium: utmMedium,
+          utm_term: utmTerm,
+          utm_campaign: utmCampaign
         }
       });
     }
@@ -181,11 +180,11 @@ const SignUp: React.FC = () => {
           properties: {
             category: CATEGORY.SIGNUP,
             email: e.target.value,
-            utmSource,
-            utmContent,
-            utmMedium,
-            utmTerm,
-            utmCampaign
+            utm_source: utmSource,
+            utm_content: utmContent,
+            utm_medium: utmMedium,
+            utm_term: utmTerm,
+            utm_campaign: utmCampaign
           }
         });
       }}
@@ -206,14 +205,13 @@ const SignUp: React.FC = () => {
     if (telemetry.initialized) {
       telemetry.page({
         name: PAGE.SIGNUP_PAGE,
-        category: CATEGORY.SIGNUP,
         properties: {
           intent: module || "",
-          utmSource,
-          utmContent,
-          utmMedium,
-          utmTerm,
-          utmCampaign
+          utm_source: utmSource,
+          utm_content: utmContent,
+          utm_medium: utmMedium,
+          utm_term: utmTerm,
+          utm_campaign: utmCampaign
         }
       });
     }

@@ -40,14 +40,13 @@ describe("SignUp", () => {
     await waitFor(() =>
       expect(pageMock).toBeCalledWith({
         name: PAGE.SIGNUP_PAGE,
-        category: CATEGORY.SIGNUP,
         properties: {
           intent: "ci",
-          utmCampaign: "",
-          utmContent: "",
-          utmMedium: "",
-          utmSource: "",
-          utmTerm: ""
+          utm_campaign: "",
+          utm_content: "",
+          utm_medium: "",
+          utm_source: "",
+          utm_term: ""
         }
       })
     );
@@ -62,11 +61,11 @@ describe("SignUp", () => {
         properties: {
           category: CATEGORY.SIGNUP,
           email: "random@hotmail.com",
-          utmCampaign: "",
-          utmContent: "",
-          utmMedium: "",
-          utmSource: "",
-          utmTerm: ""
+          utm_campaign: "",
+          utm_content: "",
+          utm_medium: "",
+          utm_source: "",
+          utm_term: ""
         }
       })
     );
@@ -83,12 +82,11 @@ describe("SignUp", () => {
           category: CATEGORY.SIGNUP,
           userId: "random@hotmail.com",
           intent: "ci",
-          groupId: "random@hotmail.com",
-          utmCampaign: "",
-          utmContent: "",
-          utmMedium: "",
-          utmSource: "",
-          utmTerm: ""
+          utm_campaign: "",
+          utm_content: "",
+          utm_medium: "",
+          utm_source: "",
+          utm_term: ""
         }
       })
     );
