@@ -40,7 +40,6 @@ describe("SignUp", () => {
     await waitFor(() =>
       expect(pageMock).toBeCalledWith({
         name: PAGE.SIGNUP_PAGE,
-        category: CATEGORY.SIGNUP,
         properties: {
           intent: "ci",
           utm_campaign: "",

@@ -206,7 +206,6 @@ const SignUp: React.FC = () => {
     if (telemetry.initialized) {
       telemetry.page({
         name: PAGE.SIGNUP_PAGE,
-        category: CATEGORY.SIGNUP,
         properties: {
           intent: module || "",
           utm_source: utmSource,
