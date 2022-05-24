@@ -157,7 +157,6 @@ const SignUp: React.FC = () => {
           intent: module || "",
           category: CATEGORY.SIGNUP,
           userId: data.email,
-          groupId: data.email,
           utm_source: utmSource,
           utm_content: utmContent,
           utm_medium: utmMedium,

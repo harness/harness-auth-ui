@@ -53,8 +53,7 @@ const ResendButton = (props: ResendButtonProps): React.ReactElement => {
         event: EVENT.RESEND_VERIFY_EMAIL,
         properties: {
           category: CATEGORY.SIGNUP,
-          userId: email,
-          groupId: email
+          userId: email
         }
       });
       await resendVerifyEmail();

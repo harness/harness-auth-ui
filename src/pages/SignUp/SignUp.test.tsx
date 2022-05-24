@@ -82,7 +82,6 @@ describe("SignUp", () => {
           category: CATEGORY.SIGNUP,
           userId: "random@hotmail.com",
           intent: "ci",
-          groupId: "random@hotmail.com",
           utm_campaign: "",
           utm_content: "",
           utm_medium: "",

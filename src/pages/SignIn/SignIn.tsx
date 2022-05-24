@@ -114,8 +114,7 @@ const SignIn: React.FC = () => {
       event: EVENT.SIGNIN_SUBMIT,
       properties: {
         category: CATEGORY.SIGNIN,
-        userId: formData.email,
-        groupId: formData.email
+        userId: formData.email
       }
     });
 

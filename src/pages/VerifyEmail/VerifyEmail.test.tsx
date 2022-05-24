@@ -59,8 +59,7 @@ describe("Verify Email", () => {
           event: EVENT.RESEND_VERIFY_EMAIL,
           properties: {
             category: CATEGORY.SIGNUP,
-            userId: "random@harness.io",
-            groupId: "random@harness.io"
+            userId: "random@harness.io"
           }
         });
         expect(getByText(EMAIL_VERIFY_STATUS.EMAIL_SENT)).toBeDefined();
