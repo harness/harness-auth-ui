@@ -41,7 +41,7 @@ const SSOSignIn: React.FC = () => {
       if (res.resource?.authenticationMechanism === "SAML") {
         if (res.resource.ssorequest?.idpRedirectUrl) {
           // send identify user event to telemetry to update the identity
-          telemetry.identify(data.email);
+          telemetry.identify({ userId: data.email });
           window.location.href = res.resource.ssorequest?.idpRedirectUrl;
         }
       } else {

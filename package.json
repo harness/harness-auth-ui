@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/harness/harness-auth-ui#readme",
   "dependencies": {
-    "@harness/telemetry": "^1.0.37",
+    "@harness/telemetry": "^1.0.42",
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
     "purecss": "^2.0.5",
