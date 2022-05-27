@@ -55,28 +55,31 @@ const SignupFormOAuth = ({
         text="Continue with Github"
         onClick={() => gotoAuth(OAUTH_PROVIDERS_BY_NAME_MAP.GITHUB)}
       />
-      <div
-        className={cx(
-          {
-            "layout-horizontal spacing-auto": true,
-            [css.fullButtons]: true
-          },
-          css.oAuthIcons,
-          css.oAuthForm
-        )}
-      >
-        {OAuthProviders.filter((provider) =>
-          // if a list is provided, filter on that, otherwise show all
-          enabledOauthProviders
-            ? enabledOauthProviders.includes(provider.type)
-            : true
-        ).map((oAuthProvider: OAuthProviderType) =>
-          getOAuthLink(true, oAuthProvider, accountId)
-        )}
+      <div className={css.oAuthSection}>
+        <div
+          className={cx(
+            {
+              "layout-horizontal spacing-auto": true,
+              [css.fullButtons]: true
+            },
+            css.oAuthIcons,
+            css.oAuthForm,
+            css.sectionWidth
+          )}
+        >
+          {OAuthProviders.filter((provider) =>
+            // if a list is provided, filter on that, otherwise show all
+            enabledOauthProviders
+              ? enabledOauthProviders.includes(provider.type)
+              : true
+          ).map((oAuthProvider: OAuthProviderType) =>
+            getOAuthLink(true, oAuthProvider, accountId)
+          )}
+        </div>
+        <h2 className={cx(css.lineMessage, css.sectionWidth)}>
+          <span className={css.message}>OR</span>
+        </h2>
       </div>
-      <h2 className={css.lineMessage}>
-        <span className={css.message}>OR</span>
-      </h2>
       <LargeOAuthButton
         onClick={changeFormType}
         icon={github}

@@ -31,7 +31,7 @@
 
   /* Signup card widths */
   --min-width: 540px;
-  --max-width: 55%;
+  --max-width: 44%;
 
   display: grid;
   grid-template-columns: minmax(var(--min-width), var(--max-width)) auto;
@@ -44,11 +44,11 @@
   & .card {
     padding: 85px 0px;
     overflow-x: hidden;
-    width: var(--min-width);
-    margin: 0 auto;
+
+    padding-left: 302px;
   }
   & .container {
-    padding: 70px 100px;
+    padding: 95px;
     color: #fff;
     font-size: var(--font-size-large);
 
@@ -78,7 +78,8 @@
     }
     & .valueProp {
       margin-top: var(--spacing-xxxlarge);
-      font-size: var(--spacing-large);
+      font-size: var(--spacing-medium);
+      font-weight: 400 !important;
     }
 
     & .hrmodule {
@@ -115,10 +116,10 @@
     & .foreground {
       position: fixed;
       top: 25px;
-      left: 40%;
-      height: 240px;
-      width: 240px;
-      opacity: 0.3;
+      left: 30%;
+      height: 200px;
+      width: 200px;
+      opacity: 0.1;
     }
   }
 }

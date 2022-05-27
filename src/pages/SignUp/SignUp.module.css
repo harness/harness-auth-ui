@@ -52,8 +52,23 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  width: 200px;
   margin-top: 32px;
+  width: 350px;
+}
+.oAuthSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & .sectionWidth {
+    width: 200px !important;
+    & a {
+      padding: 10px !important;
+    }
+    & a:hover {
+      background: rgba(196, 196, 196, 0.1) !important;
+      border-radius: 50%;
+    }
+  }
 }
 .oAuthbutton {
   width: 350px;
@@ -101,8 +116,9 @@
 }
 
 .signupWithEmailButton {
-  background: #fafcff;
   color: var(--blue-700);
+  background: #fff !important;
+  border: solid var(--blue-700) 1px !important;
 }
 
 .agreement {

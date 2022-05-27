@@ -79,7 +79,7 @@ export function getOAuthLink(
 
   return (
     <a
-      className={cx(css.iconContainer)}
+      className={cx(css.iconContainer, "oauthbutton")}
       key={type}
       href={link}
       onClick={() => {
