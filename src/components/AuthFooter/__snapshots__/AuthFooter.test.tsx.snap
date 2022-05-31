@@ -15,7 +15,7 @@ exports[`AuthFooter it should render oauth buttons in a column when less than 5 
     class="layout-vertical spacing-medium fullButtons oAuthIcons"
   >
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=github"
     >
       <img
@@ -24,7 +24,6 @@ exports[`AuthFooter it should render oauth buttons in a column when less than 5 
         src="test-file-stub"
         width="24"
       />
-       
       <span
         class="name"
       >
@@ -65,7 +64,7 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
     class="layout-horizontal spacing-auto oAuthIcons"
   >
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=github"
     >
       <img
@@ -74,11 +73,10 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
         src="test-file-stub"
         width="24"
       />
-       
       
     </a>
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=bitbucket"
     >
       <img
@@ -87,11 +85,10 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
         src="test-file-stub"
         width="24"
       />
-       
       
     </a>
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=gitlab"
     >
       <img
@@ -100,11 +97,10 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
         src="test-file-stub"
         width="24"
       />
-       
       
     </a>
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=linkedin"
     >
       <img
@@ -113,11 +109,10 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
         src="test-file-stub"
         width="24"
       />
-       
       
     </a>
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=google"
     >
       <img
@@ -126,11 +121,10 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
         src="test-file-stub"
         width="24"
       />
-       
       
     </a>
     <a
-      class="iconContainer"
+      class="iconContainer oauthbutton"
       href="http://localhost/gateway/api/users/oauth2Redirect?provider=azure"
     >
       <img
@@ -139,7 +133,6 @@ exports[`AuthFooter it should render oauth buttons in a row when more than 4 pro
         src="test-file-stub"
         width="24"
       />
-       
       
     </a>
   </div>

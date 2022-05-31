@@ -100,7 +100,7 @@ exports[`SignUp render 1`] = `
             class="layout-horizontal spacing-auto oAuthIcons"
           >
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=github&action=signup&isNG=true"
             >
               <img
@@ -109,11 +109,10 @@ exports[`SignUp render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=bitbucket&action=signup&isNG=true"
             >
               <img
@@ -122,11 +121,10 @@ exports[`SignUp render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=gitlab&action=signup&isNG=true"
             >
               <img
@@ -135,11 +133,10 @@ exports[`SignUp render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=linkedin&action=signup&isNG=true"
             >
               <img
@@ -148,11 +145,10 @@ exports[`SignUp render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=google&action=signup&isNG=true"
             >
               <img
@@ -161,11 +157,10 @@ exports[`SignUp render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=azure&action=signup&isNG=true"
             >
               <img
@@ -174,7 +169,6 @@ exports[`SignUp render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
           </div>
@@ -332,7 +326,7 @@ exports[`SignUp telemetry 1`] = `
             class="layout-horizontal spacing-auto oAuthIcons"
           >
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=github&action=signup&isNG=true"
             >
               <img
@@ -341,11 +335,10 @@ exports[`SignUp telemetry 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=bitbucket&action=signup&isNG=true"
             >
               <img
@@ -354,11 +347,10 @@ exports[`SignUp telemetry 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=gitlab&action=signup&isNG=true"
             >
               <img
@@ -367,11 +359,10 @@ exports[`SignUp telemetry 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=linkedin&action=signup&isNG=true"
             >
               <img
@@ -380,11 +371,10 @@ exports[`SignUp telemetry 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=google&action=signup&isNG=true"
             >
               <img
@@ -393,11 +383,10 @@ exports[`SignUp telemetry 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=azure&action=signup&isNG=true"
             >
               <img
@@ -406,7 +395,6 @@ exports[`SignUp telemetry 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
           </div>
