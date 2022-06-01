@@ -16,7 +16,12 @@ import { handleError } from "utils/ErrorUtils";
 import telemetry from "telemetry/Telemetry";
 import { useQueryParams } from "hooks/useQueryParams";
 import { VERIFY_EMAIL_STATUS } from "pages/VerifyEmail/VerifyEmailStatus";
-import { BillingFrequency, Edition, SignupAction } from "utils/SignUpUtils";
+import {
+  BillingFrequency,
+  Edition,
+  getCookieByName,
+  SignupAction
+} from "utils/SignUpUtils";
 import { CATEGORY, PAGE, EVENT } from "utils/TelemetryUtils";
 import css from "../SignUp.module.css";
 import SignupFormWithCredentials from "./SignupFormWithCredentials";
@@ -63,6 +68,12 @@ const SignUpExperimental: React.FC = () => {
     utm_campaign?: string;
   }>();
 
+  const utmCampaign = utm_campaign || getCookieByName("utm_campaign") || "";
+  const utmSource = utm_source || getCookieByName("utm_source") || "";
+  const utmContent = utm_content || getCookieByName("utm_content") || "";
+  const utmMedium = utm_medium || getCookieByName("utm_medium") || "";
+  const utmTerm = utm_term || getCookieByName("utm_term") || "";
+
   const moduleDetails = getModuleDetails(module as string);
 
   const [captchaExecuting, setCaptchaExecuting] = useState(false);
@@ -85,11 +96,11 @@ const SignUpExperimental: React.FC = () => {
         ...data,
         intent: module,
         utmInfo: {
-          utmSource: utm_source,
-          utmContent: utm_content,
-          utmMedium: utm_medium,
-          utmTerm: utm_term,
-          utmCampaign: utm_campaign
+          utmSource,
+          utmContent,
+          utmMedium,
+          utmTerm,
+          utmCampaign
         }
       };
 
@@ -154,12 +165,11 @@ const SignUpExperimental: React.FC = () => {
           intent: module || "",
           category: CATEGORY.SIGNUP,
           userId: data.email,
-          groupId: data.email,
-          utm_source: utm_source || "",
-          utm_medium: utm_medium || "",
-          utm_campaign: utm_campaign || "",
-          utm_term: utm_term || "",
-          utm_content: utm_content || ""
+          utm_source: utmSource,
+          utm_content: utmContent,
+          utm_medium: utmMedium,
+          utm_term: utmTerm,
+          utm_campaign: utmCampaign
         }
       });
     }
