@@ -61,7 +61,7 @@ export const OAuthProviders: OAuthProviderType[] = Object.values(
 );
 
 export const URLS = {
-  OAUTH: `${location.protocol}//${location.host}/plg-1019/gateway/`,
+  OAUTH: `${location.protocol}//${location.host}/plg-1019-new/gateway/`,
   FREE_TRIAL: "https://harness.io/thanks-freetrial-p/",
   PRIVACY_AGREEMENT: "https://harness.io/privacy/",
   SUBSCRIPTION_TERMS: "https://harness.io/subscriptionterms/",
