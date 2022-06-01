@@ -120,7 +120,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
   }
 };
 
-const getModuleDetails = (moduleName: string): ModuleDetail => {
+const getModuleDetails = (moduleName = "default"): ModuleDetail => {
   const details = MODULE_TO_DETAILS_MAP[moduleName];
   if (details) {
     return details;
