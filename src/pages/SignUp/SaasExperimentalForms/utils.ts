@@ -107,7 +107,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
   default: {
     logo: HarnessLogo,
     pathImg: PathHarness,
-    title: "Harness",
+    title: "The Modern Software Delivery Platform",
     tagLine: "Loved by Developers, Trusted by Businesses",
     valueProp:
       "Harness is the industry's first Software Delivery Platform to use AI to simplify your DevOps processes - CI, CD, Feature Flags, Cloud Costs, and much more.",

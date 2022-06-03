@@ -51,13 +51,17 @@
     padding: 95px;
     color: #fff;
     font-size: var(--font-size-large);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 
     & .branding {
       display: flex;
       flex-direction: row;
       & img {
-        height: 35px;
-        width: 30px;
+        height: 26px;
+        width: 120px;
       }
 
       & .brandingText {
@@ -67,6 +71,7 @@
     }
     & .title {
       margin-top: var(--spacing-huge);
+      width: 360px;
     }
     & .tagline {
       margin-top: var(--spacing-xxxlarge);
@@ -78,7 +83,8 @@
     }
     & .valueProp {
       margin-top: var(--spacing-xxxlarge);
-      font-size: var(--spacing-medium);
+      font-size: var(--font-size-medium);
+      line-height: 24px;
       font-weight: 400 !important;
     }
 
@@ -87,17 +93,19 @@
       width: 70px;
       margin-top: var(--spacing-medium);
       opacity: 0.3;
+
+      justify-content: center !important;
     }
 
     & .callout {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 200px;
+      margin-bottom: 13px;
       & .cotext {
         opacity: 0.6;
-        font-size: var(--spacing-medium);
-
+        font-size: var(--font-size-normal);
+        line-height: 24px;
         text-align: center;
         text-transform: uppercase;
       }
