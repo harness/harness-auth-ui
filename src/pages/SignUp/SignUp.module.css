@@ -54,17 +54,19 @@
   gap: 14px;
   margin-top: 32px;
   width: 350px;
+
+  justify-content: center !important;
 }
 .oAuthSection {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   & .sectionWidth {
     width: 200px !important;
     & a {
+      margin-right: 20px !important;
       padding: 10px !important;
-    }
-    & a:hover {
       background: rgba(196, 196, 196, 0.1) !important;
       border-radius: 50%;
     }
@@ -94,6 +96,11 @@
 }
 .buttonText {
   width: 100%;
+}
+.withIcon {
+  display: block;
+  text-align: left;
+  margin-left: 20%;
 }
 .iconInverse {
   filter: brightness(0) invert(100%);

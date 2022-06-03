@@ -6,7 +6,7 @@
  */
 
 import React from "react";
-import HarnessLogo from "static/images/logo.svg";
+import HarnessLogo from "static/images/harness-branding.svg";
 import bgImageleft from "static/images/bg-image-left.svg";
 import cutomers from "static/images/cutomers.svg";
 import css from "./BasicLayoutExperimental.module.css";
@@ -40,20 +40,20 @@ const BasicLayoutExperimental: React.FC<BasicLayoutExperimentalProps> = ({
           />
         )}
         <div className={css.container}>
-          <div className={css.branding}>
-            <img src={HarnessLogo} alt="" aria-hidden />
-            <p className={css.brandingText}>harness</p>
+          <div>
+            <div className={css.branding}>
+              <img src={HarnessLogo} alt="" aria-hidden />
+            </div>
+            <div className={css.title}>{moduleDetails.title}</div>
+            <div className={css.tagline} style={{ color: moduleDetails.color }}>
+              {moduleDetails.tagLine}
+            </div>
+            <div className={css.valueProp}>{moduleDetails.valueProp}</div>
+            <div
+              className={css.hrmodule}
+              style={{ background: moduleDetails.color }}
+            ></div>
           </div>
-          <div className={css.title}>{moduleDetails.title}</div>
-          <div className={css.tagline} style={{ color: moduleDetails.color }}>
-            {moduleDetails.tagLine}
-          </div>
-          <div className={css.valueProp}>{moduleDetails.valueProp}</div>
-          <div
-            className={css.hrmodule}
-            style={{ background: moduleDetails.color }}
-          ></div>
-
           <div className={css.callout}>
             <p className={css.cotext}>{moduleDetails.callout}</p>
             <img src={cutomers} alt="" aria-hidden />
