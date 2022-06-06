@@ -203,7 +203,12 @@ const SignUpExperimental: React.FC = () => {
           <img src={logo} width={120} className={css.logo} />
         </div> */}
         <div className={css.title}>Sign up</div>
-        <div className={css.subtitle}>
+        <div
+          className={cx(css.subtitle, {
+            [css.subtitleEmailForm]:
+              formType === SIGNUPFORM_TYPES.CREDENTIAL_FORM
+          })}
+        >
           Get started for free. No Credit card required.
         </div>
         {formType === SIGNUPFORM_TYPES.OAUTH_FORM ? (

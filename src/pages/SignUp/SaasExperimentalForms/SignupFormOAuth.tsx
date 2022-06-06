@@ -24,9 +24,11 @@ import { CATEGORY, EVENT } from "utils/TelemetryUtils";
 
 const enabledOauthProviders = ["BITBUCKET", "GITLAB", "LINKEDIN", "AZURE"];
 const SignupFormOAuth = ({
-  changeFormType
+  changeFormType,
+  className
 }: {
   changeFormType: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
 }): React.ReactElement => {
   const accountId = SecureStorage.getItem("acctId") as string;
 
