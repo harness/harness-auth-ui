@@ -107,7 +107,8 @@ const SignupFormWithCredentials = ({
           },
           css.oAuthIcons,
           css.oAuthForm,
-          css.credsForm
+          css.allAuth,
+          css.emailFormMargin
         )}
       >
         {OAuthProviders.map((oAuthProvider: OAuthProviderType) =>
@@ -140,7 +141,6 @@ const SignupFormWithCredentials = ({
               disabled={loading || captchaExecuting}
               type="submit"
               iconClassName={cx(css.buttonImage, css.iconInverse)}
-              className={css.signupWithEmailButton}
               text="Sign up "
             />
           </form>

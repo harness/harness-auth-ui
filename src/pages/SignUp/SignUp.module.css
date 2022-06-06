@@ -14,7 +14,7 @@
   }
 
   & .title {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     margin-bottom: var(--spacing-small);
   }
@@ -54,7 +54,6 @@
   gap: 14px;
   margin-top: 32px;
   width: 350px;
-
   justify-content: center !important;
 }
 .oAuthSection {
@@ -154,4 +153,27 @@
 }
 .experimentSignup {
   margin-top: 80px !important;
+}
+
+.allAuth {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+
+  margin-left: 10px;
+  margin-bottom: 40px;
+  & a {
+    margin-right: 20px !important;
+    padding: 10px !important;
+    background: rgba(196, 196, 196, 0.1) !important;
+    border-radius: 50%;
+  }
+}
+
+.emailFormMargin {
+  margin-top: var(--spacing-small) !important;
+}
+.subtitleEmailForm {
+  margin-bottom: var(--spacing-small) !important;
 }
