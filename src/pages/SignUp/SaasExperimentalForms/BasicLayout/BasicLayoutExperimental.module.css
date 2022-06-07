@@ -70,6 +70,8 @@
       }
     }
     & .title {
+      font-size: 32px;
+      line-height: 44px;
       margin-top: var(--spacing-huge);
       width: 360px;
     }
@@ -108,6 +110,8 @@
         line-height: 24px;
         text-align: center;
         text-transform: uppercase;
+
+        margin-bottom: var(--spacing-xxlarge);
       }
       & img {
         opacity: 1;

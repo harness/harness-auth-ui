@@ -144,7 +144,7 @@
 }
 
 .credsFormInput {
-  width: 320px;
+  width: 338px;
 }
 .link {
   color: var(--blue-700);
@@ -175,5 +175,5 @@
   margin-top: var(--spacing-small) !important;
 }
 .subtitleEmailForm {
-  margin-bottom: var(--spacing-small) !important;
+  margin-bottom: var(--spacing-medium) !important;
 }
