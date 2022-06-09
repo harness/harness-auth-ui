@@ -77,7 +77,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
     cta: "Let's build",
     color: "#2BB1F2"
   },
-  ccm: {
+  ce: {
     logo: CCMLogo,
     pathImg: PathCCM,
     title: "Cloud Cost Management",
