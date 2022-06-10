@@ -10,13 +10,15 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import SignUp from "./Signup";
 import { TestWrapper, queryByNameAttribute } from "utils/TestUtils";
+import { CATEGORY, PAGE, EVENT } from "utils/TelemetryUtils";
 
 const pageMock = jest.fn();
 const trackMock = jest.fn();
 
 jest.mock("telemetry/Telemetry", () => ({
   page: jest.fn().mockImplementation((values) => pageMock(values)),
-  track: jest.fn().mockImplementation((values) => trackMock(values))
+  track: jest.fn().mockImplementation((values) => trackMock(values)),
+  initialized: true
 }));
 
 describe("SignUp", () => {
@@ -37,12 +39,9 @@ describe("SignUp", () => {
     );
     await waitFor(() =>
       expect(pageMock).toBeCalledWith({
-        name: "Signup Page",
-        category: "SIGNUP",
+        name: PAGE.SIGNUP_PAGE,
         properties: {
-          userId: "",
-          groupId: "",
-          module: "ci",
+          intent: "ci",
           utm_campaign: "",
           utm_content: "",
           utm_medium: "",
@@ -58,11 +57,10 @@ describe("SignUp", () => {
     fireEvent.focusOut(queryByNameAttribute("email", container)!);
     await waitFor(() =>
       expect(trackMock).toBeCalledWith({
-        event: "Email input",
+        event: EVENT.EMAIL_INPUT,
         properties: {
-          category: "SIGNUP",
-          userId: "random@hotmail.com",
-          groupId: "",
+          category: CATEGORY.SIGNUP,
+          email: "random@hotmail.com",
           utm_campaign: "",
           utm_content: "",
           utm_medium: "",
@@ -79,11 +77,11 @@ describe("SignUp", () => {
 
     await waitFor(() =>
       expect(trackMock).toBeCalledWith({
-        event: "Signup submit",
+        event: EVENT.SIGNUP_SUBMIT,
         properties: {
-          category: "SIGNUP",
+          category: CATEGORY.SIGNUP,
           userId: "random@hotmail.com",
-          groupId: "",
+          intent: "ci",
           utm_campaign: "",
           utm_content: "",
           utm_medium: "",

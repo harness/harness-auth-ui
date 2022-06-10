@@ -46,3 +46,9 @@ export function validatePasswordRequiredOnly(
     return "A password is required";
   }
 }
+
+export function validateString(value: string): string | undefined {
+  if (!value) {
+    return "This field is required";
+  }
+}

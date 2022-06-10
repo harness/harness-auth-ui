@@ -218,11 +218,12 @@ exports[`SignIn render 1`] = `
     </div>
     <div
       class="imageColumn"
+      style="background: url(test-file-stub) repeat;"
     >
       <img
         alt=""
         aria-hidden="true"
-        class="image"
+        class="foreground"
         src="test-file-stub"
       />
     </div>

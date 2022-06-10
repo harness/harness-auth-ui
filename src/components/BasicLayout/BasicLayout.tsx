@@ -8,8 +8,10 @@
 import React from "react";
 
 import { isCommunityPlan } from "utils/DeploymentTypeUtil";
-import generalBgImg from "./AuthIllustration.svg";
-import communityImg from "./community-bg.png";
+import saasBg from "./saas-bg.png";
+import saasFg from "./saas-fg.png";
+import communityBg from "./community-bg.png";
+import communityFg from "./community-fg.png";
 import css from "./BasicLayout.module.css";
 
 interface BasicLayoutProps {
@@ -17,14 +19,19 @@ interface BasicLayoutProps {
 }
 
 const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
-  const bgImg = isCommunityPlan() ? communityImg : generalBgImg;
+  const isCommunity = isCommunityPlan();
+  const bgImg = isCommunity ? communityBg : saasBg;
+  const fgImg = isCommunity ? communityFg : saasFg;
   return (
     <div className={css.layout}>
       <div className={css.cardColumn}>
         <div className={css.card}>{children}</div>
       </div>
-      <div className={css.imageColumn}>
-        <img className={css.image} src={bgImg} alt="" aria-hidden />
+      <div
+        className={css.imageColumn}
+        style={{ background: `url(${bgImg}) repeat` }}
+      >
+        <img className={css.foreground} src={fgImg} alt="" aria-hidden />
       </div>
     </div>
   );

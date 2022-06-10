@@ -33,9 +33,11 @@
     background-color: #07182b;
     padding-left: 0px;
 
-    & .image {
-      background-position: cover;
-      height: 100%;
+    & .foreground {
+      position: sticky;
+      top: 25%;
+      right: 0px;
+      height: auto;
       width: 100%;
     }
   }

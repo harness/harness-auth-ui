@@ -14,6 +14,8 @@ import css from "./VerifyEmailStatus.module.css";
 import { handleError } from "utils/ErrorUtils";
 import { useResendVerifyEmail } from "services/ng";
 import toast from "react-hot-toast";
+import telemetry from "telemetry/Telemetry";
+import { EVENT, CATEGORY } from "utils/TelemetryUtils";
 
 interface VerifyEmailStatusProps {
   email?: string;
@@ -41,18 +43,24 @@ interface ResendButtonProps {
 const ResendButton = (props: ResendButtonProps): React.ReactElement => {
   const { email } = props;
 
-  const { mutate: resendVerifyEmail, loading, error } = useResendVerifyEmail({
+  const { mutate: resendVerifyEmail, loading } = useResendVerifyEmail({
     queryParams: { email }
   });
 
   async function handleResendVerifyEmail() {
-    await resendVerifyEmail();
-
-    toast("Successfully resent the verification email");
-  }
-
-  if (error) {
-    handleError(error);
+    try {
+      telemetry.track({
+        event: EVENT.RESEND_VERIFY_EMAIL,
+        properties: {
+          category: CATEGORY.SIGNUP,
+          userId: email
+        }
+      });
+      await resendVerifyEmail();
+      toast("Successfully resent the verification email");
+    } catch (err: any) {
+      handleError(err);
+    }
   }
 
   return (

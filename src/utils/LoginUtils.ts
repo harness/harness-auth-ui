@@ -5,7 +5,7 @@
  * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
  */
 
-import type { Account, User } from "services/portal";
+import type { User } from "services/portal";
 import SecureStorage from "./SecureStorage";
 import RouteDefinitions from "RouteDefinitions";
 import { History } from "history";
@@ -32,17 +32,6 @@ export function formatJWTHeader(authCode: string): AuthHeader {
   return header;
 }
 
-export function createDefaultExperienceMap(accounts: Account[]): void {
-  // create map of { accountId: defaultExperience } from accounts list and store in LS for root redirect
-  const defaultExperienceMap = accounts.reduce((previousValue, account) => {
-    return {
-      ...previousValue,
-      [account.uuid]: account.defaultExperience
-    };
-  }, {});
-  SecureStorage.setItem("defaultExperienceMap", defaultExperienceMap);
-}
-
 const accountIdExtractionRegex = /\/account\/([\w|-]+)\//;
 
 export const getAccountIdFromUrl = (url?: string): string | undefined => {
@@ -59,7 +48,11 @@ export function handleLoginSuccess({
 }: HandleLoginSuccess): void {
   const queryString = window.location.hash?.split("?")?.[1];
   const urlParams = new URLSearchParams(queryString);
-  const returnUrl = urlParams?.get("returnUrl");
+  let returnUrl = urlParams?.get("returnUrl");
+  if (!returnUrl) {
+    returnUrl = sessionStorage.getItem("returnUrl");
+    sessionStorage.removeItem("returnUrl");
+  }
   const baseUrl = window.location.pathname.replace("auth/", "");
 
   if (resource) {
@@ -74,7 +67,9 @@ export function handleLoginSuccess({
     SecureStorage.setItem("lastTokenSetTime", new Date().getTime());
 
     // send identify user event to telemetry to update the identity
-    telemetry.identify(resource.email || "");
+    if (resource.email) {
+      telemetry.identify({ userId: resource.email });
+    }
 
     if (
       resource.twoFactorAuthenticationEnabled === true &&
@@ -88,7 +83,9 @@ export function handleLoginSuccess({
       return;
     }
 
-    if (resource.accounts) createDefaultExperienceMap(resource.accounts);
+    // Disabling this to avoid overloading LS with Harness Support usergroup accounts
+    // https://harness.atlassian.net/browse/PL-20761
+    // if (resource.accounts) createDefaultExperienceMap(resource.accounts);
 
     if (returnUrl) {
       try {

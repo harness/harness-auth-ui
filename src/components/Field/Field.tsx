@@ -19,7 +19,7 @@ type validate = typeof validateEmail | typeof validatePassword;
 interface FieldProps {
   name: string;
   label?: string;
-  validate: validate;
+  validate?: validate;
   placeholder?: string;
   type?: string;
   disabled?: boolean;

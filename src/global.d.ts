@@ -16,6 +16,7 @@ declare interface Window {
   deploymentType: DEPLOYMENT_TYPE;
   apiUrl: string;
   expectedHostname: string;
+  oauthDisabled: string;
 }
 
 declare enum DEPLOYMENT_TYPE {

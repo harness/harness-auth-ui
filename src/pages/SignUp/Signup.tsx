@@ -26,6 +26,8 @@ import telemetry from "telemetry/Telemetry";
 import { useQueryParams } from "hooks/useQueryParams";
 import { VERIFY_EMAIL_STATUS } from "pages/VerifyEmail/VerifyEmailStatus";
 import { BillingFrequency, Edition, SignupAction } from "utils/SignUpUtils";
+import { CATEGORY, PAGE, EVENT } from "utils/TelemetryUtils";
+import { getCookieByName } from "utils/SignUpUtils";
 
 interface SignUpFormData {
   email: string;
@@ -60,6 +62,12 @@ const SignUp: React.FC = () => {
     utm_campaign?: string;
   }>();
 
+  const utmCampaign = utm_campaign || getCookieByName("utm_campaign") || "";
+  const utmSource = utm_source || getCookieByName("utm_source") || "";
+  const utmContent = utm_content || getCookieByName("utm_content") || "";
+  const utmMedium = utm_medium || getCookieByName("utm_medium") || "";
+  const utmTerm = utm_term || getCookieByName("utm_term") || "";
+
   const [captchaExecuting, setCaptchaExecuting] = useState(false);
   useEffect(() => {
     const { email, password } = signupData;
@@ -80,11 +88,11 @@ const SignUp: React.FC = () => {
         ...data,
         intent: module,
         utmInfo: {
-          utmSource: utm_source,
-          utmContent: utm_content,
-          utmMedium: utm_medium,
-          utmTerm: utm_term,
-          utmCampaign: utm_campaign
+          utmSource,
+          utmContent,
+          utmMedium,
+          utmTerm,
+          utmCampaign
         }
       };
 
@@ -144,16 +152,16 @@ const SignUp: React.FC = () => {
       data.email = data.email.toLowerCase();
       setSignupData(data);
       telemetry.track({
-        event: "Signup submit",
+        event: EVENT.SIGNUP_SUBMIT,
         properties: {
-          category: "SIGNUP",
+          intent: module || "",
+          category: CATEGORY.SIGNUP,
           userId: data.email,
-          groupId: "",
-          utm_source: utm_source || "",
-          utm_medium: utm_medium || "",
-          utm_campaign: utm_campaign || "",
-          utm_term: utm_term || "",
-          utm_content: utm_content || ""
+          utm_source: utmSource,
+          utm_content: utmContent,
+          utm_medium: utmMedium,
+          utm_term: utmTerm,
+          utm_campaign: utmCampaign
         }
       });
     }
@@ -168,16 +176,15 @@ const SignUp: React.FC = () => {
       validate={validateEmail}
       onBlur={(e: FocusEvent<HTMLInputElement>) => {
         telemetry.track({
-          event: "Email input",
+          event: EVENT.EMAIL_INPUT,
           properties: {
-            category: "SIGNUP",
-            userId: e.target.value,
-            groupId: "",
-            utm_source: utm_source || "",
-            utm_medium: utm_medium || "",
-            utm_campaign: utm_campaign || "",
-            utm_term: utm_term || "",
-            utm_content: utm_content || ""
+            category: CATEGORY.SIGNUP,
+            email: e.target.value,
+            utm_source: utmSource,
+            utm_content: utmContent,
+            utm_medium: utmMedium,
+            utm_term: utmTerm,
+            utm_campaign: utmCampaign
           }
         });
       }}
@@ -194,20 +201,21 @@ const SignUp: React.FC = () => {
     />
   );
 
-  telemetry.page({
-    name: "Signup Page",
-    category: "SIGNUP",
-    properties: {
-      userId: "",
-      groupId: "",
-      module: module || "",
-      utm_source: utm_source || "",
-      utm_medium: utm_medium || "",
-      utm_campaign: utm_campaign || "",
-      utm_term: utm_term || "",
-      utm_content: utm_content || ""
+  useEffect(() => {
+    if (telemetry.initialized) {
+      telemetry.page({
+        name: PAGE.SIGNUP_PAGE,
+        properties: {
+          intent: module || "",
+          utm_source: utmSource,
+          utm_content: utmContent,
+          utm_medium: utmMedium,
+          utm_term: utmTerm,
+          utm_campaign: utmCampaign
+        }
+      });
     }
-  });
+  }, [telemetry.initialized]);
 
   function handleRecaptchaError() {
     // Block the user until they refresh
@@ -251,7 +259,10 @@ const SignUp: React.FC = () => {
             </form>
           )}
         />
-        <AuthFooter page={AuthPage.SignUp} />
+        <AuthFooter
+          page={AuthPage.SignUp}
+          hideOAuth={window.oauthDisabled === "true"}
+        />
         <div className={css.footer}>
           Already have an account?{" "}
           <Link to={RouteDefinitions.toSignIn()}>Sign in</Link>

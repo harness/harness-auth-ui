@@ -7,6 +7,7 @@ allowpaths:
   - "/users/two-factor-login"
   - "/users/invites/ngsignin"
   - "/signup/community"
+  - "/signup/{source}"
 operationIdOverrides:
   /users/login: login
   /users/logintype: loginType

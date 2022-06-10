@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Harness Inc. All rights reserved.
+ * Copyright 2022 Harness Inc. All rights reserved.
  * Use of this source code is governed by the PolyForm Shield 1.0.0 license
  * that can be found in the licenses directory at the root of this repository, also available at
  * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
@@ -20766,3 +20766,59 @@ export const useCompleteInviteAndSignIn1 = (
     UserInviteDTO,
     void
   >("PUT", `/users/invites/ngsignin`, { base: getConfig("api"), ...props });
+
+export interface SignupPathParams {
+  source: string;
+}
+
+export type SignupProps = Omit<
+  MutateProps<
+    RestResponseBoolean,
+    unknown,
+    void,
+    UserInviteRequestBody,
+    SignupPathParams
+  >,
+  "path" | "verb"
+> &
+  SignupPathParams;
+
+export const Signup = ({ source, ...props }: SignupProps) => (
+  <Mutate<
+    RestResponseBoolean,
+    unknown,
+    void,
+    UserInviteRequestBody,
+    SignupPathParams
+  >
+    verb="POST"
+    path={`/signup/${source}`}
+    base={getConfig("api")}
+    {...props}
+  />
+);
+
+export type UseSignupProps = Omit<
+  UseMutateProps<
+    RestResponseBoolean,
+    unknown,
+    void,
+    UserInviteRequestBody,
+    SignupPathParams
+  >,
+  "path" | "verb"
+> &
+  SignupPathParams;
+
+export const useSignup = ({ source, ...props }: UseSignupProps) =>
+  useMutate<
+    RestResponseBoolean,
+    unknown,
+    void,
+    UserInviteRequestBody,
+    SignupPathParams
+  >(
+    "POST",
+    (paramsInPath: SignupPathParams) => `/signup/${paramsInPath.source}`,
+    { base: getConfig("api"), pathParams: { source }, ...props }
+  );

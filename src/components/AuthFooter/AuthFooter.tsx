@@ -5,7 +5,7 @@
  * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
  */
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import cx from "classnames";
 import { useHistory } from "react-router-dom";
 import {
@@ -15,6 +15,8 @@ import {
   URLS
 } from "interfaces/OAuthProviders";
 import { getSignupQueryParams } from "utils/SignUpUtils";
+import { CATEGORY, EVENT } from "utils/TelemetryUtils";
+import telemetry from "telemetry/Telemetry";
 
 import css from "./AuthFooter.module.css";
 import Icon from "components/Icon/Icon";
@@ -54,8 +56,36 @@ function getOAuthLink(
       : ""
   }`;
 
+  const oAuthClicked = useRef(false);
+  const category = isOauthSignup ? CATEGORY.SIGNUP : CATEGORY.SIGNIN;
+
+  useEffect(() => {
+    const listener = () => {
+      if (oAuthClicked.current) {
+        telemetry.track({
+          event: EVENT.OAUTH_CLICKED,
+          properties: {
+            category,
+            oauthProvider: oAuthProvider.name
+          }
+        });
+      }
+    };
+
+    window.addEventListener("beforeunload", listener);
+
+    return () => window.removeEventListener("beforeunload", listener);
+  }, []);
+
   return (
-    <a className={cx(css.iconContainer)} key={type} href={link}>
+    <a
+      className={cx(css.iconContainer)}
+      key={type}
+      href={link}
+      onClick={() => {
+        oAuthClicked.current = true;
+      }}
+    >
       <Icon name={iconName} size={24} className={css.icon} />{" "}
       {showFullOauthButtons ? (
         <span className={css.name}>{oAuthProvider.name}</span>
