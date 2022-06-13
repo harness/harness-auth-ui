@@ -60,11 +60,20 @@ export function handleLoginSuccess({
       selectedAccount ||
       resource.defaultAccountId ||
       resource.accounts?.[0]?.uuid;
+
     SecureStorage.setItem("token", resource.token);
     SecureStorage.setItem("uuid", resource.uuid);
     SecureStorage.setItem("email", resource.email);
     SecureStorage.setItem("acctId", loginToAccountId);
     SecureStorage.setItem("lastTokenSetTime", new Date().getTime());
+
+    // store `defaultExperience` to LocalStorage for root redirect in CGUI
+    const account = resource.accounts?.find(
+      (account) => account.uuid === loginToAccountId
+    );
+    if (account?.defaultExperience) {
+      localStorage.setItem("defaultExperience", account?.defaultExperience);
+    }
 
     // send identify user event to telemetry to update the identity
     if (resource.email) {
