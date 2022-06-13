@@ -14,7 +14,7 @@
   }
 
   & .title {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     margin-bottom: var(--spacing-small);
   }
@@ -46,4 +46,134 @@
       color: var(--blue-500);
     }
   }
+}
+
+.oAuthForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 32px;
+  width: 350px;
+  justify-content: center !important;
+}
+.oAuthSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .sectionWidth {
+    width: 200px !important;
+    & a {
+      margin-right: 20px !important;
+      padding: 10px !important;
+      background: rgba(196, 196, 196, 0.1) !important;
+      border-radius: 50%;
+    }
+  }
+}
+.oAuthbutton {
+  width: 350px;
+  height: 44px;
+  color: #fff;
+  background: var(--blue-700);
+
+  box-shadow: 0px 0px 1px rgba(40, 41, 61, 0.04),
+    0px 2px 4px rgba(96, 97, 112, 0.16);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+}
+
+.buttonImage {
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+  vertical-align: sub;
+}
+.buttonText {
+  width: 100%;
+}
+.withIcon {
+  display: block;
+  text-align: left;
+  margin-left: 20%;
+}
+.iconInverse {
+  filter: brightness(0) invert(100%);
+}
+
+.lineMessage {
+  color: var(--dark-300);
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--dark-300);
+  line-height: 1px;
+  margin-top: 40px;
+
+  & .message {
+    font-weight: normal;
+    font-size: var(--font-size-normal);
+    background: var(--light-200);
+    padding: 0 12px;
+  }
+}
+
+.signupWithEmailButton {
+  color: var(--blue-700);
+  background: #fff !important;
+  border: solid var(--blue-700) 1px !important;
+}
+
+.agreement {
+  font-size: 12px;
+  width: 450px;
+}
+.imagecd {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 730px;
+  z-index: -1;
+}
+.credsForm {
+  width: 300px;
+  margin-bottom: var(--spacing-huge);
+}
+
+.credsFormInput {
+  width: 338px;
+}
+.link {
+  color: var(--blue-700);
+  font-weight: 400;
+  padding: 0 4px;
+}
+.experimentSignup {
+  margin-top: 80px !important;
+}
+
+.allAuth {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+
+  margin-left: 10px;
+  margin-bottom: 40px;
+  & a {
+    margin-right: 20px !important;
+    padding: 10px !important;
+    background: rgba(196, 196, 196, 0.1) !important;
+    border-radius: 50%;
+  }
+}
+
+.emailFormMargin {
+  margin-top: var(--spacing-small) !important;
+}
+.subtitleEmailForm {
+  margin-bottom: var(--spacing-medium) !important;
 }

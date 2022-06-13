@@ -1,0 +1,137 @@
+/*
+ * Copyright 2022 Harness Inc. All rights reserved.
+ * Use of this source code is governed by the PolyForm Shield 1.0.0 license
+ * that can be found in the licenses directory at the root of this repository, also available at
+ * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
+@media (max-width: 1270px) {
+  .layout {
+    display: flex;
+    justify-content: center;
+  }
+
+  .imageColumn {
+    display: none;
+    background-size: cover;
+  }
+}
+
+/* Firefox has a bug where padding-bottom is ignored when overflow occurs
+ https://bugzilla.mozilla.org/show_bug.cgi?id=748518 */
+@-moz-document url-prefix() {
+  .disclaimer {
+    margin-bottom: 85px !important;
+  }
+}
+
+.layoutExperimental {
+  width: 100vw;
+  height: 100vh;
+
+  /* Signup card widths */
+  --min-width: 540px;
+  --max-width: 44%;
+
+  display: grid;
+  grid-template-columns: minmax(var(--min-width), var(--max-width)) auto;
+  grid-template-rows: 100vh;
+
+  & .cardColumn {
+    overflow-y: auto;
+  }
+
+  & .card {
+    padding: 85px 0px;
+    overflow-x: hidden;
+
+    padding-left: 302px;
+  }
+  & .container {
+    padding: 95px;
+    color: #fff;
+    font-size: var(--font-size-large);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+
+    & .branding {
+      display: flex;
+      flex-direction: row;
+      & img {
+        height: 26px;
+        width: 120px;
+      }
+
+      & .brandingText {
+        margin: 0;
+        padding: 0 var(--spacing-small);
+      }
+    }
+    & .title {
+      font-size: 32px;
+      line-height: 44px;
+      margin-top: var(--spacing-huge);
+      width: 360px;
+    }
+    & .tagline {
+      margin-top: var(--spacing-xxxlarge);
+      font-size: var(--spacing-huge);
+      font-family: "Reenie Beanie";
+      font-style: normal;
+      font-weight: 500;
+      width: 550px;
+    }
+    & .valueProp {
+      margin-top: var(--spacing-xxxlarge);
+      font-size: var(--font-size-medium);
+      line-height: 24px;
+      font-weight: 400 !important;
+    }
+
+    & .hrmodule {
+      height: 10px;
+      width: 70px;
+      margin-top: var(--spacing-medium);
+      opacity: 0.3;
+
+      justify-content: center !important;
+    }
+
+    & .callout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 13px;
+      & .cotext {
+        opacity: 0.6;
+        font-size: var(--font-size-normal);
+        line-height: 24px;
+        text-align: center;
+        text-transform: uppercase;
+
+        margin-bottom: var(--spacing-xxlarge);
+      }
+      & img {
+        opacity: 1;
+        width: 75%;
+      }
+    }
+  }
+  & .imageColumn {
+    overflow-y: hidden;
+    background-color: #07182b;
+    padding-left: 0px;
+    background-size: cover !important;
+
+    & .foreground {
+      position: fixed;
+      top: 25px;
+      left: 30%;
+      height: 200px;
+      width: 200px;
+      opacity: 0.1;
+    }
+  }
+}

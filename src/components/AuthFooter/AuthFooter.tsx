@@ -41,12 +41,12 @@ interface AuthFooterProps {
   action?: "signout";
 }
 
-function getOAuthLink(
+export function getOAuthLink(
   isOauthSignup: boolean,
   oAuthProvider: OAuthProviderType,
   accountId?: string,
   showFullOauthButtons?: boolean
-) {
+): React.ReactElement {
   const { iconName, type, url } = oAuthProvider;
   const link = `${URLS.OAUTH}api/users/${url}${
     isOauthSignup
@@ -79,14 +79,14 @@ function getOAuthLink(
 
   return (
     <a
-      className={cx(css.iconContainer)}
+      className={cx(css.iconContainer, "oauthbutton")}
       key={type}
       href={link}
       onClick={() => {
         oAuthClicked.current = true;
       }}
     >
-      <Icon name={iconName} size={24} className={css.icon} />{" "}
+      <Icon name={iconName} size={24} className={css.icon} />
       {showFullOauthButtons ? (
         <span className={css.name}>{oAuthProvider.name}</span>
       ) : (

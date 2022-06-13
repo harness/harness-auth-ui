@@ -109,7 +109,7 @@ exports[`SignIn render 1`] = `
             class="layout-horizontal spacing-auto oAuthIcons"
           >
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=github"
             >
               <img
@@ -118,11 +118,10 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=bitbucket"
             >
               <img
@@ -131,11 +130,10 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=gitlab"
             >
               <img
@@ -144,11 +142,10 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=linkedin"
             >
               <img
@@ -157,11 +154,10 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=google"
             >
               <img
@@ -170,11 +166,10 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
             <a
-              class="iconContainer"
+              class="iconContainer oauthbutton"
               href="http://localhost/gateway/api/users/oauth2Redirect?provider=azure"
             >
               <img
@@ -183,7 +178,6 @@ exports[`SignIn render 1`] = `
                 src="test-file-stub"
                 width="24"
               />
-               
               
             </a>
           </div>

@@ -5,6 +5,7 @@
  * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
  */
 
+import { URLS } from "interfaces/OAuthProviders";
 import type { UserInfo } from "services/ng";
 import telemetry from "telemetry/Telemetry";
 import SecureStorage from "./SecureStorage";
@@ -107,3 +108,15 @@ const cookies = document.cookie.split(";").reduce((map, c) => {
 export function getCookieByName(name: string): string | undefined {
   return cookies.get(name);
 }
+export const getOAuthFinalUrl = (
+  url: string,
+  accountId: string,
+  isOauthSignup = false
+): string =>
+  `${URLS.OAUTH}api/users/${url}${
+    isOauthSignup
+      ? getSignupQueryParams()
+      : accountId
+      ? `&accountId=${accountId}`
+      : ""
+  }`;
