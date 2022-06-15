@@ -11,7 +11,8 @@ import VerifyEmailStatus, {
   VERIFY_EMAIL_STATUS
 } from "pages/VerifyEmail/VerifyEmailStatus";
 import BasicLayoutExperimental from "../BasicLayout/BasicLayoutExperimental";
-import css from "../../Signup.module.css";
+import css from "../../SignUp.module.css";
+
 const EmailVerifyPage = (): React.ReactElement => {
   const { status, email } = useQueryParams<{
     status?: VERIFY_EMAIL_STATUS;
