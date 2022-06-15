@@ -177,3 +177,7 @@
 .subtitleEmailForm {
   margin-bottom: var(--spacing-medium) !important;
 }
+
+.emailVerify {
+  width: 58% !important;
+}
