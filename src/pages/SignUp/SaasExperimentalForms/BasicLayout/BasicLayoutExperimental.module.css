@@ -120,7 +120,7 @@
     }
   }
   & .imageColumn {
-    overflow-y: hidden;
+    overflow-y: auto;
     background-color: #07182b;
     padding-left: 0px;
     background-size: cover !important;
