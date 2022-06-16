@@ -9,7 +9,7 @@ import React, { FocusEvent, useState } from "react";
 import cx from "classnames";
 import AuthFooter, {
   AuthPage,
-  getOAuthLink
+  OAuthLink
 } from "components/AuthFooter/AuthFooter";
 import Field from "components/Field/Field";
 import PasswordField from "components/Field/PasswordField";
@@ -111,8 +111,15 @@ const SignupFormWithCredentials = ({
           css.emailFormMargin
         )}
       >
-        {OAuthProviders.map((oAuthProvider: OAuthProviderType) =>
-          getOAuthLink(true, oAuthProvider, accountId)
+        {OAuthProviders.map(
+          (oAuthProvider: OAuthProviderType, index: number) => (
+            <OAuthLink
+              key={index}
+              isOauthSignup
+              oAuthProvider={oAuthProvider}
+              accountId={accountId}
+            />
+          )
         )}
       </div>
       <Form
