@@ -75,9 +75,9 @@ const SignupFormOAuth = ({
               enabledOauthProviders
                 ? enabledOauthProviders.includes(provider.type)
                 : true
-            ).map((oAuthProvider: OAuthProviderType, index: number) => (
+            ).map((oAuthProvider: OAuthProviderType) => (
               <OAuthLink
-                key={index}
+                key={oAuthProvider.name}
                 isOauthSignup
                 oAuthProvider={oAuthProvider}
                 accountId={accountId}

@@ -46,12 +46,12 @@ export interface OAuthLinkProps {
   accountId?: string;
   showFullOauthButtons?: boolean;
 }
-export function OAuthLink({
+export const OAuthLink: React.FC<OAuthLinkProps> = ({
   isOauthSignup,
   oAuthProvider,
   accountId,
   showFullOauthButtons
-}: OAuthLinkProps): React.ReactElement {
+}: OAuthLinkProps): JSX.Element => {
   const { iconName, type, url } = oAuthProvider;
   const link = `${URLS.OAUTH}api/users/${url}${
     isOauthSignup
@@ -99,7 +99,7 @@ export function OAuthLink({
       )}
     </a>
   );
-}
+};
 
 const AuthFooter: React.FC<AuthFooterProps> = (props) => {
   const {
@@ -143,9 +143,9 @@ const AuthFooter: React.FC<AuthFooterProps> = (props) => {
             enabledOauthProviders
               ? enabledOauthProviders.includes(provider.type)
               : true
-          ).map((oAuthProvider: OAuthProviderType, index: number) => (
+          ).map((oAuthProvider: OAuthProviderType) => (
             <OAuthLink
-              key={index}
+              key={oAuthProvider.name}
               isOauthSignup={isSignup}
               oAuthProvider={oAuthProvider}
               showFullOauthButtons={showFullOauthButtons}

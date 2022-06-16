@@ -111,16 +111,14 @@ const SignupFormWithCredentials = ({
           css.emailFormMargin
         )}
       >
-        {OAuthProviders.map(
-          (oAuthProvider: OAuthProviderType, index: number) => (
-            <OAuthLink
-              key={index}
-              isOauthSignup
-              oAuthProvider={oAuthProvider}
-              accountId={accountId}
-            />
-          )
-        )}
+        {OAuthProviders.map((oAuthProvider: OAuthProviderType) => (
+          <OAuthLink
+            key={oAuthProvider.name}
+            isOauthSignup
+            oAuthProvider={oAuthProvider}
+            accountId={accountId}
+          />
+        ))}
       </div>
       <Form
         onSubmit={onSubmit}
