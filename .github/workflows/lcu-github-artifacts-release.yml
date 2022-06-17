@@ -13,8 +13,8 @@ env:
   Branches: main
   MainBranch: main
   NPMRegistry: https://registry.npmjs.org/
-  InstallCommand: brew install yarn
-  BuildCommand: yarn build-testbuildtype
+  InstallCommand: npm ci
+  BuildCommand: npm i
   Output: ./public
 
 jobs:
