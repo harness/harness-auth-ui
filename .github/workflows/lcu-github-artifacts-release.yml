@@ -14,7 +14,7 @@ env:
   MainBranch: main
   NPMRegistry: https://registry.npmjs.org/
   InstallCommand: brew install vite vite ii
-  BuildCommand:  npm build vite build
+  BuildCommand: vite build
   Output: ./public
 
 jobs:
