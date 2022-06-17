@@ -13,7 +13,7 @@ env:
   Branches: main
   MainBranch: main
   NPMRegistry: https://registry.npmjs.org/
-  InstallCommand: brew install yarn
+  InstallCommand: brew install vite yarn
   BuildCommand: vite build
   Output: ./public
 
