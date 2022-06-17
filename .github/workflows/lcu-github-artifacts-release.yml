@@ -14,8 +14,8 @@ env:
   MainBranch: main
   NPMRegistry: https://registry.npmjs.org/
   InstallCommand: npm ci
-  BuildCommand: npm run build
-  Output: ./
+  BuildCommand: - name: npm/yarn/pnpm install   uses: Jaid/action-npm-install@v1.2.4 npm run build
+  Output: ./public
 
 jobs:
   build:
