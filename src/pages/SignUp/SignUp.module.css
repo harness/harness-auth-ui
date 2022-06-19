@@ -135,7 +135,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 730px;
+  width: 30%;
   z-index: -1;
 }
 .credsForm {
@@ -176,4 +176,8 @@
 }
 .subtitleEmailForm {
   margin-bottom: var(--spacing-medium) !important;
+}
+
+.emailVerify {
+  width: 58% !important;
 }

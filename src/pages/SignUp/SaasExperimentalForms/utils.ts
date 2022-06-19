@@ -43,7 +43,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
     valueProp:
       "Self-Service Continuous Delivery that enables engineers to deploy on-demand, without a single script",
     callout:
-      "Truatsed by 1000s of Developers, driving 17 Million deployments in last 12 months",
+      "Trusted by 1000s of Developers, driving 17 Million deployments in last 12 months",
     intro:
       "Define Pipelines that enable you to improve your deployment times, manage all in one place",
     cta: "Let's Deploy",

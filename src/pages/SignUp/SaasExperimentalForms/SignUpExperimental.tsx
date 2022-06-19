@@ -125,7 +125,7 @@ const SignUpExperimental: React.FC = () => {
 
       history.push({
         pathname: RouteDefinitions.toEmailVerification(),
-        search: `?status=${VERIFY_EMAIL_STATUS.EMAIL_SENT}&email=${encodedEmail}`
+        search: `?status=${VERIFY_EMAIL_STATUS.EMAIL_SENT}&email=${encodedEmail}&module=${module}`
       });
     } catch (error) {
       captchaRef.current?.reset();
@@ -136,7 +136,7 @@ const SignUpExperimental: React.FC = () => {
       ) {
         history.push({
           pathname: RouteDefinitions.toEmailVerification(),
-          search: `?status=${VERIFY_EMAIL_STATUS.SIGNED_UP}&email=${encodedEmail}`
+          search: `?status=${VERIFY_EMAIL_STATUS.SIGNED_UP}&email=${encodedEmail}&module=${module}`
         });
       } else {
         handleError(error);

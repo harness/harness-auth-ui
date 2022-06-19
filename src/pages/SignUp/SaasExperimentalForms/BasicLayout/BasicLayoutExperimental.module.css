@@ -81,7 +81,7 @@
       font-family: "Reenie Beanie";
       font-style: normal;
       font-weight: 500;
-      width: 550px;
+      width: 100%;
     }
     & .valueProp {
       margin-top: var(--spacing-xxxlarge);
@@ -120,7 +120,7 @@
     }
   }
   & .imageColumn {
-    overflow-y: hidden;
+    overflow-y: auto;
     background-color: #07182b;
     padding-left: 0px;
     background-size: cover !important;
