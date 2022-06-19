@@ -40,13 +40,18 @@ interface AuthFooterProps {
   ssoIdpUrl?: string;
   action?: "signout";
 }
-
-export function getOAuthLink(
-  isOauthSignup: boolean,
-  oAuthProvider: OAuthProviderType,
-  accountId?: string,
-  showFullOauthButtons?: boolean
-): React.ReactElement {
+export interface OAuthLinkProps {
+  isOauthSignup: boolean;
+  oAuthProvider: OAuthProviderType;
+  accountId?: string;
+  showFullOauthButtons?: boolean;
+}
+export const OAuthLink: React.FC<OAuthLinkProps> = ({
+  isOauthSignup,
+  oAuthProvider,
+  accountId,
+  showFullOauthButtons
+}: OAuthLinkProps): JSX.Element => {
   const { iconName, type, url } = oAuthProvider;
   const link = `${URLS.OAUTH}api/users/${url}${
     isOauthSignup
@@ -94,7 +99,7 @@ export function getOAuthLink(
       )}
     </a>
   );
-}
+};
 
 const AuthFooter: React.FC<AuthFooterProps> = (props) => {
   const {
@@ -138,14 +143,15 @@ const AuthFooter: React.FC<AuthFooterProps> = (props) => {
             enabledOauthProviders
               ? enabledOauthProviders.includes(provider.type)
               : true
-          ).map((oAuthProvider: OAuthProviderType) =>
-            getOAuthLink(
-              isSignup,
-              oAuthProvider,
-              accountId,
-              showFullOauthButtons
-            )
-          )}
+          ).map((oAuthProvider: OAuthProviderType) => (
+            <OAuthLink
+              key={oAuthProvider.name}
+              isOauthSignup={isSignup}
+              oAuthProvider={oAuthProvider}
+              showFullOauthButtons={showFullOauthButtons}
+              accountId={accountId}
+            />
+          ))}
         </div>
       )}
       {isSignup ? (

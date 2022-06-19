@@ -11,7 +11,7 @@ import google from "static/icons/google-white.svg";
 import github from "static/icons/github.svg";
 import css from "../SignUp.module.css";
 import LargeOAuthButton from "./LargeOAuthButton";
-import { getOAuthLink } from "components/AuthFooter/AuthFooter";
+import { OAuthLink } from "components/AuthFooter/AuthFooter";
 import {
   OAuthProviders,
   OAuthProviderType,
@@ -75,9 +75,14 @@ const SignupFormOAuth = ({
               enabledOauthProviders
                 ? enabledOauthProviders.includes(provider.type)
                 : true
-            ).map((oAuthProvider: OAuthProviderType) =>
-              getOAuthLink(true, oAuthProvider, accountId)
-            )}
+            ).map((oAuthProvider: OAuthProviderType) => (
+              <OAuthLink
+                key={oAuthProvider.name}
+                isOauthSignup
+                oAuthProvider={oAuthProvider}
+                accountId={accountId}
+              />
+            ))}
           </div>
           <h2 className={cx(css.lineMessage, css.sectionWidth)}>
             <span className={css.message}>OR</span>
