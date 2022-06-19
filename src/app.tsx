@@ -30,7 +30,7 @@ import {
 import SignUpCommunity from "./pages/SignUp/SignUpCommunity";
 import SignUpOnPrem from "./pages/SignUp/SignUpOnPrem";
 import SignUpExperimental from "pages/SignUp/SaasExperimentalForms/SignUpExperimental";
-import EmailVerifyPage from "pages/SignUp/SaasExperimentalForms/EmailVerification/EmailVerifyPage";
+import EmailVerifyPageWithIntent from "pages/SignUp/SaasExperimentalForms/EmailVerification/EmailVerifyPage";
 
 const initializeApp = () => {
   // initialize bugsnagClient
@@ -102,7 +102,9 @@ const AppWithSaasRoutes: React.FC = () => {
       </Route>
       <Route
         path={routes.toEmailVerification()}
-        component={isNewSignupEnabled() ? EmailVerifyPage : VerifyEmailPage}
+        component={
+          isNewSignupEnabled() ? EmailVerifyPageWithIntent : VerifyEmailPage
+        }
       />
       <Route path={routes.toCompleteInvite()} component={CompleteInvitePage} />
     </>
