@@ -1,6 +1,6 @@
 {
   "name": "harness-auth-ui",
-  "version": "0.38.0",
+  "version": "0.39.0",
   "description": "Harness SignIn/SignUp UI",
   "main": "index.js",
   "scripts": {
