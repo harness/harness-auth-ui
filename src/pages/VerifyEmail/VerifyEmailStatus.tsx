@@ -20,6 +20,7 @@ import { EVENT, CATEGORY } from "utils/TelemetryUtils";
 interface VerifyEmailStatusProps {
   email?: string;
   status?: VERIFY_EMAIL_STATUS;
+  className?: string;
 }
 
 export enum VERIFY_EMAIL_STATUS {
@@ -74,11 +75,17 @@ const ResendButton = (props: ResendButtonProps): React.ReactElement => {
   );
 };
 
-const VerifyEmailSent = ({ email }: { email?: string }): React.ReactElement => {
+const VerifyEmailSent = ({
+  email,
+  className
+}: {
+  email?: string;
+  className?: string;
+}): React.ReactElement => {
   const resendButton = email && <ResendButton email={email} />;
 
   return (
-    <div>
+    <div className={className}>
       {harnessLogo}
       <Text className={cx(css.title, css.marginBottomLarge)}>
         {EMAIL_VERIFY_STATUS.EMAIL_SENT}
@@ -101,10 +108,16 @@ const VerifyEmailSent = ({ email }: { email?: string }): React.ReactElement => {
   );
 };
 
-const EmailSignedUp = ({ email }: { email?: string }): React.ReactElement => {
+const EmailSignedUp = ({
+  email,
+  className
+}: {
+  email?: string;
+  className?: string;
+}): React.ReactElement => {
   const resendButton = email && <ResendButton email={email} />;
   return (
-    <div>
+    <div className={className}>
       {harnessLogo}
       <Text className={cx(css.title, css.marginBottomLarge)}>
         {EMAIL_VERIFY_STATUS.ALREADY_SIGNED_UP}
@@ -129,15 +142,16 @@ const EmailSignedUp = ({ email }: { email?: string }): React.ReactElement => {
 
 const VerifyEmailStatus = ({
   email,
-  status
+  status,
+  className
 }: VerifyEmailStatusProps): React.ReactElement => {
   switch (status) {
     case VERIFY_EMAIL_STATUS.EMAIL_SENT:
-      return <VerifyEmailSent email={email} />;
+      return <VerifyEmailSent email={email} className={className} />;
     case VERIFY_EMAIL_STATUS.SIGNED_UP:
-      return <EmailSignedUp email={email} />;
+      return <EmailSignedUp email={email} className={className} />;
     default:
-      return <VerifyEmailSent email={email} />;
+      return <VerifyEmailSent email={email} className={className} />;
   }
 };
 
