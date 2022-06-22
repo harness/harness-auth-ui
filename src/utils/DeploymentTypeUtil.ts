@@ -11,5 +11,5 @@ export const isCommunityPlan = (): boolean =>
 export const isOnPrem = (): boolean => window.deploymentType === "ON_PREM";
 
 export const isSaas = (): boolean => window.deploymentType === "SAAS";
-export const isNewSignupEnabled = (): boolean => true;
-// window.isNewSignupEnabled === "true";
+export const isNewSignupEnabled = (): boolean =>
+  window.isNewSignupEnabled === "true";
