@@ -7,7 +7,7 @@
 
 import React, { useEffect } from "react";
 import cx from "classnames";
-import google from "static/icons/google-white.svg";
+import google from "static/icons/google.svg";
 import github from "static/icons/github.svg";
 import css from "../SignUp.module.css";
 import LargeOAuthButton from "./LargeOAuthButton";
@@ -48,12 +48,14 @@ const SignupFormOAuth = ({
       <LargeOAuthButton
         icon={google}
         iconClassName={css.buttonImage}
+        className={cx(css.signupButtonWhite, css.oauthgoogle)}
         text="Continue with Google"
         onClick={() => gotoAuth(OAUTH_PROVIDERS_BY_NAME_MAP.GOOGLE)}
       />
       <LargeOAuthButton
         icon={github}
-        iconClassName={cx(css.buttonImage, css.iconInverse)}
+        iconClassName={cx(css.buttonImage)}
+        className={cx(css.signupButtonWhite, css.oauthgoogle)}
         text="Continue with Github"
         onClick={() => gotoAuth(OAUTH_PROVIDERS_BY_NAME_MAP.GITHUB)}
       />
@@ -92,7 +94,6 @@ const SignupFormOAuth = ({
       <LargeOAuthButton
         onClick={changeFormType}
         iconClassName={cx(css.buttonImage, css.iconInverse)}
-        className={css.signupWithEmailButton}
         text="Sign up with Email"
       />
     </div>
