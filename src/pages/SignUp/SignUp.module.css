@@ -88,8 +88,8 @@
 }
 
 .buttonImage {
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
   margin: 0 12px;
   vertical-align: sub;
 }
@@ -99,7 +99,7 @@
 .withIcon {
   display: block;
   text-align: left;
-  margin-left: 20%;
+  margin-left: 15%;
 }
 .iconInverse {
   filter: brightness(0) invert(100%);
@@ -121,10 +121,19 @@
   }
 }
 
-.signupWithEmailButton {
-  color: var(--blue-700);
-  background: #fff !important;
-  border: solid var(--blue-700) 1px !important;
+.signupButtonWhite {
+  color: var(--grey-700);
+  background: var(--white) !important;
+}
+
+.borderwhite {
+  border: solid var(--white) 1px !important;
+}
+
+.oauthgoogle {
+  box-shadow: 0px 0px 1px rgba(40, 41, 61, 0.04),
+    0px 2px 4px rgba(96, 97, 112, 0.16);
+  border-radius: 4px;
 }
 
 .agreement {
