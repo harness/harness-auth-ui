@@ -28,6 +28,7 @@ import SignupFormWithCredentials from "./SignupFormWithCredentials";
 import SignupFormOAuth from "./SignupFormOAuth";
 import BasicLayoutExperimental from "./BasicLayout/BasicLayoutExperimental";
 import { getModuleDetails } from "./utils";
+import { URLS } from "interfaces/OAuthProviders";
 
 interface SignUpFormData {
   email: string;
@@ -227,11 +228,11 @@ const SignUpExperimental: React.FC = () => {
         )}
         <p className={css.agreement}>
           By signing up, you agree to our
-          <a href="" className={css.link}>
+          <a href={URLS.PRIVACY_AGREEMENT} className={css.link}>
             Privacy Policy
           </a>
           and our
-          <a href="" className={css.link}>
+          <a href={URLS.SUBSCRIPTION_TERMS} className={css.link}>
             Terms of Use
           </a>
         </p>
