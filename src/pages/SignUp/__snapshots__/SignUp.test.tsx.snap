@@ -198,11 +198,10 @@ exports[`SignUp render 1`] = `
             class="footer"
           >
             Already have an account?
-             
             <a
               href="/signin"
             >
-              Sign in
+               Sign in
             </a>
           </div>
         </div>
@@ -424,11 +423,10 @@ exports[`SignUp telemetry 1`] = `
             class="footer"
           >
             Already have an account?
-             
             <a
               href="/signin"
             >
-              Sign in
+               Sign in
             </a>
           </div>
         </div>

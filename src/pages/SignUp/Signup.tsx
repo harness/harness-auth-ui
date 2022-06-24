@@ -264,8 +264,8 @@ const SignUp: React.FC = () => {
           hideOAuth={window.oauthDisabled === "true"}
         />
         <div className={css.footer}>
-          Already have an account?{" "}
-          <Link to={RouteDefinitions.toSignIn()}>Sign in</Link>
+          Already have an account?
+          <Link to={RouteDefinitions.toSignIn()}> Sign in</Link>
         </div>
       </div>
     </BasicLayout>
