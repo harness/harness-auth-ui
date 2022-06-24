@@ -93,7 +93,7 @@
 .withIcon {
   display: block;
   text-align: left;
-  margin-left: 15%;
+  margin-left: 64px;
 }
 .iconInverse {
   filter: brightness(0) invert(100%);
@@ -127,8 +127,9 @@
 }
 
 .agreement {
-  font-size: 12px;
+  font-size: 11px;
   width: 450px;
+  font-weight: 500;
 }
 .imagecd {
   position: absolute;
@@ -183,6 +184,7 @@
 .footer {
   margin-top: var(--spacing-xxlarge);
   font-size: var(--font-size-normal);
+  font-weight: 500;
 }
 
 .signupWithEmailButton {
@@ -210,4 +212,5 @@
 .signintext {
   display: inline-block;
   padding: 0 12px;
+  font-weight: 600;
 }
