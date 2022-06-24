@@ -181,7 +181,7 @@
   width: 58% !important;
 }
 .footer {
-  margin-top: var(--spacing-huge);
+  margin-top: var(--spacing-xxlarge);
   font-size: var(--font-size-normal);
 }
 
