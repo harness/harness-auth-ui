@@ -37,7 +37,9 @@ export default function LargeOAuthButton({
       type={type}
     >
       {icon && (
-        <img className={cx(css.buttonImage, iconClassName)} src={icon} />
+        <div className={css.logoContainer}>
+          <img className={cx(css.buttonImage, iconClassName)} src={icon} />
+        </div>
       )}
       <div className={cx(css.buttonText, { [css.withIcon]: icon })}>{text}</div>
     </button>

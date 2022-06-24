@@ -87,12 +87,6 @@
   cursor: pointer;
 }
 
-.buttonImage {
-  height: 18px;
-  width: 18px;
-  margin: 0 12px;
-  vertical-align: sub;
-}
 .buttonText {
   width: 100%;
 }
@@ -185,4 +179,35 @@
 
 .emailVerify {
   width: 58% !important;
+}
+.footer {
+  margin-top: var(--spacing-huge);
+  font-size: var(--font-size-normal);
+}
+
+.signupWithEmailButton {
+  color: var(--blue-700);
+  background: #fff !important;
+  border: solid var(--blue-700) 1px !important;
+}
+
+.logoContainer {
+  height: 34px;
+  width: 34px;
+  border-radius: 2px;
+  background: #fff !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .buttonImage {
+    height: 18px;
+    width: 18px;
+    margin: 0 12px;
+    vertical-align: sub;
+  }
+}
+
+.signintext {
+  display: inline-block;
+  padding: 0 12px;
 }
