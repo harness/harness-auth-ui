@@ -48,14 +48,14 @@ const SignupFormOAuth = ({
       <LargeOAuthButton
         icon={google}
         iconClassName={css.buttonImage}
-        className={cx(css.signupButtonWhite, css.oauthgoogle)}
+        className={cx(css.oauthgoogle)}
         text="Continue with Google"
         onClick={() => gotoAuth(OAUTH_PROVIDERS_BY_NAME_MAP.GOOGLE)}
       />
       <LargeOAuthButton
         icon={github}
         iconClassName={cx(css.buttonImage)}
-        className={cx(css.signupButtonWhite, css.oauthgoogle)}
+        className={cx(css.oauthgoogle)}
         text="Continue with Github"
         onClick={() => gotoAuth(OAUTH_PROVIDERS_BY_NAME_MAP.GITHUB)}
       />
@@ -95,6 +95,7 @@ const SignupFormOAuth = ({
         onClick={changeFormType}
         iconClassName={cx(css.buttonImage, css.iconInverse)}
         text="Sign up with Email"
+        className={css.signupWithEmailButton}
       />
     </div>
   );

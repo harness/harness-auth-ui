@@ -7,7 +7,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import cx from "classnames";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { useSignup, SignupDTO } from "services/ng";
@@ -23,12 +23,12 @@ import {
   SignupAction
 } from "utils/SignUpUtils";
 import { CATEGORY, PAGE, EVENT } from "utils/TelemetryUtils";
-import css from "../SignUp.module.css";
 import SignupFormWithCredentials from "./SignupFormWithCredentials";
 import SignupFormOAuth from "./SignupFormOAuth";
 import BasicLayoutExperimental from "./BasicLayout/BasicLayoutExperimental";
 import { getModuleDetails } from "./utils";
 import { URLS } from "interfaces/OAuthProviders";
+import css from "../SignUp.module.css";
 
 interface SignUpFormData {
   email: string;
@@ -226,6 +226,7 @@ const SignUpExperimental: React.FC = () => {
             captchaRef={captchaRef}
           />
         )}
+
         <p className={css.agreement}>
           By signing up, you agree to our
           <a href={URLS.PRIVACY_AGREEMENT} className={css.link}>
@@ -235,6 +236,12 @@ const SignUpExperimental: React.FC = () => {
           <a href={URLS.SUBSCRIPTION_TERMS} className={css.link}>
             Terms of Use
           </a>
+        </p>
+      </div>
+      <div className={css.footer}>
+        Already have an account?
+        <p className={css.signintext}>
+          <Link to={RouteDefinitions.toSignIn()}>Sign in</Link>
         </p>
       </div>
       <img src={moduleDetails.pathImg} className={css.imagecd} />

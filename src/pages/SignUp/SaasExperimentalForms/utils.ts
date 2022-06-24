@@ -38,7 +38,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
   cd: {
     logo: CDLogo,
     pathImg: PathCD,
-    title: "Continuos Delivery",
+    title: "Continuous Delivery",
     tagLine: "Blazing Fast Deployment Pipelines in Minutes",
     valueProp:
       "Self-Service Continuous Delivery that enables engineers to deploy on-demand, without a single script",
@@ -66,7 +66,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
   ci: {
     logo: CILogo,
     pathImg: PathCI,
-    title: "Continuos Integration",
+    title: "Continuous Integration",
     tagLine: "Harness CI is an enterprise ready, cloud native CI product.",
     valueProp:
       "An intelligent, container-native CI solution with isolated builds and standardized extensions. Build artifacts smarter and faster.",
