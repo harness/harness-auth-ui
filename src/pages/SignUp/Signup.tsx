@@ -265,9 +265,7 @@ const SignUp: React.FC = () => {
         />
         <div className={css.footer}>
           Already have an account?
-          <p>
-            <Link to={RouteDefinitions.toSignIn()}> Sign in</Link>
-          </p>
+          <Link to={RouteDefinitions.toSignIn()}> Sign in</Link>
         </div>
       </div>
     </BasicLayout>
