@@ -8,7 +8,7 @@
 import React from "react";
 import { Route, HashRouter, Redirect, Switch } from "react-router-dom";
 import { RestfulProvider } from "restful-react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import routes from "./RouteDefinitions";
 import SignUp from "./pages/SignUp/Signup";
 import SignIn from "./pages/SignIn/SignIn";
@@ -111,6 +111,20 @@ const AppWithSaasRoutes: React.FC = () => {
   );
 };
 
+const globalResponseHandler = (response: Response): void => {
+  if (!response.ok) {
+    switch (response.status) {
+      case 429:
+        response
+          .clone()
+          .text()
+          .then((res) => {
+            toast.error(res);
+          });
+    }
+  }
+};
+
 export function App(): React.ReactElement {
   initializeApp();
 
@@ -127,7 +141,7 @@ export function App(): React.ReactElement {
   };
 
   return (
-    <RestfulProvider base="/">
+    <RestfulProvider base="/" onResponse={globalResponseHandler}>
       <AppErrorBoundary>
         <Toaster />
         <HashRouter>
