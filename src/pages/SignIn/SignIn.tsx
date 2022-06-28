@@ -85,9 +85,16 @@ const SignIn: React.FC = () => {
           "Unable to sign-in using OAuth because the account is not configured with OAuth authentication."
         );
         return;
-      case "unauth":
-        toast.error("Current IP Address is not whitelisted.");
+      case "unauth": {
+        const message = sessionStorage.getItem("NOT_WHITELISTED_IP_MESSAGE");
+        if (message) {
+          toast.error(message);
+        } else {
+          toast.error("Current IP Address is not whitelisted.");
+        }
+        sessionStorage.removeItem("NOT_WHITELISTED_IP_MESSAGE");
         return;
+      }
       case "invalidsso":
         toast.error("Invalid SSO Login.");
         return;
