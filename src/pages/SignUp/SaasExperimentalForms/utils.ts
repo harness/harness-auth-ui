@@ -71,7 +71,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
     valueProp:
       "An intelligent, container-native CI solution with isolated builds and standardized extensions. Build artifacts smarter and faster.",
     callout:
-      "Trusted by the New York Times, Roblox, John Deere, eBay and many others to run their build and test suits balzing fast",
+      "TRUSTED BY THE NEW YORK TIMES, ROBLOX, JOHN DEERE, EBAY AND MANY OTHERS TO RUN THEIR BUILDS AND TEST SUITES BLAZING FAST",
     intro:
       "Create a container-based build pipeline in minutes. Even testing is lightweight and fast with Test Intelligence!",
     cta: "Let's build",
@@ -91,7 +91,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
     cta: "Connect Cloud Account",
     color: "#01C9CC"
   },
-  ff: {
+  cf: {
     logo: FFLogo,
     pathImg: PathFF,
     title: "Feature Flags",
