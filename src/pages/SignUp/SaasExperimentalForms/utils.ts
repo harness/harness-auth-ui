@@ -91,7 +91,7 @@ const MODULE_TO_DETAILS_MAP: ModuleDetailsMap = {
     cta: "Connect Cloud Account",
     color: "#01C9CC"
   },
-  ff: {
+  cf: {
     logo: FFLogo,
     pathImg: PathFF,
     title: "Feature Flags",
