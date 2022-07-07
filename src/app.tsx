@@ -32,6 +32,9 @@ import SignUpOnPrem from "./pages/SignUp/SignUpOnPrem";
 import SignUpExperimental from "pages/SignUp/SaasExperimentalForms/SignUpExperimental";
 import EmailVerifyPageWithIntent from "pages/SignUp/SaasExperimentalForms/EmailVerification/EmailVerifyPage";
 
+const TOO_MANY_REQUESTS_MESSAGE =
+  "Too many requests received, please try again later";
+
 const initializeApp = () => {
   // initialize bugsnagClient
   if (
@@ -117,9 +120,9 @@ const globalResponseHandler = (response: Response): void => {
       case 429:
         response
           .clone()
-          .text()
+          .json()
           .then((res) => {
-            toast.error(res);
+            toast.error(res.message || TOO_MANY_REQUESTS_MESSAGE);
           });
     }
   }
