@@ -92,6 +92,7 @@ const SignUpExperimental: React.FC = () => {
     captchaToken: string
   ): Promise<void> => {
     const encodedEmail = encodeURIComponent(data.email);
+
     try {
       const signupRequestData: SignupDTO = {
         ...data,
@@ -229,11 +230,21 @@ const SignUpExperimental: React.FC = () => {
 
         <p className={css.agreement}>
           By signing up, you agree to our
-          <a href={URLS.PRIVACY_AGREEMENT} className={css.link}>
+          <a
+            href={URLS.PRIVACY_AGREEMENT}
+            className={css.link}
+            rel="noreferrer"
+            target="_blank"
+          >
             Privacy Policy
           </a>
           and our
-          <a href={URLS.SUBSCRIPTION_TERMS} className={css.link}>
+          <a
+            href={URLS.SUBSCRIPTION_TERMS}
+            className={css.link}
+            rel="noreferrer"
+            target="_blank"
+          >
             Terms of Use
           </a>
         </p>
