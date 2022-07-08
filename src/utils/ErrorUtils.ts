@@ -19,7 +19,9 @@ export function handleError(error: any): void {
         ""
     );
   } else if (error.message) {
-    toast(error.message);
+    if (error.status !== 429) {
+      toast(error.message);
+    }
   } else if (typeof error === "string") {
     toast(error);
   }

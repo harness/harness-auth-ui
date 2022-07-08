@@ -8,7 +8,7 @@
 import React from "react";
 import { Route, HashRouter, Redirect, Switch } from "react-router-dom";
 import { RestfulProvider } from "restful-react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import routes from "./RouteDefinitions";
 import SignUp from "./pages/SignUp/Signup";
 import SignIn from "./pages/SignIn/SignIn";
@@ -31,6 +31,9 @@ import SignUpCommunity from "./pages/SignUp/SignUpCommunity";
 import SignUpOnPrem from "./pages/SignUp/SignUpOnPrem";
 import SignUpExperimental from "pages/SignUp/SaasExperimentalForms/SignUpExperimental";
 import EmailVerifyPageWithIntent from "pages/SignUp/SaasExperimentalForms/EmailVerification/EmailVerifyPage";
+
+const TOO_MANY_REQUESTS_MESSAGE =
+  "Too many requests received, please try again later";
 
 const initializeApp = () => {
   // initialize bugsnagClient
@@ -111,6 +114,20 @@ const AppWithSaasRoutes: React.FC = () => {
   );
 };
 
+const globalResponseHandler = (response: Response): void => {
+  if (!response.ok) {
+    switch (response.status) {
+      case 429:
+        response
+          .clone()
+          .json()
+          .then((res) => {
+            toast.error(res.message || TOO_MANY_REQUESTS_MESSAGE);
+          });
+    }
+  }
+};
+
 export function App(): React.ReactElement {
   initializeApp();
 
@@ -127,7 +144,7 @@ export function App(): React.ReactElement {
   };
 
   return (
-    <RestfulProvider base="/">
+    <RestfulProvider base="/" onResponse={globalResponseHandler}>
       <AppErrorBoundary>
         <Toaster />
         <HashRouter>
