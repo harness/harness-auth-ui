@@ -86,6 +86,7 @@ export default function ForgotPassword() {
           }}
         />
       </div>
+      <div>{RouteDefinitions.toSignIn.test()}</div>
     </BasicLayout>
   );
 }

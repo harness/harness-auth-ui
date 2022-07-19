@@ -82,7 +82,7 @@ export default defineConfig({
           BugsnagSourceMapUploaderPlugin({
             apiKey: BUGSNAG_TOKEN,
             appVersion: version,
-            base: "*",
+            base: "https://pr.harness.io/pl-21667/auth",
             overwrite: true
           })
         ]
