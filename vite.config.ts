@@ -82,7 +82,8 @@ export default defineConfig({
           BugsnagSourceMapUploaderPlugin({
             apiKey: BUGSNAG_TOKEN,
             appVersion: version,
-            base: "*"
+            base: "*",
+            overwrite: true
           })
         ]
       : [])
