@@ -47,17 +47,13 @@ export default function ForgotPassword() {
     }
   };
 
-  useEffect(() => {
-    console.log(loading.x.y);
-  }, []);
-
   return (
     <BasicLayout>
       <div className={cx(css.signin)}>
         <div className={css.header}>
           <img src={logo} width={120} className={css.logo} alt={"Harness"} />
           <div style={{ flex: 1 }} />
-          <Link to={RouteDefinitions.toSignIn()}>
+          <Link to={RouteDefinitions.x.toSignIn()}>
             <Text icon="leftArrow">Sign in</Text>
           </Link>
         </div>
