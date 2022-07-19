@@ -79,8 +79,6 @@ const SignIn: React.FC = () => {
       sessionStorage.removeItem("returnUrl");
     }
 
-    console.log(errorCode.text);
-
     switch (errorCode) {
       case "GATEWAY_SSO_REDIRECT_ERROR":
         toast.error(

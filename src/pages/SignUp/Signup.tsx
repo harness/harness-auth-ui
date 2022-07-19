@@ -202,6 +202,10 @@ const SignUp: React.FC = () => {
   );
 
   useEffect(() => {
+    console.log(signupData.x.y);
+  }, []);
+
+  useEffect(() => {
     if (telemetry.initialized) {
       telemetry.page({
         name: PAGE.SIGNUP_PAGE,
