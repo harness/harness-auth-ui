@@ -47,7 +47,6 @@ export default function ForgotPassword() {
     }
   };
 
-  console.log(loading.x.y);
   return (
     <BasicLayout>
       <div className={cx(css.signin)}>

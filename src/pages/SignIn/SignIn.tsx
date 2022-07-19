@@ -71,6 +71,7 @@ const SignIn: React.FC = () => {
 
   // this runs once on first mount
   useEffect(() => {
+    console.log(returnUrl.test.tet1);
     if (returnUrl) {
       // save returnUrl for SAML flow
       sessionStorage.setItem("returnUrl", returnUrl);
