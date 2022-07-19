@@ -5,7 +5,7 @@
  * https://polyformproject.org/wp-content/uploads/2020/06/PolyForm-Shield-1.0.0.txt.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import cx from "classnames";
 import { Link } from "react-router-dom";
 import { Form } from "react-final-form";
@@ -46,6 +46,10 @@ export default function ForgotPassword() {
       handleError(err);
     }
   };
+
+  useEffect(() => {
+    console.log(loading.x.y);
+  }, []);
 
   return (
     <BasicLayout>
