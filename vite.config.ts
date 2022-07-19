@@ -16,6 +16,9 @@ import replace from "@rollup/plugin-replace";
 import { BugsnagSourceMapUploaderPlugin } from "vite-plugin-bugsnag";
 
 const DEV = process.env.NODE_ENV === "development";
+const BUGSNAG_TOKEN = process.env.BUGSNAG_TOKEN;
+
+const uploadSourceMap = BUGSNAG_TOKEN && !DEV;
 
 let headScripts = [];
 if (!DEV) {
@@ -74,10 +77,10 @@ export default defineConfig({
         gitBranch: process.env.GIT_BRANCH
       }
     }),
-    ...(!DEV
+    ...(uploadSourceMap
       ? [
           BugsnagSourceMapUploaderPlugin({
-            apiKey: process.env.BUGSNAG_TOKEN,
+            apiKey: BUGSNAG_TOKEN,
             appVersion: version,
             base: "*"
           })
