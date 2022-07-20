@@ -180,7 +180,6 @@ const SignUpExperimental: React.FC = () => {
   useEffect(() => {
     telemetry.page({
       name: PAGE.SIGNUP_PAGE,
-      category: CATEGORY.SIGNUP,
       properties: {
         intent: module || "",
         utm_source: utm_source || "",
