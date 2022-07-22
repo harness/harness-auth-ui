@@ -13,8 +13,12 @@ import emitEJS from "rollup-plugin-emit-ejs";
 import htmlPlugin from "vite-plugin-html-config";
 import { version } from "./package.json";
 import replace from "@rollup/plugin-replace";
+import { BugsnagSourceMapUploaderPlugin } from "vite-plugin-bugsnag";
 
 const DEV = process.env.NODE_ENV === "development";
+const BUGSNAG_TOKEN = process.env.BUGSNAG_TOKEN;
+
+const uploadSourceMap = BUGSNAG_TOKEN && !DEV;
 
 let headScripts = [];
 if (!DEV) {
@@ -50,6 +54,9 @@ export default defineConfig({
       }
     }
   },
+  build: {
+    sourcemap: true
+  },
   plugins: [
     nodeResolve({
       moduleDirectories: ["node_modules", "src"],
@@ -69,7 +76,16 @@ export default defineConfig({
         gitCommit: process.env.GIT_COMMIT,
         gitBranch: process.env.GIT_BRANCH
       }
-    })
+    }),
+    ...(uploadSourceMap
+      ? [
+          BugsnagSourceMapUploaderPlugin({
+            apiKey: BUGSNAG_TOKEN,
+            appVersion: version,
+            base: "*"
+          })
+        ]
+      : [])
   ],
   base: ""
 });
