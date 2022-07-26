@@ -6,8 +6,10 @@ COPY config/nginx.conf /etc/nginx/
 
 WORKDIR /opt/ng-auth-ui
 
-RUN chmod +x -R /opt/ng-auth-ui
-RUN chmod +x -R /tmp
+RUN chown 65534:65534 -R /var/log/nginx
+RUN chown 65534:65534 -R /opt/ng-auth-ui
+
+USER 65534
 
 EXPOSE 8080
 
